@@ -345,9 +345,30 @@
 <li>保存内容并退出，生效。</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">source</span>  ~/.bash_profile</span><br><span class="line"><span class="comment"># 测试</span></span><br><span class="line">$ java -version</span><br><span class="line">$ jdk8</span><br><span class="line">$ java -version</span><br><span class="line">$ jdk11</span><br></pre></td></tr></table></figure>
+<h2 id="java-jdk11-的安装ubuntu">Java-jdk11 的安装（Ubuntu）</h2>
+<ul>
+<li>下载 deb 文件，https://www.oracle.com/java/technologies/downloads/#java11</li>
+<li>上传到服务器</li>
+<li><code>sudo dpkg -i jdk-11.0.9_linux-x64_bin.deb</code>
+<ul>
+<li>可能出错：https://www.devmanuals.net/install/ubuntu/ubuntu-12-04-lts-precise-pangolin/install-libasound2-dev.html
+<ul>
+<li>sudo apt-get update</li>
+<li>sudo apt-get install libasound2-dev</li>
+</ul></li>
+</ul></li>
+<li>配置环境变量</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vi ~/.bashrc</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/lib/jvm/jdk-11.0.9</span><br><span class="line"><span class="built_in">export</span> JRE_HOME=<span class="variable">$&#123;JAVA_HOME&#125;</span></span><br><span class="line"><span class="built_in">export</span> CLASSPATH=.:<span class="variable">$&#123;JAVA_HOME&#125;</span>/lib:<span class="variable">$&#123;JRE_HOME&#125;</span>/lib</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$&#123;JAVA_HOME&#125;</span>/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+<ul>
+<li>检查是否成功</li>
+</ul>
 <h2 id="参考">参考</h2>
 <ul>
 <li><a href="https://www.bilibili.com/read/cv9188862">VSCode完美配置Java开发环境【附官方英文翻译】</a></li>
+<li><a href="https://www.jianshu.com/p/575acc583c0d">ubuntu18 安装jdk11 （jdk-11.0.9_linux-x64_bin.deb）</a></li>
 </ul>
 ]]></content>
       <categories>
