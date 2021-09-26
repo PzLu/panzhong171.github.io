@@ -59,6 +59,10 @@
 <li><code>git config --global user.email &quot;my_email@outlook.com&quot;</code></li>
 </ul></li>
 </ul></li>
+<li><code>ssh-keygen</code> 命令-公钥
+<ul>
+<li><a href="https://blog.csdn.net/weixin_39417086/article/details/86572434">Git配置ssh公钥</a></li>
+</ul></li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
 <ul>
