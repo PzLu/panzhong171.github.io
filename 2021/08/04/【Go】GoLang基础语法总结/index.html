@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/computer-180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/computer-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/computer-16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pzlu.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.6.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"utterances","storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1},"gitalk":{"order":-2}},"activeClass":"utterances"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Go 是一个开源的编程语言，它能让构造简单、可靠且高效的软件变得容易。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Go】GoLang基础语法总结">
+<meta property="og:url" content="https://pzlu.github.io/2021/08/04/%E3%80%90Go%E3%80%91GoLang%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="NexT">
+<meta property="og:description" content="Go 是一个开源的编程语言，它能让构造简单、可靠且高效的软件变得容易。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://user-images.githubusercontent.com/48743005/128171750-f6f28e9f-e220-43da-8879-86f1ef180e6b.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/48743005/128171823-e67112a6-d378-4a0c-aa76-a91717339d14.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/48743005/128171850-c2b78d3d-e57a-4ec0-8280-7031f6daf26a.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/48743005/128171866-7ef37134-0d13-4815-88d2-1039e09afa1f.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/48743005/128172435-32c7f269-30dd-46eb-9de6-7b389f3e2193.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/48743005/128172557-06b5ba63-b517-49c6-9438-b7d9842eab06.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/48743005/128172613-f0a2a46d-d3c0-4888-8213-4743c2e67da1.png">
+<meta property="article:published_time" content="2021-08-04T11:09:59.000Z">
+<meta property="article:modified_time" content="2021-09-26T01:49:34.019Z">
+<meta property="article:author" content="panzhong171">
+<meta property="article:tag" content="Go">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/48743005/128171750-f6f28e9f-e220-43da-8879-86f1ef180e6b.png">
+
+
+<link rel="canonical" href="https://pzlu.github.io/2021/08/04/%E3%80%90Go%E3%80%91GoLang%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pzlu.github.io/2021/08/04/%E3%80%90Go%E3%80%91GoLang%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/","path":"2021/08/04/【Go】GoLang基础语法总结/","title":"【Go】GoLang基础语法总结"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【Go】GoLang基础语法总结 | NexT</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">NexT</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">May your life be sound and safe.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">37</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">25</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">39</span></a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-笔记"><a href="/notes/" rel="section"><i class="fa fa-battery-full fa-fw"></i>笔记</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AEwindows%E7%AF%87%E7%AB%A0"><span class="nav-number">1.</span> <span class="nav-text">环境配置（windows篇章）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD---%E5%AE%89%E8%A3%85%E5%88%B0%E6%8C%87%E5%AE%9A%E7%9B%98%E6%AF%94%E5%A6%82d"><span class="nav-number">1.1.</span> <span class="nav-text">下载 - 安装到指定盘（比如：D:）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%9D%E6%AC%A1%E9%85%8D%E7%BD%AEgorootgopath%E5%B7%A5%E4%BD%9C%E8%B7%AF%E5%BE%84path"><span class="nav-number">1.2.</span> <span class="nav-text">依次配置GOROOT、GOPATH（工作路径）、Path</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC"><span class="nav-number">1.3.</span> <span class="nav-text">查看版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-vscode---%E5%AE%89%E8%A3%85go%E6%8F%92%E4%BB%B6"><span class="nav-number">1.4.</span> <span class="nav-text">配置 Vscode - 安装Go插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A1%AE%E4%BF%9D%E5%AE%89%E8%A3%85%E5%A5%BD-git-%E7%9A%84%E5%89%8D%E6%8F%90%E4%B8%8B%E5%AE%8C%E6%88%90%E9%85%8D%E7%BD%AE"><span class="nav-number">1.5.</span> <span class="nav-text">确保安装好 git 的前提下，完成配置。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E4%B8%80%E4%B8%8B"><span class="nav-number">1.6.</span> <span class="nav-text">测试一下</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E6%A1%86%E6%9E%B6"><span class="nav-number">2.</span> <span class="nav-text">语言学习框架</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%AD%E8%A8%80%E7%AE%80%E4%BB%8B"><span class="nav-number">2.1.</span> <span class="nav-text">语言简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">2.1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E4%B8%BB%E8%A6%81%E7%9A%84%E7%89%B9%E6%80%A7"><span class="nav-number">2.1.2.</span> <span class="nav-text">最主要的特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E7%94%A8%E9%80%94"><span class="nav-number">2.1.3.</span> <span class="nav-text">主要用途</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%AD%E8%A8%80%E7%BB%93%E6%9E%84"><span class="nav-number">2.2.</span> <span class="nav-text">语言结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E4%BE%8B%E5%AD%90"><span class="nav-number">2.2.1.</span> <span class="nav-text">一个例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E5%8C%85%E5%90%8D%E7%9A%84%E6%B3%A8%E8%A7%A3"><span class="nav-number">2.2.2.</span> <span class="nav-text">关于包名的注解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">文件结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">测试代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#go-%E7%A8%8B%E5%BA%8F%E7%9A%84%E4%B8%80%E8%88%AC%E7%BB%93%E6%9E%84-basic_structure.go"><span class="nav-number">2.2.3.</span> <span class="nav-text">Go 程序的一般结构: basic_structure.go</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87-package-%E6%9D%A5%E7%BB%84%E7%BB%87"><span class="nav-number">2.2.4.</span> <span class="nav-text">通过 package 来组织</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87-import-%E5%85%B3%E9%94%AE%E5%AD%97%E5%8D%95%E4%B8%AA%E5%AF%BC%E5%85%A5"><span class="nav-number">2.2.4.1.</span> <span class="nav-text">可以通过 import 关键字单个导入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E4%BB%A5%E5%90%8C%E6%97%B6%E5%AF%BC%E5%85%A5%E5%A4%9A%E4%B8%AA"><span class="nav-number">2.2.4.2.</span> <span class="nav-text">可以同时导入多个</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-packagename.functionname-%E5%AF%BC%E5%85%A5%E8%B0%83%E7%94%A8"><span class="nav-number">2.2.4.3.</span> <span class="nav-text">使用 &lt;PackageName&gt;.&lt;FunctionName&gt; 导入调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9C%81%E7%95%A5%E8%B0%83%E7%94%A8%E4%B8%8D%E5%BB%BA%E8%AE%AE%E4%BD%BF%E7%94%A8"><span class="nav-number">2.2.4.4.</span> <span class="nav-text">省略调用(不建议使用)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E8%A7%81%E6%80%A7%E8%A7%84%E5%88%99"><span class="nav-number">2.2.5.</span> <span class="nav-text">可见性规则</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="panzhong171"
+      src="/images/myphoto.png">
+  <p class="site-author-name" itemprop="name">panzhong171</p>
+  <div class="site-description" itemprop="description">Cerca Trova</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/PzLu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;PzLu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:panzhong171@outlook.com" title="E-Mail → mailto:panzhong171@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+          </div>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pzlu.github.io/2021/08/04/%E3%80%90Go%E3%80%91GoLang%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myphoto.png">
+      <meta itemprop="name" content="panzhong171">
+      <meta itemprop="description" content="Cerca Trova">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NexT">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【Go】GoLang基础语法总结
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-08-04 19:09:59" itemprop="dateCreated datePublished" datetime="2021-08-04T19:09:59+08:00">2021-08-04</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-09-26 09:49:34" itemprop="dateModified" datetime="2021-09-26T09:49:34+08:00">2021-09-26</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Go/" itemprop="url" rel="index"><span itemprop="name">Go</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>Go 是一个开源的编程语言，它能让构造简单、可靠且高效的软件变得容易。</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="环境配置windows篇章">环境配置（windows篇章）</h1>
+<h2 id="下载---安装到指定盘比如d">下载 - 安装到指定盘（比如：D:）</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://golang.org/dl/">下载地址</a></li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/48743005/128171750-f6f28e9f-e220-43da-8879-86f1ef180e6b.png" /></p>
+<h2 id="依次配置gorootgopath工作路径path">依次配置GOROOT、GOPATH（工作路径）、Path</h2>
+<p><img src="https://user-images.githubusercontent.com/48743005/128171823-e67112a6-d378-4a0c-aa76-a91717339d14.png" /> <img src="https://user-images.githubusercontent.com/48743005/128171850-c2b78d3d-e57a-4ec0-8280-7031f6daf26a.png" /> <img src="https://user-images.githubusercontent.com/48743005/128171866-7ef37134-0d13-4815-88d2-1039e09afa1f.png" /></p>
+<h2 id="查看版本">查看版本</h2>
+<ul>
+<li><code>go version</code></li>
+</ul>
+<h2 id="配置-vscode---安装go插件">配置 Vscode - 安装Go插件</h2>
+<p><img src="https://user-images.githubusercontent.com/48743005/128172435-32c7f269-30dd-46eb-9de6-7b389f3e2193.png" /></p>
+<ul>
+<li>选择设置选项</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/48743005/128172557-06b5ba63-b517-49c6-9438-b7d9842eab06.png" /></p>
+<ul>
+<li>选择扩展Go configuration选择配置，在settings.json中编辑。</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/48743005/128172613-f0a2a46d-d3c0-4888-8213-4743c2e67da1.png" /></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;go.buildOnSave&quot;</span>:<span class="string">&quot;off&quot;</span>,<span class="comment">// 保存代码时优化</span></span><br><span class="line"><span class="string">&quot;go.lintOnSave&quot;</span>:<span class="string">&quot;package&quot;</span>,<span class="comment">// 保存代码时检查潜在错误</span></span><br><span class="line"><span class="string">&quot;go.vetOnSave&quot;</span>:<span class="string">&quot;package&quot;</span>,<span class="comment">// 保存代码时执行测试</span></span><br><span class="line"><span class="string">&quot;go.coverOnSave&quot;</span>:<span class="literal">false</span>,</span><br><span class="line"><span class="string">&quot;go.useCodeSnippetsOnFunctionSuggest&quot;</span>:<span class="literal">true</span>,</span><br><span class="line"><span class="string">&quot;go.useCodeSnippetsOnFunctionSuggestWithoutType&quot;</span>:<span class="literal">true</span>,<span class="comment">// 代码格式化</span></span><br><span class="line"><span class="string">&quot;go.formatTool&quot;</span>:<span class="string">&quot;goreturns&quot;</span>,</span><br><span class="line"><span class="string">&quot;go.gocodePackageLookupMode&quot;</span>:<span class="string">&quot;go&quot;</span>,</span><br><span class="line"><span class="string">&quot;go.gotoSymbol.includeImports&quot;</span>:<span class="literal">true</span>,</span><br><span class="line"><span class="string">&quot;go.docsTool&quot;</span>:<span class="string">&quot;godoc&quot;</span>,</span><br><span class="line"><span class="string">&quot;go.inferGopath&quot;</span>:<span class="literal">true</span>,</span><br><span class="line"><span class="string">&quot;go.useLanguageServer&quot;</span>:<span class="literal">true</span>,</span><br><span class="line"><span class="string">&quot;go.autocompleteUnimportedPackages&quot;</span>:<span class="literal">true</span>,<span class="comment">// go语言安装环境目录</span></span><br><span class="line"><span class="string">&quot;go.goroot&quot;</span>:<span class="string">&quot;D:\\Golang&quot;</span>,<span class="comment">// go语言工作目录</span></span><br><span class="line"><span class="string">&quot;go.gopath&quot;</span>:<span class="string">&quot;C:\\Users\\panzhong171\\Desktop\\goProject&quot;</span>,</span><br><span class="line"><span class="string">&quot;go.gocodeAutoBuild&quot;</span>: <span class="literal">false</span>,</span><br><span class="line"><span class="string">&quot;go.enableCodeLens&quot;</span>: &#123;</span><br><span class="line"></span><br><span class="line">    <span class="attr">&quot;references&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;runtest&quot;</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="确保安装好-git-的前提下完成配置">确保安装好 git 的前提下，完成配置。</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ go env -w GO111MODULE=on </span><br><span class="line">$ go env -w GOPROXY=https://goproxy.cn,direct</span><br></pre></td></tr></table></figure>
+<ul>
+<li>然后打开vscode，看他报错点安装，就可以了。不需要手动安装包。</li>
+</ul>
+<h2 id="测试一下">测试一下</h2>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">   fmt.Println(<span class="string">&quot;Hello, World!&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ go run test.go</span><br><span class="line">Hello, World!</span><br></pre></td></tr></table></figure>
+<h1 id="语言学习框架">语言学习框架</h1>
+<h2 id="语言简介">语言简介</h2>
+<h3 id="简介">简介</h3>
+<ul>
+<li>Go 是一个开源的编程语言，它能让构造简单、可靠且高效的软件变得容易。</li>
+<li>Go是从2007年末由Robert Griesemer, Rob Pike, Ken Thompson主持开发，后来还加入了Ian Lance Taylor, Russ Cox等人，并最终于2009年11月开源，在2012年早些时候发布了Go 1稳定版本。现在Go的开发已经是完全开放的，并且拥有一个活跃的社区。</li>
+</ul>
+<h3 id="最主要的特性">最主要的特性</h3>
+<ul>
+<li>自动垃圾回收</li>
+<li>更丰富的内置类型</li>
+<li>函数多返回值</li>
+<li>错误处理</li>
+<li>匿名函数和闭包</li>
+<li>类型和接口</li>
+<li>并发编程</li>
+<li>反射</li>
+<li>语言交互性</li>
+</ul>
+<h3 id="主要用途">主要用途</h3>
+<ul>
+<li>Go 语言被设计成一门应用于搭载 Web 服务器，存储集群或类似用途的巨型中央服务器的系统编程语言。</li>
+<li>对于高性能分布式系统领域而言，Go 语言无疑比大多数其它语言有着更高的开发效率。它提供了海量并行的支持，这对于游戏服务端的开发而言是再好不过了。</li>
+</ul>
+<h2 id="语言结构">语言结构</h2>
+<blockquote>
+<p>包声明-引入包-函数-变量-语句 &amp; 表达式-注释</p>
+</blockquote>
+<h3 id="一个例子">一个例子</h3>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main  <span class="comment">// 定义包名 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span>  <span class="comment">// 引入包</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123; </span><br><span class="line">   <span class="comment">/* 这是我的第一个简单的程序 */</span></span><br><span class="line">   fmt.Println(<span class="string">&quot;Hello, World!&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="关于包名的注解">关于包名的注解</h3>
+<ul>
+<li>文件名与包名没有直接关系，不一定要将文件名与包名定成同一个。</li>
+<li>文件夹名与包名没有直接关系，并非需要一致。</li>
+<li>同一个文件夹下的文件只能有一个包名，否则编译报错。</li>
+</ul>
+<h4 id="文件结构">文件结构</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Test</span><br><span class="line">--helloworld.go</span><br><span class="line"></span><br><span class="line">myMath</span><br><span class="line">--myMath1.go</span><br><span class="line">--myMath2.go</span><br></pre></td></tr></table></figure>
+<h4 id="测试代码">测试代码</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// helloworld.go</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line"><span class="string">&quot;fmt&quot;</span></span><br><span class="line"><span class="string">&quot;./myMath&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    fmt.Println(<span class="string">&quot;Hello World!&quot;</span>)</span><br><span class="line">    fmt.Println(mathClass.Add(<span class="number">1</span>,<span class="number">1</span>))</span><br><span class="line">    fmt.Println(mathClass.Sub(<span class="number">1</span>,<span class="number">1</span>))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// myMath1.go</span></span><br><span class="line"><span class="keyword">package</span> mathClass</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Add</span><span class="params">(x,y <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x + y</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// myMath2.go</span></span><br><span class="line"><span class="keyword">package</span> mathClass</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Sub</span><span class="params">(x,y <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x - y</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="go-程序的一般结构-basic_structure.go">Go 程序的一般结构: basic_structure.go</h3>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 当前程序的包名</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="comment">// 导入其他包</span></span><br><span class="line"><span class="keyword">import</span> . <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 常量定义：通过 const 关键字来进行常量的定义。</span></span><br><span class="line"><span class="keyword">const</span> PI = <span class="number">3.14</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 全局变量的声明和赋值：在函数体外部使用 var 关键字来进行全局变量的声明和赋值。</span></span><br><span class="line"><span class="keyword">var</span> name = <span class="string">&quot;gopher&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 一般类型声明</span></span><br><span class="line"><span class="keyword">type</span> newType <span class="keyword">int</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 结构的声明：通过 type 关键字来进行结构(struct)的声明。</span></span><br><span class="line"><span class="keyword">type</span> gopher <span class="keyword">struct</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 接口的声明：通过 type 关键字来进行接口(interface)的声明。</span></span><br><span class="line"><span class="keyword">type</span> golang <span class="keyword">interface</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 由main函数作为程序入口点启动</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    Println(<span class="string">&quot;Hello World!&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="通过-package-来组织">通过 package 来组织</h3>
+<ul>
+<li>只有 package 名称为 main 的包可以包含 main 函数。</li>
+<li>一个可执行程序有且仅有一个 main 包。</li>
+<li>通过 import 关键字来导入其他非 main 包。</li>
+</ul>
+<h4 id="可以通过-import-关键字单个导入">可以通过 import 关键字单个导入</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;io&quot;</span></span><br></pre></td></tr></table></figure>
+<h4 id="可以同时导入多个">可以同时导入多个</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;fmt&quot;</span></span><br><span class="line">    <span class="string">&quot;math&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(math.Exp2(<span class="number">10</span>))  <span class="comment">// 1024</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="使用-packagename.functionname-导入调用">使用 <code>&lt;PackageName&gt;.&lt;FunctionName&gt;</code> 导入调用</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="comment">// 为fmt起别名为fmt2</span></span><br><span class="line"><span class="keyword">import</span> fmt2 <span class="string">&quot;fmt&quot;</span></span><br></pre></td></tr></table></figure>
+<h4 id="省略调用不建议使用">省略调用(不建议使用)</h4>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 调用的时候只需要Println()，而不需要fmt.Println()</span></span><br><span class="line"><span class="keyword">import</span> . <span class="string">&quot;fmt&quot;</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    Println(<span class="string">&quot;hello,world&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="可见性规则">可见性规则</h3>
+<ul>
+<li>Go语言中，使用大小写来决定该常量、变量、类型、接口、结构或函数是否可以被外部包所调用。</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//函数名首字母小写即为 private :</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getId</span><span class="params">()</span></span> &#123;&#125;</span><br><span class="line"><span class="comment">//函数名首字母大写即为 public :</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Printf</span><span class="params">()</span></span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/alipay.png" alt="panzhong171 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>panzhong171
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://pzlu.github.io/2021/08/04/%E3%80%90Go%E3%80%91GoLang%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/" title="【Go】GoLang基础语法总结">https://pzlu.github.io/2021/08/04/【Go】GoLang基础语法总结/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Go/" rel="tag"># Go</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/08/04/%E3%80%90%E6%8A%80%E6%9C%AF%E9%97%AE%E9%A2%98%E3%80%91%E7%99%BB%E5%85%A5%E4%B8%8D%E4%BA%86%E8%B0%B7%E6%AD%8C%E5%AD%A6%E6%9C%AF%EF%BC%9F/" rel="prev" title="【技术问题】登入不了谷歌学术？">
+                  <i class="fa fa-chevron-left"></i> 【技术问题】登入不了谷歌学术？
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/08/16/%E3%80%90%E7%A7%91%E7%A0%94%E3%80%91%E4%B8%80%E4%BA%9B%E6%9C%AF%E8%AF%AD%E5%BB%BA%E8%AE%AE-%E6%80%BB%E7%BB%93/" rel="next" title="【科研】一些术语建议-总结">
+                  【科研】一些术语建议-总结 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+  <div class="languages">
+    <label class="lang-select-label">
+      <i class="fa fa-language"></i>
+      <span>简体中文</span>
+      <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </label>
+    <select class="lang-select" data-canonical="" aria-label="选择语言">
+      
+        <option value="zh-CN" data-href="/2021/08/04/%E3%80%90Go%E3%80%91GoLang%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/" selected="">
+          简体中文
+        </option>
+      
+        <option value="en" data-href="/en/2021/08/04/%E3%80%90Go%E3%80%91GoLang%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/" selected="">
+          English
+        </option>
+      
+    </select>
+  </div>
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">panzhong171</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">75k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:08</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"pzlu.github.io","issue_term":"title","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>

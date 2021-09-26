@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/computer-180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/computer-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/computer-16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pzlu.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.6.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"utterances","storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1},"gitalk":{"order":-2}},"activeClass":"utterances"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="本文记录了《Effective Python》的重要内容。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Python】Effective Python">
+<meta property="og:url" content="https://pzlu.github.io/2021/07/16/%E3%80%90Python%E3%80%91Effective-Python/index.html">
+<meta property="og:site_name" content="NexT">
+<meta property="og:description" content="本文记录了《Effective Python》的重要内容。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-07-16T09:19:14.000Z">
+<meta property="article:modified_time" content="2021-09-26T01:49:34.020Z">
+<meta property="article:author" content="panzhong171">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://pzlu.github.io/2021/07/16/%E3%80%90Python%E3%80%91Effective-Python/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pzlu.github.io/2021/07/16/%E3%80%90Python%E3%80%91Effective-Python/","path":"2021/07/16/【Python】Effective-Python/","title":"【Python】Effective Python"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【Python】Effective Python | NexT</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">NexT</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">May your life be sound and safe.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">37</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">25</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">39</span></a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-笔记"><a href="/notes/" rel="section"><i class="fa fa-battery-full fa-fw"></i>笔记</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pythonic-%E7%A1%AE%E8%AE%A4%E8%87%AA%E5%B7%B1%E6%89%80%E7%94%A8%E7%9A%84-python-%E7%89%88%E6%9C%AC"><span class="nav-number">1.</span> <span class="nav-text">Pythonic-确认自己所用的 Python 版本</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC"><span class="nav-number">1.1.</span> <span class="nav-text">查看版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sys-%E6%A8%A1%E5%9D%97%E5%86%85%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.2.</span> <span class="nav-text">sys 模块内查询</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pythonic-%E9%81%B5%E5%BE%AA-pep-8-%E9%A3%8E%E6%A0%BC%E6%8C%87%E5%8D%97"><span class="nav-number">2.</span> <span class="nav-text">Pythonic-遵循 PEP 8 风格指南</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#pep-8-%E7%9A%84%E6%84%8F%E4%B9%89"><span class="nav-number">2.1.</span> <span class="nav-text">PEP 8 的意义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%A0%E6%9D%A1%E9%87%8D%E8%A6%81%E7%9A%84%E8%A7%84%E5%88%99"><span class="nav-number">2.2.</span> <span class="nav-text">几条重要的规则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E5%90%8D"><span class="nav-number">2.2.1.</span> <span class="nav-text">命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A9%BA%E7%99%BD"><span class="nav-number">2.2.2.</span> <span class="nav-text">空白</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%92%8C%E8%AF%AD%E5%8F%A5"><span class="nav-number">2.2.3.</span> <span class="nav-text">表达式和语句</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pythonic-%E4%BA%86%E8%A7%A3-bytesstr-%E4%B8%8E-unicode-%E5%8C%BA%E5%88%AB"><span class="nav-number">3.</span> <span class="nav-text">Pythonic-了解 bytes、str 与 unicode 区别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E5%BA%8F%E5%88%97%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.1.</span> <span class="nav-text">字符序列类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E4%B8%8E%E8%A7%A3%E7%A0%81"><span class="nav-number">3.2.</span> <span class="nav-text">编码与解码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%83%85%E5%BD%A2python-3"><span class="nav-number">3.3.</span> <span class="nav-text">使用情形（Python 3）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E8%83%BD%E7%9A%84%E9%97%AE%E9%A2%98python-3"><span class="nav-number">3.4.</span> <span class="nav-text">可能的问题（Python 3）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pythonic-%E7%94%A8%E8%BE%85%E5%8A%A9%E5%87%BD%E6%95%B0%E6%9D%A5%E6%9B%BF%E4%BB%A3%E5%A4%8D%E6%9D%82%E5%BC%8F"><span class="nav-number">4.</span> <span class="nav-text">Pythonic-用辅助函数来替代复杂式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E6%96%B9%E5%BC%8F_1"><span class="nav-number">4.1.</span> <span class="nav-text">复杂方式_1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%82%AB%E6%8A%80%E6%96%B9%E5%BC%8F_2"><span class="nav-number">4.2.</span> <span class="nav-text">炫技方式_2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E6%96%B9%E5%BC%8F_3"><span class="nav-number">4.3.</span> <span class="nav-text">简单方式_3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8C%83%E5%BC%8F_4"><span class="nav-number">4.4.</span> <span class="nav-text">范式_4</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pythonic-%E4%BA%86%E8%A7%A3%E5%88%87%E5%89%B2%E5%BA%8F%E5%88%97%E7%9A%84%E5%8A%9E%E6%B3%95"><span class="nav-number">5.</span> <span class="nav-text">Pythonic-了解切割序列的办法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%87%E5%89%B2%E5%BA%8F%E5%88%97"><span class="nav-number">5.1.</span> <span class="nav-text">切割序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%A0%E5%80%BC"><span class="nav-number">5.2.</span> <span class="nav-text">传值</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="panzhong171"
+      src="/images/myphoto.png">
+  <p class="site-author-name" itemprop="name">panzhong171</p>
+  <div class="site-description" itemprop="description">Cerca Trova</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/PzLu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;PzLu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:panzhong171@outlook.com" title="E-Mail → mailto:panzhong171@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+          </div>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pzlu.github.io/2021/07/16/%E3%80%90Python%E3%80%91Effective-Python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myphoto.png">
+      <meta itemprop="name" content="panzhong171">
+      <meta itemprop="description" content="Cerca Trova">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NexT">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【Python】Effective Python
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-07-16 17:19:14" itemprop="dateCreated datePublished" datetime="2021-07-16T17:19:14+08:00">2021-07-16</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-09-26 09:49:34" itemprop="dateModified" datetime="2021-09-26T09:49:34+08:00">2021-09-26</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>本文记录了《Effective Python》的重要内容。</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="pythonic-确认自己所用的-python-版本">Pythonic-确认自己所用的 Python 版本</h1>
+<h2 id="查看版本">查看版本</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ python --version</span><br></pre></td></tr></table></figure>
+<h2 id="sys-模块内查询">sys 模块内查询</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> sys</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sys.version_info</span><br><span class="line">sys.version_info(major=<span class="number">3</span>, minor=<span class="number">6</span>, micro=<span class="number">8</span>, releaselevel=<span class="string">&#x27;final&#x27;</span>, serial=<span class="number">0</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sys.version</span><br><span class="line"><span class="string">&#x27;3.6.8 |Anaconda custom (64-bit)| (default, Dec 29 2018, 19:04:46) \n[GCC 4.2.1 Compatible Clang 4.0.1 (tags/RELEASE_401/final)]&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span></span><br></pre></td></tr></table></figure>
+<p><code>优先考虑 Python3 版本！</code></p>
+<h1 id="pythonic-遵循-pep-8-风格指南">Pythonic-遵循 PEP 8 风格指南</h1>
+<h2 id="pep-8-的意义">PEP 8 的意义</h2>
+<blockquote>
+<p>《Python Enhancement Proposal 8》又叫 PEP 8，它是针对 Python 代码格式而编制的风格指南。</p>
+<p><a target="_blank" rel="noopener" href="https://www.python.org/dev/peps/pep-0008/">链接</a>：https://www.python.org/dev/peps/pep-0008/</p>
+</blockquote>
+<ul>
+<li>主要作用：
+<ul>
+<li>有利于编写更加通俗易懂的代码。</li>
+<li>有利于多人协作，有利于修改。</li>
+</ul></li>
+</ul>
+<h2 id="几条重要的规则">几条重要的规则</h2>
+<h3 id="命名">命名</h3>
+<ul>
+<li><code>函数、变量以及属性</code>应该用小写字母来拼写。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum_a_</span>+<span class="title">_b</span>(<span class="params"><span class="built_in">int</span> a, <span class="built_in">int</span> b</span>):</span></span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>类</code>与异常，应该以每个单词首字母大写的形式来命名。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SmallCar</span>():</span></span><br><span class="line">    ...</span><br><span class="line"><span class="comment">#</span></span><br><span class="line">CapitalizedWord</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>模块级别的常量</code>，应该全部采用大写字母来拼写，各单词下划线连接。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALL_CAPS</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>受保护的实例属性</code>，应该以单个下划线开头。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_leading_underscore</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>私有的实例属性</code>，应该以两个下划线开头。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__double_leading_underscore</span><br></pre></td></tr></table></figure>
+<h3 id="空白">空白</h3>
+<ul>
+<li>在变量赋值的时候，赋值符号的左侧和右侧应该各自写上一个空格。</li>
+<li>文件中的 函数 和 类 之间应该用两个空行隔开。</li>
+<li>在同一个类中，各方法 之间应该用一个空行隔开。</li>
+<li>对于占据多行的长表达式来说，除了首行之外的其余各行都应该在通常的缩进级别之上再加4个空格。</li>
+</ul>
+<h3 id="表达式和语句">表达式和语句</h3>
+<ul>
+<li>不要用 <code>if len(a) == 0</code> 来判断 <code>a</code> 列表是否为空值。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> a: <span class="comment"># 判断 a 是空</span></span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">if</span> a: <span class="comment"># 判断 a 不空</span></span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+<ul>
+<li>采用内联形式的否定词，而不是把否定词放到整个表达式前面。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> a <span class="keyword">is</span> <span class="keyword">not</span> b: <span class="comment"># 推荐</span></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> a <span class="keyword">is</span> b: <span class="comment"># 不推荐</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>不要编写单行的 if 语句、for 循环、while 循环及 except 复合语句。</p></li>
+<li>import
+<ul>
+<li>import 语句总是放在文件开头。</li>
+<li>import 语句根据顺序分为三个部分：
+<ul>
+<li>标准库模块</li>
+<li>第三方模块</li>
+<li>自用模块</li>
+</ul></li>
+<li>在每一模块中，按照字母顺序排列。</li>
+</ul></li>
+</ul>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.pylint.org">Pylint</a> 流行的 Python 源码静态分析工具。</p>
+<p>它可以自动检测受测代码是否符合 PEP 8 的风格。</p>
+</blockquote>
+<h1 id="pythonic-了解-bytesstr-与-unicode-区别">Pythonic-了解 bytes、str 与 unicode 区别</h1>
+<h2 id="字符序列类型">字符序列类型</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">字符序列类型</th>
+<th style="text-align: center;">Python 3</th>
+<th style="text-align: center;">Python 2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">8位值 (8个二进制)</td>
+<td style="text-align: center;">bytes</td>
+<td style="text-align: center;">str</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Unicode 字符</td>
+<td style="text-align: center;">str</td>
+<td style="text-align: center;">unicode</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Unicode 字符（Python 3 的 str 实例和 Python 2 的 unicode 实例）都没有和特定的二进制编码形式相关联；</p>
+<p>换句话说，Unicode字符 转换为 二进制数据 有很多编码方式，其中最常见的是 UTF-8。</p>
+</blockquote>
+<h2 id="编码与解码">编码与解码</h2>
+<ul>
+<li>Unicode 字符 --&gt; 二进制数据，称为编码 encode</li>
+<li>二进制数据 --&gt; Unicode 字符，称为解码 decode</li>
+</ul>
+<blockquote>
+<p>编写 Python 程序的时候，一定要把编码和解码放在最外围来做。</p>
+</blockquote>
+<h2 id="使用情形python-3">使用情形（Python 3）</h2>
+<ul>
+<li>使用情形
+<ul>
+<li>需要将 <strong>Unicode 字符</strong> --&gt; UTF-8 编码后的<strong>二进制数据</strong></li>
+<li>需要操作没有特定编码形式的 Unicode字符</li>
+</ul></li>
+<li>解码</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">to_str</span>(<span class="params">bytes_or_str</span>):</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">isinstance</span>(bytes_or_str, <span class="built_in">bytes</span>):</span><br><span class="line">        value = bytes_or_str.decode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        value = bytes_or_str</span><br><span class="line">    <span class="keyword">return</span> value <span class="comment"># Instance of str</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>编码</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">to_str</span>(<span class="params">bytes_or_str</span>):</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">isinstance</span>(bytes_or_str, <span class="built_in">str</span>):</span><br><span class="line">        value = bytes_or_str.encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        value = bytes_or_str</span><br><span class="line">    <span class="keyword">return</span> value <span class="comment"># Instance of bytes</span></span><br></pre></td></tr></table></figure>
+<h2 id="可能的问题python-3">可能的问题（Python 3）</h2>
+<blockquote>
+<p>如果使用内置函数 open 获取了文件句柄（file handle）。那么请注意，该句柄默认采用 UTF-8 的编码格式来操作文件。</p>
+</blockquote>
+<ul>
+<li>问题：如果向文件中随机写入一些二进制数据，下面代码可能会出错。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;/tmp/random.bin&#x27;</span>, <span class="string">&#x27;w&#x27;</span>)<span class="keyword">as</span> f:</span><br><span class="line">    f.write(os.urandom(<span class="number">10</span>))</span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line">TypeError: must be <span class="built_in">str</span>, <span class="keyword">not</span> <span class="built_in">bytes</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>原因：Python 3 给 open 函数添加了名为 encoding 的新参数，而这个参数的默认值就是 'utf-8'。</p></li>
+<li><p>解决方案，用二进制写入模式（'wb'）来开启待操作的文件。</p></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;/tmp/random.bin&#x27;</span>, <span class="string">&#x27;wb&#x27;</span>)<span class="keyword">as</span> f:</span><br><span class="line">    f.write(os.urandom(<span class="number">10</span>))</span><br></pre></td></tr></table></figure>
+<ul>
+<li>读取数据也类似，用（'rb'）来打开文件。</li>
+</ul>
+<h1 id="pythonic-用辅助函数来替代复杂式">Pythonic-用辅助函数来替代复杂式</h1>
+<blockquote>
+<p>在处理网页，或者说处理字符串时，我们经常获得到一个字典，对于字典里的键值对的处理挺关键的。然而有些朋友过度使用 Python 的语法特性，为了炫技，写成很复杂的难以理解的单行表达式，就有点小题大做了。</p>
+</blockquote>
+<ul>
+<li>比如这样一个栗子。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> urllib.parse <span class="keyword">import</span> parse_qs</span><br><span class="line"><span class="comment"># 解析字符串，返回字典</span></span><br><span class="line">my_value = parse_qs(<span class="string">&#x27;red=5&amp;blue=0&amp;green=&#x27;</span>, keep_blank_values=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(my_value)</span><br><span class="line"><span class="comment"># &#123;&#x27;red&#x27;: [&#x27;5&#x27;], &#x27;blue&#x27;: [&#x27;0&#x27;], &#x27;green&#x27;: [&#x27;&#x27;]&#125;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>对于上面待处理的字典，我们对其值感兴趣。</li>
+<li>也就是我们想查询我们需要的值。</li>
+<li>现在一个目标是，若待查询的参数没有出现在字符串中，我们希望返回默认值 0，而不返回 None 等。该如何处理呢？
+<ul>
+<li>也许我们会考虑 dic.get(key, defalt=None)</li>
+<li>key 指代键，如果查不到对应值，返回第二个参数 None</li>
+</ul></li>
+<li>对于想要的目标，我们做出以下一步步调试。</li>
+</ul>
+<h2 id="复杂方式_1">复杂方式_1</h2>
+<ul>
+<li>空字符串、空列表及零值，都会评估为 False。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># For query string &#x27;red=5&amp;blue=0&amp;green=&#x27;</span></span><br><span class="line">red = my_value.get(<span class="string">&#x27;red&#x27;</span>, [<span class="string">&#x27;&#x27;</span>])[<span class="number">0</span>] <span class="keyword">or</span> <span class="number">0</span> <span class="comment"># or 操作符</span></span><br><span class="line">green = my_value.get(<span class="string">&#x27;green&#x27;</span>, [<span class="string">&#x27;&#x27;</span>])[<span class="number">0</span>] <span class="keyword">or</span> <span class="number">0</span> <span class="comment"># 如果 or 前判断 False</span></span><br><span class="line">opacity = my_value.get(<span class="string">&#x27;opacity&#x27;</span>, [<span class="string">&#x27;&#x27;</span>])[<span class="number">0</span>] <span class="keyword">or</span> <span class="number">0</span> <span class="comment"># 赋值 or 后语句</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Red:     %r&#x27;</span> %red) <span class="comment"># %r 用 rper()方法处理对象</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;green:   %r&#x27;</span> %green) <span class="comment"># 打印时能够重现它所代表的对象</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;opacity: %r&#x27;</span> %opacity)</span><br><span class="line"><span class="comment"># Red:     &#x27;5&#x27;</span></span><br><span class="line"><span class="comment"># green:   0</span></span><br><span class="line"><span class="comment"># opacity: 0</span></span><br></pre></td></tr></table></figure>
+<h2 id="炫技方式_2">炫技方式_2</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">red_1 = my_value.get(<span class="string">&#x27;red&#x27;</span>, [<span class="string">&#x27;&#x27;</span>])</span><br><span class="line">red_1 = <span class="built_in">int</span>(red_1[<span class="number">0</span>]) <span class="keyword">if</span> red_1[<span class="number">0</span>] <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line"><span class="built_in">print</span>(red_1)</span><br><span class="line"><span class="comment"># 5</span></span><br></pre></td></tr></table></figure>
+<h2 id="简单方式_3">简单方式_3</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">green_1 = my_value.get(<span class="string">&#x27;green&#x27;</span>, [<span class="string">&#x27;&#x27;</span>])</span><br><span class="line"><span class="keyword">if</span> green_1[<span class="number">0</span>]: <span class="comment"># 如果有值</span></span><br><span class="line">    green_1 = <span class="built_in">int</span>(green_1[<span class="number">0</span>])</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    green_1 = <span class="number">0</span></span><br><span class="line"><span class="built_in">print</span>(green_1)</span><br><span class="line"><span class="comment"># 0</span></span><br></pre></td></tr></table></figure>
+<h2 id="范式_4">范式_4</h2>
+<ul>
+<li>用简单函数的表示来取代复杂的表达式。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_int_value</span>(<span class="params">dic_kv, key, default=<span class="number">0</span></span>):</span></span><br><span class="line">    value = dic_kv.get(key, [<span class="string">&#x27;&#x27;</span>])</span><br><span class="line">    <span class="keyword">if</span> value[<span class="number">0</span>]:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">int</span>(value[<span class="number">0</span>])</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> default</span><br><span class="line"><span class="built_in">print</span>(get_int_value(my_value, <span class="string">&#x27;opacity&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(get_int_value(my_value, <span class="string">&#x27;red&#x27;</span>))</span><br><span class="line"><span class="comment"># 0</span></span><br><span class="line"><span class="comment"># 5</span></span><br></pre></td></tr></table></figure>
+<h1 id="pythonic-了解切割序列的办法">Pythonic-了解切割序列的办法</h1>
+<blockquote>
+<p>Python 提供了一种把序列切成小块的方法。 针对内置的 list、str 和 bytes 的切割。</p>
+</blockquote>
+<h2 id="切割序列">切割序列</h2>
+<ul>
+<li>一个列表</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">list_num = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">0</span>]</span><br><span class="line"><span class="comment">#  index =  0, 1, 2, 3, 4, 5, 6, 7, 8, 9</span></span><br><span class="line"><span class="comment">#  index = -0(-10),-9,-8,-7,-6,-5,-4,-3,-2,-1 </span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>正常的切割序列 <code>[start_index:end_index]</code></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(list_num[:])</span><br><span class="line"><span class="comment"># print all [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(list_num[<span class="number">1</span>:<span class="number">4</span>])</span><br><span class="line"><span class="comment"># index-123 [2, 3, 4]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(list_num[<span class="number">2</span>:])</span><br><span class="line"><span class="comment"># index-2... [3, 4, 5, 6, 7, 8, 9, 0]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(list_num[:<span class="number">8</span>])</span><br><span class="line"><span class="comment"># index-...7 [1, 2, 3, 4, 5, 6, 7, 8]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(list_num[<span class="number">7</span>:<span class="number">2</span>])</span><br><span class="line"><span class="comment"># if start_index &gt; end_index []</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>负值切割</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(list_num[-<span class="number">4</span>:-<span class="number">2</span>])</span><br><span class="line"><span class="comment"># index~-4,-3 [7, 8]</span></span><br><span class="line"><span class="built_in">print</span>(list_num[-<span class="number">4</span>:])</span><br><span class="line"><span class="comment"># index~-4... [7, 8, 9, 0]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(list_num[-<span class="number">0</span>:])</span><br><span class="line"><span class="comment"># print all [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]</span></span><br><span class="line"><span class="built_in">print</span>(list_num[-<span class="number">12</span>:])</span><br><span class="line"><span class="comment"># print all [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(list_num[-<span class="number">1</span>:<span class="number">0</span>])</span><br><span class="line"><span class="comment"># if start_index &gt; end_index []</span></span><br><span class="line"><span class="built_in">print</span>(list_num[-<span class="number">1</span>:-<span class="number">1</span>])</span><br><span class="line"><span class="comment"># []</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(list_num[-<span class="number">1</span>:])</span><br><span class="line"><span class="comment"># [0]</span></span><br><span class="line"><span class="built_in">print</span>(list_num[-<span class="number">12</span>:<span class="number">6</span>])</span><br><span class="line"><span class="comment"># [1, 2, 3, 4, 5, 6]</span></span><br></pre></td></tr></table></figure>
+<h2 id="传值">传值</h2>
+<ul>
+<li>对于元组而言，传值纬度 必须保持一致。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">c = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">0</span>]</span><br><span class="line">c1, c2 = c[<span class="number">2</span>:<span class="number">4</span>]</span><br><span class="line"><span class="built_in">print</span>(c1, c2)</span><br><span class="line"><span class="comment"># 3 4</span></span><br><span class="line"></span><br><span class="line">c3, c4 = c[<span class="number">5</span>:<span class="number">8</span>]</span><br><span class="line"><span class="built_in">print</span>(c3, c4)</span><br><span class="line"><span class="comment"># ValueError: too many values to unpack (expected 2)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>不同于元组，列表的切片不考虑纬度，可以伸缩。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">a[<span class="number">2</span>:<span class="number">4</span>] = [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="comment"># index_start: 2 扩张</span></span><br><span class="line"><span class="comment"># [1, 2, &#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;, &#x27;d&#x27;, 5, 6, 7, 8, 9, 0]</span></span><br><span class="line"></span><br><span class="line">b =  [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">0</span>]</span><br><span class="line">b[<span class="number">2</span>:<span class="number">7</span>] = [<span class="string">&#x27;123&#x27;</span>,<span class="string">&#x27;456&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(b)</span><br><span class="line"><span class="comment"># index_start: 2 缩减</span></span><br><span class="line"><span class="comment"># [1, 2, &#x27;123&#x27;, &#x27;456&#x27;, 8, 9, 0]</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/alipay.png" alt="panzhong171 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>panzhong171
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://pzlu.github.io/2021/07/16/%E3%80%90Python%E3%80%91Effective-Python/" title="【Python】Effective Python">https://pzlu.github.io/2021/07/16/【Python】Effective-Python/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"># Python</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/07/16/%E3%80%90%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E3%80%91%E7%A0%94%E7%A9%B6%E5%85%A5%E9%97%A8-%E5%AE%9E%E9%AA%8C%E7%9B%AE%E5%BD%95/" rel="prev" title="【自然语言处理】研究入门-实验目录">
+                  <i class="fa fa-chevron-left"></i> 【自然语言处理】研究入门-实验目录
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/07/16/%E3%80%90%E7%A7%91%E6%99%AE%E3%80%91Unicode-%E7%BC%96%E7%A0%81/" rel="next" title="【科普】Unicode 编码">
+                  【科普】Unicode 编码 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+  <div class="languages">
+    <label class="lang-select-label">
+      <i class="fa fa-language"></i>
+      <span>简体中文</span>
+      <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </label>
+    <select class="lang-select" data-canonical="" aria-label="选择语言">
+      
+        <option value="zh-CN" data-href="/2021/07/16/%E3%80%90Python%E3%80%91Effective-Python/" selected="">
+          简体中文
+        </option>
+      
+        <option value="en" data-href="/en/2021/07/16/%E3%80%90Python%E3%80%91Effective-Python/" selected="">
+          English
+        </option>
+      
+    </select>
+  </div>
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">panzhong171</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">75k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:08</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"pzlu.github.io","issue_term":"title","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>

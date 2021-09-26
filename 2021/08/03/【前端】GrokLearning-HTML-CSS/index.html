@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/computer-180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/computer-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/computer-16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pzlu.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.6.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"utterances","storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1},"gitalk":{"order":-2}},"activeClass":"utterances"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="https:&#x2F;&#x2F;groklearning.com&#x2F; 学习笔记。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【前端】GrokLearning-HTML&amp;CSS">
+<meta property="og:url" content="https://pzlu.github.io/2021/08/03/%E3%80%90%E5%89%8D%E7%AB%AF%E3%80%91GrokLearning-HTML-CSS/index.html">
+<meta property="og:site_name" content="NexT">
+<meta property="og:description" content="https:&#x2F;&#x2F;groklearning.com&#x2F; 学习笔记。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://user-images.githubusercontent.com/48743005/127953010-4263620d-31ce-477c-80cf-4269b7af3953.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/48743005/127953114-edc8aee6-31a1-46dc-a169-292f2af32b0d.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/48743005/127953197-973872f7-f9ca-46a2-8b81-93d44f179044.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/48743005/127953281-958ad9b5-f5d5-4975-a9bd-28ad44f977a0.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/48743005/127953344-4b2c163d-98f2-4966-b84a-92a15dbf9302.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/48743005/127953432-c51cc0fc-d16b-41d2-9bc1-89b389fada1f.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/48743005/127953632-6441727e-65e5-45f5-999c-ec61341e0bdf.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/48743005/127953760-bc858516-d874-4b7b-8298-0702361b28f4.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/48743005/127953837-d1c60d00-6aab-49bc-b3c5-5e8d6be070ed.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/48743005/127953906-969f77eb-5ea3-4351-8fa7-3dc1be71d8dd.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/48743005/127954095-1b071cc7-ba4a-49d9-a7de-1429f873fcab.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/48743005/127954145-477f92de-d1cc-424d-a41a-239e793e1309.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/48743005/128151174-0f230723-5af0-4525-a72d-1dcd8b6d9722.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/48743005/128151430-11188f83-36d7-4503-b1a1-cc5bc42ce729.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/48743005/128155257-a0426539-3dcf-4209-9751-4f3c5f9d8de0.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/48743005/128155541-7735246c-25dc-4a8b-a306-04b5dc75959b.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/48743005/128153013-c1c8fd45-58a8-4ea5-96ea-e536699405a2.png">
+<meta property="article:published_time" content="2021-08-03T03:12:16.000Z">
+<meta property="article:modified_time" content="2021-09-26T01:49:34.022Z">
+<meta property="article:author" content="panzhong171">
+<meta property="article:tag" content="HTML&#x2F;CSS">
+<meta property="article:tag" content="前端">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/48743005/127953010-4263620d-31ce-477c-80cf-4269b7af3953.png">
+
+
+<link rel="canonical" href="https://pzlu.github.io/2021/08/03/%E3%80%90%E5%89%8D%E7%AB%AF%E3%80%91GrokLearning-HTML-CSS/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pzlu.github.io/2021/08/03/%E3%80%90%E5%89%8D%E7%AB%AF%E3%80%91GrokLearning-HTML-CSS/","path":"2021/08/03/【前端】GrokLearning-HTML-CSS/","title":"【前端】GrokLearning-HTML&CSS"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【前端】GrokLearning-HTML&CSS | NexT</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">NexT</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">May your life be sound and safe.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">37</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">25</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">39</span></a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-笔记"><a href="/notes/" rel="section"><i class="fa fa-battery-full fa-fw"></i>笔记</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-html-%E5%92%8C-css"><span class="nav-number">1.</span> <span class="nav-text">什么是 HTML 和 CSS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E9%87%8A%E6%96%B9%E5%BC%8F"><span class="nav-number">1.1.</span> <span class="nav-text">注释方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#content%E5%86%85%E5%AE%B9"><span class="nav-number">1.2.</span> <span class="nav-text">Content（内容）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#style%E9%A3%8E%E6%A0%BC"><span class="nav-number">1.3.</span> <span class="nav-text">Style（风格）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E6%96%B9%E5%BC%8F"><span class="nav-number">1.3.1.</span> <span class="nav-text">添加方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B-style-%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-number">1.3.2.</span> <span class="nav-text">一些 Style 的属性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#colours-alignment-links-and-images%E9%A2%9C%E8%89%B2%E5%92%8C%E5%AF%B9%E9%BD%90%E6%96%B9%E5%BC%8F%E7%AD%89"><span class="nav-number">2.</span> <span class="nav-text">Colours, alignment, links, and images（颜色和对齐方式等）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#emphasis%E5%BC%BA%E8%B0%83"><span class="nav-number">2.1.</span> <span class="nav-text">Emphasis（强调）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#break-element%E6%96%AD%E8%A1%8C"><span class="nav-number">2.2.</span> <span class="nav-text">Break element（断行）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#text-alignment%E5%AF%B9%E9%BD%90%E6%96%B9%E5%BC%8F"><span class="nav-number">2.3.</span> <span class="nav-text">Text Alignment（对齐方式）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#span-element%E5%8D%95%E7%8B%AC%E5%85%83%E7%B4%A0"><span class="nav-number">2.4.</span> <span class="nav-text">Span element（单独元素）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#red-green-blue-rgb%E9%A2%9C%E8%89%B2%E5%B1%9E%E6%80%A7%E9%85%8D%E7%BD%AE"><span class="nav-number">2.5.</span> <span class="nav-text">Red-Green-Blue (RGB)（颜色属性配置）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#links%E8%B6%85%E9%93%BE%E6%8E%A5"><span class="nav-number">2.6.</span> <span class="nav-text">Links（超链接）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#text-decoration"><span class="nav-number">2.6.1.</span> <span class="nav-text">Text Decoration</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#centring-auto-width-margins%E5%8F%88%E6%98%AF%E5%B1%85%E4%B8%AD"><span class="nav-number">2.7.</span> <span class="nav-text">Centring: Auto-width Margins（又是居中）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#images%E6%8F%92%E5%9B%BE"><span class="nav-number">2.8.</span> <span class="nav-text">Images（插图）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E5%9B%BE%E6%A0%87%E7%AD%BE"><span class="nav-number">2.8.1.</span> <span class="nav-text">插图标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A2%E5%A4%B1%E5%B1%9E%E6%80%A7"><span class="nav-number">2.8.2.</span> <span class="nav-text">丢失属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#height-and-width%E9%AB%98%E5%BA%A6%E5%92%8C%E5%AE%BD%E5%BA%A6"><span class="nav-number">2.8.3.</span> <span class="nav-text">Height and width（高度和宽度）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#full-size-images%E5%85%A8%E5%B0%BA%E5%AF%B8"><span class="nav-number">2.8.4.</span> <span class="nav-text">Full size images（全尺寸）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#html-document-structure-and-lists%E6%96%87%E6%A1%A3%E7%BB%93%E6%9E%84"><span class="nav-number">3.</span> <span class="nav-text">HTML document structure and lists（文档结构）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E8%88%AC%E7%BB%93%E6%9E%84"><span class="nav-number">3.1.</span> <span class="nav-text">一般结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#separate-stylesheets%E5%88%86%E7%A6%BB%E6%A0%B7%E5%BC%8F"><span class="nav-number">3.2.</span> <span class="nav-text">Separate stylesheets（分离样式）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lists-of-things%E7%BC%96%E5%8F%B7%E5%88%97%E8%A1%A8%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="nav-number">3.3.</span> <span class="nav-text">Lists of things（编号列表的创建）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#unordered-list%E6%97%A0%E5%BA%8F"><span class="nav-number">3.3.1.</span> <span class="nav-text">unordered list（无序）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ordered-list%E6%9C%89%E5%BA%8F"><span class="nav-number">3.3.2.</span> <span class="nav-text">ordered list（有序）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%97%E8%A1%A8%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-number">3.3.3.</span> <span class="nav-text">列表的属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%8D%E7%BD%AE"><span class="nav-number">3.3.3.1.</span> <span class="nav-text">位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%BC%E5%BC%8F"><span class="nav-number">3.3.3.2.</span> <span class="nav-text">格式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#superscript-and-subscript%E4%B8%8A%E4%B8%8B%E6%A0%87"><span class="nav-number">3.4.</span> <span class="nav-text">Superscript and subscript（上下标）</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="panzhong171"
+      src="/images/myphoto.png">
+  <p class="site-author-name" itemprop="name">panzhong171</p>
+  <div class="site-description" itemprop="description">Cerca Trova</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/PzLu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;PzLu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:panzhong171@outlook.com" title="E-Mail → mailto:panzhong171@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+          </div>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pzlu.github.io/2021/08/03/%E3%80%90%E5%89%8D%E7%AB%AF%E3%80%91GrokLearning-HTML-CSS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myphoto.png">
+      <meta itemprop="name" content="panzhong171">
+      <meta itemprop="description" content="Cerca Trova">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NexT">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【前端】GrokLearning-HTML&CSS
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-08-03 11:12:16" itemprop="dateCreated datePublished" datetime="2021-08-03T11:12:16+08:00">2021-08-03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-09-26 09:49:34" itemprop="dateModified" datetime="2021-09-26T09:49:34+08:00">2021-09-26</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>9.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>9 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>https://groklearning.com/ 学习笔记。</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="什么是-html-和-css">什么是 HTML 和 CSS</h1>
+<ul>
+<li>Every time you use the web, you're seeing HTML (HyperText Markup Language) and CSS (Cascading Style Sheets).</li>
+<li>A webpage is made of two things: <strong>content</strong> and <strong>style</strong>.
+<ul>
+<li>The <strong>content</strong> is defined by <strong>HTML</strong>, which describes the information in a document and its structure or meaning.</li>
+<li>The <strong>style</strong> is defined by <strong>CSS</strong>.</li>
+</ul></li>
+</ul>
+<h2 id="注释方式">注释方式</h2>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--这是 html 的注释方式--&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*这是 css 的注释方式*/</span></span><br></pre></td></tr></table></figure>
+<h2 id="content内容">Content（内容）</h2>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Tags
+<ul>
+<li><code>&lt;h1&gt;...&lt;/h1&gt;</code>, which refers to a heading. (normally 32px - <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Pixel">pixels</a>)</li>
+<li><code>&lt;p&gt;...&lt;/p&gt;</code>, which refers to a paragraph.</li>
+</ul></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>This is a level 1 heading.<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>This is a paragraph.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="style风格">Style（风格）</h2>
+<h3 id="添加方式">添加方式</h3>
+<blockquote>
+<p>There are two types of style settings.</p>
+</blockquote>
+<ul>
+<li><strong>Type 1</strong>: You can add a style attribute to the <strong>tag</strong>.</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Heading<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">style</span>=<span class="string">&quot;color: deeppink&quot;</span>&gt;</span>Heading<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>Type 2</strong>: You can add a style attribute <strong>at the beginning</strong>.</li>
+</ul>
+<blockquote>
+<p><strong>Hint: The style elements must be placed at the beginning of the document before anything else (below the <code>&lt;!DOCTYPE html&gt;</code>)</strong>.</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css">  <span class="selector-tag">h1</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">color</span>: rebeccapurple;</span></span><br><span class="line"><span class="css">  &#125;</span></span><br><span class="line"><span class="css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Heading<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Another Heading<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="一些-style-的属性">一些 Style 的属性</h3>
+<ul>
+<li>Some style attributes
+<ul>
+<li><strong>color</strong>（颜色）
+<ul>
+<li>The full list of supported colour names is defined <a target="_blank" rel="noopener" href="https://www.w3.org/TR/css3-color/#svg-color">here</a>.</li>
+</ul></li>
+<li><strong>font-family</strong>（字体类型）
+<ul>
+<li>'Times New Roman', Times, serif, Impact, Charcoal, sans-serif and so on.</li>
+<li>A typeface or font family defines how each symbol in text looks.</li>
+</ul></li>
+<li><strong>font-size</strong>（字体大小）
+<ul>
+<li>The font size for a level 1 heading (<code>h1</code>) is normally <code>32px</code> (where <code>px</code> stands for <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Pixel">pixels</a> – the individuals dot in an image).</li>
+</ul></li>
+<li><strong>line-height</strong>（行高）
+<ul>
+<li>The line-height property is specified relative to the font-size, e.g. a line-height of 2 is <span class="math inline">\(\color{red}{\text{double spacing}}\)</span>. (attention!)</li>
+</ul></li>
+<li><strong>margin-left</strong>, <strong>margin-right</strong>, <strong>margin-top</strong>, <strong>margin-bottom</strong>（页边距）
+<ul>
+<li>The margin property controls space between elements; you can specify top, right, bottom and left margins.</li>
+</ul></li>
+<li><strong>width</strong>（宽度）
+<ul>
+<li>The width property controls how wide an element is, not including the margins.</li>
+</ul></li>
+<li><strong>background-color</strong>（背景色）
+<ul>
+<li>The background-color property to show the true width of the paragraph element.</li>
+</ul></li>
+<li><strong>text-transform</strong>（大小写）
+<ul>
+<li>lowercase：小写</li>
+<li>uppercase：大写</li>
+<li>capitalize：首字母大写</li>
+</ul></li>
+</ul></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">  h1&#123;</span><br><span class="line">    margin-bottom: 30px;</span><br><span class="line">    margin-left: 40px;</span><br><span class="line">    margin-top: 30px;</span><br><span class="line">    font-size: 36px;</span><br><span class="line">    font-family: Verdana, Geneva, sans-serif;</span><br><span class="line">  &#125;</span><br><span class="line">  p&#123;</span><br><span class="line">    width: 680px;</span><br><span class="line">    margin-bottom: 30px;</span><br><span class="line">    margin-left: 40px;</span><br><span class="line">    line-height: 1.8;</span><br><span class="line">    font-size: 18px;</span><br><span class="line">    font-family: Georgia, Times, serif;</span><br><span class="line">  &#125;</span><br><span class="line">  span&#123;</span><br><span class="line">    font-family: &#x27;Courier New&#x27;, monospace;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br><span class="line">&lt;h1&gt;Monospaced fonts&lt;/h1&gt;</span><br><span class="line">&lt;p&gt;</span><br><span class="line">In a monospaced font, the letters all occupy the same amount of horizontal space. In variable-width fonts, the size of letters and spacings between them can be different.</span><br><span class="line">&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;</span><br><span class="line">You&#x27;re editing this paragraph in a code editor with a monospace font, but styling it with a variable-width font! As well as making coding easier, monospace fonts are fun because you can create ASCII art with them. Style the following span with a monospace font and see what happens!</span><br><span class="line">&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;span&gt;</span><br><span class="line">  ........_.......______.....______..____</span><br><span class="line">  _.._____........_..............._......&lt;br&gt;</span><br><span class="line">  ......./.\.....&#x27;.____.\...&#x27;.___..||_...</span><br><span class="line">  _||_..._|....../.\............./.|_....&lt;br&gt;</span><br><span class="line">  ....../._.\...|.(___.\_|/..&#x27;...\_|..|.|</span><br><span class="line">  ....|.|......./._.\....._..--.`|.|-&#x27;...&lt;br&gt;</span><br><span class="line">  ...../.___.\..._.____`..|.|.........|.|</span><br><span class="line">  ....|.|....../.___.\...[.`/&#x27;`\]|.|.....&lt;br&gt;</span><br><span class="line">  ..._/./...\.\_|.\____).|\.`.___.&#x27;\._|.|</span><br><span class="line">  _.._|.|_..._/./...\.\_..|.|....|.|,....&lt;br&gt;</span><br><span class="line">  ..|____|.|____|\______.&#x27;.`.____..&#x27;|____</span><br><span class="line">  _||_____|.|____|.|____|[___]...\__/....&lt;br&gt;</span><br><span class="line">&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="colours-alignment-links-and-images颜色和对齐方式等">Colours, alignment, links, and images（颜色和对齐方式等）</h1>
+<h2 id="emphasis强调">Emphasis（强调）</h2>
+<ul>
+<li>加粗和斜体</li>
+</ul>
+<blockquote>
+<p>The <code>strong</code> element signals that something is important, and the <code>em</code> element (short for emphasis) signals that the words should be read in a different voice.</p>
+</blockquote>
+<ul>
+<li>例子</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">  This is an <span class="tag">&lt;<span class="name">strong</span>&gt;</span>important<span class="tag">&lt;/<span class="name">strong</span>&gt;</span> sentence,</span><br><span class="line">  with an <span class="tag">&lt;<span class="name">em</span>&gt;</span>interesting ending<span class="tag">&lt;/<span class="name">em</span>&gt;</span>.</span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://user-images.githubusercontent.com/48743005/127953010-4263620d-31ce-477c-80cf-4269b7af3953.png" /></p>
+<h2 id="break-element断行">Break element（断行）</h2>
+<blockquote>
+<p>The <code>br</code> element can be used to break up text into new lines without having to separate it into separate paragraphs.</p>
+</blockquote>
+<ul>
+<li><p><code>&lt;br&gt;</code> doesn't need closing!</p></li>
+<li><p>例子</p></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">  First paragraph which is <span class="tag">&lt;<span class="name">br</span>&gt;</span> broken into two lines.</span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">  Second paragraph which is not broken at all.</span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://user-images.githubusercontent.com/48743005/127953114-edc8aee6-31a1-46dc-a169-292f2af32b0d.png" /></p>
+<h2 id="text-alignment对齐方式">Text Alignment（对齐方式）</h2>
+<blockquote>
+<p>Text alignment determines where text is placed horizontally on a page.</p>
+</blockquote>
+<ul>
+<li>The four main values for text alignment are <code>left</code>, <code>right</code>, <code>center</code> and <code>justify</code>（自适应）.</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css"><span class="selector-tag">h1</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">text-align</span>: center;</span></span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">600px</span>;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-tag">p</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">text-align</span>: justify;</span></span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">600px</span>;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Centered Heading<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">This text is justified. Text lines up the left and right edges to the left and right content edges of the paragraph. Justified text is often used in newspapers, although studies have shown that text with jagged edges, that is, non-justified text, is easier to read as the eyes can more easily keep track of one&#x27;s progress. </span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://user-images.githubusercontent.com/48743005/127953197-973872f7-f9ca-46a2-8b81-93d44f179044.png" /></p>
+<h2 id="span-element单独元素">Span element（单独元素）</h2>
+<blockquote>
+<p>The <code>span</code> element is designed to group some text within a paragraph to apply a style to it. It doesn't do (or mean) anything on its own.</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">  My favourite colour is <span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">&quot;color: red&quot;</span>&gt;</span>red<span class="tag">&lt;/<span class="name">span</span>&gt;</span>.</span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">  This <span class="tag">&lt;<span class="name">span</span>&gt;</span>span tag<span class="tag">&lt;/<span class="name">span</span>&gt;</span> has no effect.</span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://user-images.githubusercontent.com/48743005/127953281-958ad9b5-f5d5-4975-a9bd-28ad44f977a0.png" /></p>
+<h2 id="red-green-blue-rgb颜色属性配置">Red-Green-Blue (RGB)（颜色属性配置）</h2>
+<blockquote>
+<p>Designing beautiful websites would be difficult if the <a target="_blank" rel="noopener" href="https://www.w3.org/TR/css3-color/#svg-color">named CSS colours</a> were the only ones you could use. You can specify your own colours as a mixture of <strong>red</strong>, <strong>green</strong> and <strong>blue</strong> (RGB) light, where each colour is a number between 0 and 255, with 0 being no colour, and 255 being maximum colour.</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&quot;color: rgb(255, 0, 0)&quot;</span>&gt;</span>Red<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&quot;color: rgb(0, 255, 0)&quot;</span>&gt;</span>Green<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&quot;color: rgb(0, 0, 255)&quot;</span>&gt;</span>Blue<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&quot;color: rgb(255, 128, 0)&quot;</span>&gt;</span>Orange<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&quot;color: rgb(128, 20, 180)&quot;</span>&gt;</span>Purple<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://user-images.githubusercontent.com/48743005/127953344-4b2c163d-98f2-4966-b84a-92a15dbf9302.png" /></p>
+<h2 id="links超链接">Links（超链接）</h2>
+<blockquote>
+<p>The <code>anchor</code> element (abbreviated to <code>a</code>) creates links on pages. The address to link to must be added in the href attribute.</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">  Click <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;https://groklearning.com/about&quot;</span>&gt;</span>here<span class="tag">&lt;/<span class="name">a</span>&gt;</span> to follow the link.</span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://user-images.githubusercontent.com/48743005/127953432-c51cc0fc-d16b-41d2-9bc1-89b389fada1f.png" /></p>
+<h3 id="text-decoration">Text Decoration</h3>
+<ul>
+<li>Links are underlined by default, but we can change this for any text with the text-decoration property. The options are <code>overline</code>, <code>line-through</code>, <code>underline</code> and <code>none</code>.（对超链接文本增加属性）</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css">  <span class="selector-tag">a</span> &#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">text-decoration</span>: none;</span></span><br><span class="line"><span class="css">  &#125;</span></span><br><span class="line"><span class="css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;https://groklearning.com/about/&quot;</span>&gt;</span>About page<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://user-images.githubusercontent.com/48743005/127953632-6441727e-65e5-45f5-999c-ec61341e0bdf.png" /></p>
+<h2 id="centring-auto-width-margins又是居中">Centring: Auto-width Margins（又是居中）</h2>
+<blockquote>
+<p>To centre this element <code>h1</code> on the screen, you should set the left and right margins to auto.</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css"><span class="selector-tag">h1</span> &#123;    </span></span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">600px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">margin-left</span>: auto;</span></span><br><span class="line"><span class="css">    <span class="attribute">margin-right</span>: auto; </span></span><br><span class="line"><span class="css">    <span class="attribute">background-color</span>: lightgray;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span></span><br><span class="line">This heading and its grey background show how to centre a specific element, which could be headings or paragraphs.</span><br><span class="line"><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://user-images.githubusercontent.com/48743005/127953760-bc858516-d874-4b7b-8298-0702361b28f4.png" /></p>
+<h2 id="images插图">Images（插图）</h2>
+<h3 id="插图标签">插图标签</h3>
+<blockquote>
+<p>You need a <code>src</code> attribute (stands for source) which is the filename of the image (like a link).</p>
+</blockquote>
+<ul>
+<li><code>&lt;img&gt;</code> doesn't need closing!</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;cat.jpg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;A picture of a cat&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://user-images.githubusercontent.com/48743005/127953837-d1c60d00-6aab-49bc-b3c5-5e8d6be070ed.png" /></p>
+<h3 id="丢失属性">丢失属性</h3>
+<blockquote>
+<p>You must also include an <code>alt</code> attribute which is the text that should appear if the image is missing.</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;missing.jpg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;This image file is missing.&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://user-images.githubusercontent.com/48743005/127953906-969f77eb-5ea3-4351-8fa7-3dc1be71d8dd.png" /></p>
+<h3 id="height-and-width高度和宽度">Height and width（高度和宽度）</h3>
+<blockquote>
+<p>You can set <code>width</code> and <code>height</code> attributes on your <code>&lt;img&gt;</code> elements to change their size.</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;cat.jpg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;A cat&quot;</span> <span class="attr">width</span>=<span class="string">&quot;100&quot;</span> <span class="attr">height</span>=<span class="string">&quot;300&quot;</span> &gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://user-images.githubusercontent.com/48743005/127954095-1b071cc7-ba4a-49d9-a7de-1429f873fcab.png" /></p>
+<h3 id="full-size-images全尺寸">Full size images（全尺寸）</h3>
+<blockquote>
+<p>As well as changing the size of an image to specific dimensions, you can also set it to <code>a percentage of the width</code> of the page. You can set this on the image tag directly.</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;cat.jpg&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;A cat&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width:50%&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://user-images.githubusercontent.com/48743005/127954145-477f92de-d1cc-424d-a41a-239e793e1309.png" /></p>
+<h1 id="html-document-structure-and-lists文档结构">HTML document structure and lists（文档结构）</h1>
+<h2 id="一般结构">一般结构</h2>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>...<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="separate-stylesheets分离样式">Separate stylesheets（分离样式）</h2>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--test.html--&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;main.css&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Page heading <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*main.css*/</span></span><br><span class="line"><span class="selector-tag">h1</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: deeppink;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="lists-of-things编号列表的创建">Lists of things（编号列表的创建）</h2>
+<h3 id="unordered-list无序">unordered list（无序）</h3>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>List of fruit:<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>Watermelon<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>Mango<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>Banana<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>Strawberry<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://user-images.githubusercontent.com/48743005/128151174-0f230723-5af0-4525-a72d-1dcd8b6d9722.png" /></p>
+<h3 id="ordered-list有序">ordered list（有序）</h3>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Homework TODO:<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>Read the last act of Hamlet;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>Finish trigonometry assignment;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>Write business studies report.<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://user-images.githubusercontent.com/48743005/128151430-11188f83-36d7-4503-b1a1-cc5bc42ce729.png" /></p>
+<h3 id="列表的属性">列表的属性</h3>
+<h4 id="位置">位置</h4>
+<ul>
+<li>The <code>list-style-position</code> property on <code>ol</code> and <code>ul</code> elements specifies whether the bullet or number is <code>inside</code> or <code>outside</code> the <code>list</code>.</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">style</span>=<span class="string">&quot;text-align: center;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>Outside the list<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ol</span> <span class="attr">style</span>=<span class="string">&quot;list-style-position: outside;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>Centred list<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>where list style position<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>is set to outside.<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>Inside the list<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ol</span> <span class="attr">style</span>=<span class="string">&quot;list-style-position: inside;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>Centred list<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>where list style position<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span>is set to inside.<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://user-images.githubusercontent.com/48743005/128155257-a0426539-3dcf-4209-9751-4f3c5f9d8de0.png" /></p>
+<h4 id="格式">格式</h4>
+<ul>
+<li>列表序号的格式</li>
+<li>Another cool list property you can set is the <code>list-style-type</code>, which changes the bullet (for unordered lists) and the number (for ordered lists).</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;main.css&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>Code<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>Create<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>Compete<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>Alpha<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>Bravo<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span>&gt;</span>Charlie<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ul</span> &#123;</span><br><span class="line">  <span class="attribute">list-style-type</span>: square;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">ol</span> &#123;</span><br><span class="line">  <span class="attribute">list-style-type</span>: lower-alpha;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://user-images.githubusercontent.com/48743005/128155541-7735246c-25dc-4a8b-a306-04b5dc75959b.png" /></p>
+<h2 id="superscript-and-subscript上下标">Superscript and subscript（上下标）</h2>
+<ul>
+<li>上标：<code>&lt;sup&gt;...&lt;/sup&gt;</code></li>
+<li>下标：<code>&lt;sub&gt;...&lt;/sub&gt;</code></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>The mass-energy equivalence forumla is E = mc<span class="tag">&lt;<span class="name">sup</span>&gt;</span>2<span class="tag">&lt;/<span class="name">sup</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>The molecular formula for caffeine is C<span class="tag">&lt;<span class="name">sub</span>&gt;</span>8<span class="tag">&lt;/<span class="name">sub</span>&gt;</span>H<span class="tag">&lt;<span class="name">sub</span>&gt;</span>10<span class="tag">&lt;/<span class="name">sub</span>&gt;</span>N<span class="tag">&lt;<span class="name">sub</span>&gt;</span>4<span class="tag">&lt;/<span class="name">sub</span>&gt;</span>O<span class="tag">&lt;<span class="name">sub</span>&gt;</span>2<span class="tag">&lt;/<span class="name">sub</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://user-images.githubusercontent.com/48743005/128153013-c1c8fd45-58a8-4ea5-96ea-e536699405a2.png" /></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/alipay.png" alt="panzhong171 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>panzhong171
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://pzlu.github.io/2021/08/03/%E3%80%90%E5%89%8D%E7%AB%AF%E3%80%91GrokLearning-HTML-CSS/" title="【前端】GrokLearning-HTML&amp;CSS">https://pzlu.github.io/2021/08/03/【前端】GrokLearning-HTML-CSS/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/HTML-CSS/" rel="tag"># HTML/CSS</a>
+              <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/07/30/%E3%80%90%E6%96%87%E5%AD%A6%E3%80%91%E3%80%8A%E8%BF%9B%E5%8C%96%E5%BF%83%E7%90%86%E5%AD%A6%E3%80%8B%E4%B9%A6%E8%AF%84/" rel="prev" title="【文学】《进化心理学》书评">
+                  <i class="fa fa-chevron-left"></i> 【文学】《进化心理学》书评
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/08/03/%E3%80%90%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7%E3%80%91Docker/" rel="next" title="【实用工具】Docker">
+                  【实用工具】Docker <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+  <div class="languages">
+    <label class="lang-select-label">
+      <i class="fa fa-language"></i>
+      <span>简体中文</span>
+      <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </label>
+    <select class="lang-select" data-canonical="" aria-label="选择语言">
+      
+        <option value="zh-CN" data-href="/2021/08/03/%E3%80%90%E5%89%8D%E7%AB%AF%E3%80%91GrokLearning-HTML-CSS/" selected="">
+          简体中文
+        </option>
+      
+        <option value="en" data-href="/en/2021/08/03/%E3%80%90%E5%89%8D%E7%AB%AF%E3%80%91GrokLearning-HTML-CSS/" selected="">
+          English
+        </option>
+      
+    </select>
+  </div>
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">panzhong171</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">75k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:08</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"pzlu.github.io","issue_term":"title","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>

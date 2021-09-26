@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/computer-180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/computer-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/computer-16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"pzlu.github.io","root":"/","images":"/images","scheme":"Muse","version":"8.6.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"buttons","active":"utterances","storage":true,"lazyload":true,"nav":{"disqus":{"text":"Load Disqus","order":-1},"gitalk":{"order":-2}},"activeClass":"utterances"},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="以两种不同的视角回顾机器学习的部分学习资料。  频率派 - 统计机器学习 贝叶斯派 - 概率图模型  如何看待不同视角下的机器学习？ 频率派 VS 贝叶斯派">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【机器学习】L0-绪论">
+<meta property="og:url" content="https://pzlu.github.io/2021/07/03/%E3%80%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%91L0-%E7%BB%AA%E8%AE%BA/index.html">
+<meta property="og:site_name" content="NexT">
+<meta property="og:description" content="以两种不同的视角回顾机器学习的部分学习资料。  频率派 - 统计机器学习 贝叶斯派 - 概率图模型  如何看待不同视角下的机器学习？ 频率派 VS 贝叶斯派">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://user-images.githubusercontent.com/48743005/124381311-646e1900-dcf4-11eb-9794-662af5bf3876.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/48743005/124381317-6932cd00-dcf4-11eb-813f-14c4b0ab59f3.png">
+<meta property="article:published_time" content="2021-07-03T12:49:50.000Z">
+<meta property="article:modified_time" content="2021-09-26T01:49:34.027Z">
+<meta property="article:author" content="panzhong171">
+<meta property="article:tag" content="机器学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/48743005/124381311-646e1900-dcf4-11eb-9794-662af5bf3876.png">
+
+
+<link rel="canonical" href="https://pzlu.github.io/2021/07/03/%E3%80%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%91L0-%E7%BB%AA%E8%AE%BA/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://pzlu.github.io/2021/07/03/%E3%80%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%91L0-%E7%BB%AA%E8%AE%BA/","path":"2021/07/03/【机器学习】L0-绪论/","title":"【机器学习】L0-绪论"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>【机器学习】L0-绪论 | NexT</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">NexT</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">May your life be sound and safe.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">37</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">25</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">39</span></a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-笔记"><a href="/notes/" rel="section"><i class="fa fa-battery-full fa-fw"></i>笔记</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E4%B9%A6%E7%B1%8D%E6%8E%A8%E8%8D%90"><span class="nav-number">1.</span> <span class="nav-text">经典书籍推荐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E8%A7%86%E9%A2%91%E6%8E%A8%E8%8D%90"><span class="nav-number">2.</span> <span class="nav-text">经典视频推荐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%91%E7%8E%87%E6%B4%BE-vs-%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%B4%BE"><span class="nav-number">3.</span> <span class="nav-text">频率派 VS 贝叶斯派</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E6%A0%87%E8%AE%B0"><span class="nav-number">3.1.</span> <span class="nav-text">一些标记</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%91%E7%8E%87%E6%B4%BE"><span class="nav-number">3.2.</span> <span class="nav-text">频率派</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B4%9D%E5%8F%B6%E6%96%AF%E6%B4%BE"><span class="nav-number">3.3.</span> <span class="nav-text">贝叶斯派</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%99%BD%E6%9D%BF"><span class="nav-number">5.</span> <span class="nav-text">白板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="panzhong171"
+      src="/images/myphoto.png">
+  <p class="site-author-name" itemprop="name">panzhong171</p>
+  <div class="site-description" itemprop="description">Cerca Trova</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/PzLu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;PzLu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:panzhong171@outlook.com" title="E-Mail → mailto:panzhong171@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+          </div>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://pzlu.github.io/2021/07/03/%E3%80%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%91L0-%E7%BB%AA%E8%AE%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myphoto.png">
+      <meta itemprop="name" content="panzhong171">
+      <meta itemprop="description" content="Cerca Trova">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NexT">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【机器学习】L0-绪论
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-07-03 20:49:50" itemprop="dateCreated datePublished" datetime="2021-07-03T20:49:50+08:00">2021-07-03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-09-26 09:49:34" itemprop="dateModified" datetime="2021-09-26T09:49:34+08:00">2021-09-26</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-%E7%99%BD%E6%9D%BF%E7%B3%BB%E5%88%97/" itemprop="url" rel="index"><span itemprop="name">机器学习-白板系列</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>以两种不同的视角回顾机器学习的部分学习资料。</p>
+<ul>
+<li><p>频率派 - 统计机器学习</p></li>
+<li><p>贝叶斯派 - 概率图模型</p></li>
+</ul>
+<p>如何看待不同视角下的机器学习？ 频率派 VS 贝叶斯派</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="经典书籍推荐">经典书籍推荐</h2>
+<ul>
+<li><strong>《统计机器学习》 - 李航（第一版）</strong>
+<ul>
+<li>十二章，最常用的十个算法（感 K 朴决逻，支提 E 隐条）</li>
+<li>大面积讲 - 频率派</li>
+</ul></li>
+<li><strong>“西瓜书” - 周志华</strong>
+<ul>
+<li>比较全面，既有频率派，又有贝叶斯派</li>
+</ul></li>
+<li><strong>PRML</strong>
+<ul>
+<li>回分神核稀，图混近采连</li>
+<li>主要是贝叶斯派</li>
+</ul></li>
+<li>MLAPP
+<ul>
+<li>百科全书</li>
+<li>主要是贝叶斯派</li>
+</ul></li>
+<li>ESL
+<ul>
+<li>主要是频率派</li>
+</ul></li>
+<li>Deep Learning （圣经）- 中译版（张志华）</li>
+</ul>
+<h2 id="经典视频推荐">经典视频推荐</h2>
+<ul>
+<li><strong>台大 - 林轩田 - 基石 + 技法</strong></li>
+<li>张志华
+<ul>
+<li>机器学习导论 - 频率派</li>
+<li>统计机器学习 - 贝叶斯</li>
+</ul></li>
+<li>Ng: CS229
+<ul>
+<li>有数学推导</li>
+</ul></li>
+<li>徐亦达
+<ul>
+<li>概率模型</li>
+</ul></li>
+<li><strong>台大 - 李宏毅：机器学习</strong></li>
+</ul>
+<hr />
+<h2 id="频率派-vs-贝叶斯派">频率派 VS 贝叶斯派</h2>
+<h3 id="一些标记">一些标记</h3>
+<ul>
+<li>对数据集（观测集）采用以下标记：
+<ul>
+<li><span class="math inline">\(X_{N \times p}\)</span> : 数据集（观测集）
+<ul>
+<li><span class="math inline">\(X_{N \times p}=\left(x_{1}, x_{2}, \cdots, x_{N}\right)^{T}\)</span>
+<ul>
+<li><span class="math inline">\(N\)</span> 表示样本个数，<span class="math inline">\(p\)</span> 表示每个样本的维度。</li>
+</ul></li>
+<li>其中每个数据样本: <span class="math inline">\(x_{i}=\left(x_{i 1}, x_{i 2}, \cdots, x_{i p}\right)^{T}\)</span></li>
+</ul></li>
+<li><span class="math inline">\(\Theta\)</span> : 参数</li>
+</ul></li>
+<li>每个数据样本 <span class="math inline">\(x \sim p(x,\Theta)\)</span>，<span class="math inline">\(\sim\)</span> 表示服从于某个分布。
+<ul>
+<li>即每个数据样本都是由 <span class="math inline">\(p(x,\Theta)\)</span> 生成的。</li>
+</ul></li>
+<li><span class="math inline">\(\color{blue}{\text{我们想要求某个样本出现的概率，但是其出现概率与其分布的参数} \Theta \text{产生某种联系，所以求出} \Theta 是十分有必要的。}\)</span></li>
+</ul>
+<h3 id="频率派">频率派</h3>
+<blockquote>
+<p>假定 <span class="math inline">\(\Theta\)</span> 是常量。</p>
+</blockquote>
+<ul>
+<li>假设每个样本是独立同分布的，对于整个数据集来说，<span class="math inline">\(p(X \mid \Theta) \overline{\overline{i i d}} \prod_{i}^{N} p\left(x_{i} \mid \Theta\right)\)</span>
+<ul>
+<li>iid:independent &amp; identically distributed - 独立同分布</li>
+</ul></li>
+<li>为了求 <span class="math inline">\(\Theta\)</span> 的大小，采用最大对数似然估计（MLE）的方法：</li>
+</ul>
+<p><span class="math display">\[\Theta_{MLE}=\underset{\Theta}{\operatorname{argmax}} \log p(X \mid \Theta) \overline{\overline{i i d}} \underset{\Theta}{\operatorname{argmax}} \sum_{i=1}^{N} \log p\left(x_{i} \mid \Theta\right)\]</span></p>
+<ul>
+<li><span class="math inline">\(log\)</span> 的作用：将乘法变为加法，方便计算。</li>
+<li>频率派的一般求解步骤为：
+<ul>
+<li>1.建立模型</li>
+<li>2.定义损失函数</li>
+<li>3.最优化损失函数</li>
+</ul></li>
+</ul>
+<h3 id="贝叶斯派">贝叶斯派</h3>
+<blockquote>
+<p>假定 <span class="math inline">\(\Theta\)</span> 是变量。</p>
+</blockquote>
+<ul>
+<li>根据贝叶斯定理，依赖观测集参数的后验概率 <span class="math inline">\(P(\Theta \mid X)\)</span> 可以写成：</li>
+</ul>
+<p><span class="math display">\[p(\Theta \mid X)=\frac{p(X \mid \Theta) \cdot p(\Theta)}{p(X)}=\frac{p(X \mid \Theta) \cdot p(\Theta)}{\int_{\Theta} p(X \mid \Theta) \cdot p(\Theta) d \Theta}\]</span></p>
+<ul>
+<li>分母 <span class="math inline">\(p(X)\)</span> 变为积分 <span class="math inline">\(\int_{\Theta} p(X \mid \Theta) \cdot p(\Theta) d \Theta\)</span> 的原因，<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%85%A8%E6%A6%82%E7%8E%87%E5%85%AC%E5%BC%8F">全概率公式</a>。</li>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/19725590">如何通俗理解贝叶斯公式的先验，后验，似然？</a></li>
+<li>为了求 <span class="math inline">\(\Theta\)</span> 的大小，采用最大后验概率估计（MAP）的方法：</li>
+</ul>
+<p><span class="math display">\[\Theta_{M A P}=\underset{\Theta}{\operatorname{argmax}} p(\Theta \mid X)=\underset{\Theta}{\operatorname{argmax}} p(X \mid \Theta) \cdot p(\Theta)\]</span></p>
+<ul>
+<li><p>等式成立的原因是分母 <span class="math inline">\(p(X)\)</span> 与 <span class="math inline">\(\Theta\)</span> 无关，求得 <span class="math inline">\(\Theta\)</span> 后就可计算参数的后验概率 <span class="math inline">\(p(\Theta \mid X)\)</span></p></li>
+<li>贝叶斯估计：<span class="math inline">\(p(\Theta \mid X)=\frac{p(X \mid \Theta) \cdot p(\Theta)}{p(X)}=\frac{p(X \mid \Theta) \cdot p(\Theta)}{\int_{\Theta} p(X \mid \Theta) \cdot p(\Theta) d \Theta}\)</span></li>
+<li><p>贝叶斯预测：已知数据集 <span class="math inline">\(X\)</span> 的分布，现在给一个新的样本 <span class="math inline">\(\hat{x}\)</span>，求其出现的概率 <span class="math inline">\(P(\hat{x}|X)\)</span> 的值，<strong>注意 <span class="math inline">\(\hat{x}\)</span> 与 <span class="math inline">\(X\)</span> 是独立同分布的</strong>。</p></li>
+</ul>
+<p><span class="math display">\[p(\hat{x} \mid X) = \int_{\Theta} p(\hat{x},\Theta \mid X) d \Theta = \int_{\Theta} p(\hat{x} \mid \Theta) \cdot p(\Theta \mid X) d \Theta\]</span></p>
+<ul>
+<li>第一个等号，参考<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%BE%B9%E7%BC%98%E5%88%86%E5%B8%83%E5%87%BD%E6%95%B0/353094">边缘分布函数公式</a></li>
+<li>第二个等号，参考<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87">条件概率</a>逆推即可：<span class="math inline">\(P( {\color{red}{\hat{x},\Theta}} \mid X) = P( {\color{red}{\hat{x}} \mid \Theta} \mid X)P( {\color{red}{\Theta}} \mid X)\)</span></li>
+</ul>
+<h2 id="总结">总结</h2>
+<blockquote>
+<p>贝叶斯派角度，概率图模型，是求积分的问题，MCMC、Carlo 方法。</p>
+<p>频率派角度，统计机器学习，是优化的问题，模型-损失函数-优化。</p>
+</blockquote>
+<h2 id="白板">白板</h2>
+<figure>
+<img src="https://user-images.githubusercontent.com/48743005/124381311-646e1900-dcf4-11eb-9794-662af5bf3876.png" alt="Fig 1 c0-绪论1" /><figcaption>Fig 1 c0-绪论1</figcaption>
+</figure>
+<figure>
+<img src="https://user-images.githubusercontent.com/48743005/124381317-6932cd00-dcf4-11eb-813f-14c4b0ab59f3.png" alt="Fig 2 c0-绪论2" /><figcaption>Fig 2 c0-绪论2</figcaption>
+</figure>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1aE411o7qd?">【机器学习】【白板推导系列】【合集 1～23】</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/nb/46548929">机器学习推导系列</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.yuque.com/books/share/f4031f65-70c1-4909-ba01-c47c31398466?#">Bilibili-机器学习白板系列</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/alipay.png" alt="panzhong171 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>panzhong171
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://pzlu.github.io/2021/07/03/%E3%80%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%91L0-%E7%BB%AA%E8%AE%BA/" title="【机器学习】L0-绪论">https://pzlu.github.io/2021/07/03/【机器学习】L0-绪论/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># 机器学习</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/07/02/%E3%80%90Java%E3%80%91jdk11-%E7%9A%84%E5%AE%89%E8%A3%85%EF%BC%88Mac-Windows%EF%BC%89/" rel="prev" title="【Java】jdk11 的安装（Mac & Windows）">
+                  <i class="fa fa-chevron-left"></i> 【Java】jdk11 的安装（Mac & Windows）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/07/03/%E3%80%90hexo%E3%80%91%E9%97%AE%E9%A2%98%EF%BC%9Aport-443-Timed-out/" rel="next" title="【hexo】问题：port 443: Timed out">
+                  【hexo】问题：port 443: Timed out <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+  <div class="languages">
+    <label class="lang-select-label">
+      <i class="fa fa-language"></i>
+      <span>简体中文</span>
+      <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </label>
+    <select class="lang-select" data-canonical="" aria-label="选择语言">
+      
+        <option value="zh-CN" data-href="/2021/07/03/%E3%80%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%91L0-%E7%BB%AA%E8%AE%BA/" selected="">
+          简体中文
+        </option>
+      
+        <option value="en" data-href="/en/2021/07/03/%E3%80%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%91L0-%E7%BB%AA%E8%AE%BA/" selected="">
+          English
+        </option>
+      
+    </select>
+  </div>
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">panzhong171</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">75k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:08</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+
+
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"pzlu.github.io","issue_term":"title","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>
