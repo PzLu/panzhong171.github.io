@@ -315,6 +315,17 @@
 <li><a href="https://blog.csdn.net/jzycloud/article/details/114123530">下载链接</a></li>
 </ul></li>
 </ul>
+<h2 id="java-jdk11windows配置vscode">Java-jdk11（windows配置vscode）</h2>
+<ul>
+<li>step0 - 如上安装 <code>jdk11</code></li>
+<li>step1 - 安装 vscode 的 <code>Java Extension Pack</code></li>
+<li>step2 - 配置 <code>Environment Variable</code>
+<ul>
+<li>进入设置</li>
+<li>查找 settings.json</li>
+<li>更改路径 <code>&quot;java.home&quot;: &quot;D:\\java11&quot;</code></li>
+</ul></li>
+</ul>
 <h2 id="java-jdk11-的安装mac">Java-jdk11 的安装（Mac）</h2>
 <ul>
 <li><a href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html">下载</a></li>
@@ -330,6 +341,10 @@
 <li>保存内容并退出，生效。</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">source</span>  ~/.bash_profile</span><br><span class="line"><span class="comment"># 测试</span></span><br><span class="line">$ java -version</span><br><span class="line">$ jdk8</span><br><span class="line">$ java -version</span><br><span class="line">$ jdk11</span><br></pre></td></tr></table></figure>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a href="https://www.bilibili.com/read/cv9188862">VSCode完美配置Java开发环境【附官方英文翻译】</a></li>
+</ul>
 ]]></content>
       <categories>
         <category>Java</category>
@@ -3268,6 +3283,27 @@ LR(p_i) = LR(p_i) + \frac{\hat{LR}(p_g)}{N}
       <tags>
         <tag>数据结构与算法</tag>
         <tag>Cpp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Git】vscode配置bash终端作为默认终端</title>
+    <url>/2021/09/26/%E3%80%90Git%E3%80%91vscode%E9%85%8D%E7%BD%AEbash%E7%BB%88%E7%AB%AF%E4%BD%9C%E4%B8%BA%E9%BB%98%E8%AE%A4%E7%BB%88%E7%AB%AF/</url>
+    <content><![CDATA[<blockquote>
+<p>此博客主要介绍了 Windows 下配置 bash 为 terminal。</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="主要流程">主要流程</h2>
+<ul>
+<li>打开 <code>settings</code></li>
+<li>配置如下：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;terminal.integrated.profiles.windows&quot;</span>: &#123;</span><br><span class="line"></span><br><span class="line">    <span class="string">&quot;PowerShell&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;source&quot;</span>: <span class="string">&quot;PowerShell&quot;</span>,</span><br><span class="line">        <span class="string">&quot;icon&quot;</span>: <span class="string">&quot;terminal-powershell&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;Command Prompt&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;path&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;<span class="variable">$&#123;env:windir&#125;</span>\\Sysnative\\cmd.exe&quot;</span>,</span><br><span class="line">            <span class="string">&quot;<span class="variable">$&#123;env:windir&#125;</span>\\System32\\cmd.exe&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="string">&quot;args&quot;</span>: [],</span><br><span class="line">        <span class="string">&quot;icon&quot;</span>: <span class="string">&quot;terminal-cmd&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;Git-Bash&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;path&quot;</span>: <span class="string">&quot;D:/Git/bin/bash.exe&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line">// <span class="string">&quot;terminal.integrated.automationShell.windows&quot;</span>: <span class="string">&quot;‪D:/Git/bin/bash.exe&quot;</span>,</span><br><span class="line"><span class="string">&quot;git.path&quot;</span>: <span class="string">&quot;D:/Git/cmd/git.exe&quot;</span>,</span><br><span class="line"><span class="string">&quot;terminal.integrated.defaultProfile.windows&quot;</span>: <span class="string">&quot;Git-Bash&quot;</span>,</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
       </tags>
   </entry>
 </search>
