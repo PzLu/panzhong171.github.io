@@ -1,6 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>【Java】jdk11 的安装（Mac &amp; Windows）</title>
+    <url>/2021/07/02/%E3%80%90Java%E3%80%91jdk11-%E7%9A%84%E5%AE%89%E8%A3%85%EF%BC%88Mac-Windows%EF%BC%89/</url>
+    <content><![CDATA[<blockquote>
+<p>此博客主要介绍了 Windows 和 Mac 系统下安装 jdk11 的简要步骤。</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="java-jdk11-的安装windows">Java-jdk11 的安装（Windows）</h2>
+<ul>
+<li><a href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html">下载 jdk11</a>
+<ul>
+<li>可能需要 Oracle 账号密码。</li>
+</ul></li>
+<li>直接安装，可以换安装路径。</li>
+<li>设置环境变量。
+<ul>
+<li><a href="https://blog.csdn.net/qq_22136439/article/details/103295019">参考</a></li>
+</ul></li>
+<li>生成 jre 文件。</li>
+<li>关于下载。
+<ul>
+<li><a href="https://blog.csdn.net/jzycloud/article/details/114123530">下载链接</a></li>
+</ul></li>
+</ul>
+<h2 id="java-jdk11windows配置vscode">Java-jdk11（windows配置vscode）</h2>
+<ul>
+<li>step0 - 如上安装 <code>jdk11</code></li>
+<li>step1 - 安装 vscode 的 <code>Java Extension Pack</code></li>
+<li>step2 - 配置 <code>Environment Variable</code>
+<ul>
+<li>进入设置</li>
+<li>查找 settings.json</li>
+<li>更改路径 <code>&quot;java.home&quot;: &quot;D:\\java11&quot;</code></li>
+</ul></li>
+</ul>
+<h2 id="java-jdk11-的安装mac">Java-jdk11 的安装（Mac）</h2>
+<ul>
+<li><a href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html">下载</a></li>
+<li>安装，<a href="https://www.jianshu.com/p/6273e7ab0c56">参考</a></li>
+<li>Terminal 设置环境。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span>  /Library/Java/JavaVirtualMachines</span><br><span class="line">$ ls -la</span><br></pre></td></tr></table></figure>
+<ul>
+<li>编辑环境变量。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ vim  ~/.bash_profile</span><br><span class="line"><span class="comment">###</span></span><br><span class="line"><span class="comment"># 设置 jdk 8</span></span><br><span class="line"><span class="built_in">export</span> JAVA_8_HOME=`/usr/libexec/java_home -v 1.8`</span><br><span class="line"><span class="comment"># 设置 jdk 11</span></span><br><span class="line"><span class="built_in">export</span> JAVA_11_HOME=<span class="string">&quot;<span class="subst">$(/usr/libexec/java_home -v 11)</span>&quot;</span></span><br><span class="line"><span class="comment"># 默认JDK 8</span></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=<span class="variable">$JAVA_11_HOME</span></span><br><span class="line"><span class="comment">#alias命令动态切换JDK版本</span></span><br><span class="line"><span class="built_in">alias</span> jdk8=<span class="string">&quot;export JAVA_HOME=<span class="variable">$JAVA_8_HOME</span>&quot;</span></span><br><span class="line"><span class="built_in">alias</span> jdk11=<span class="string">&#x27;export JAVA_HOME=$JAVA_11_HOME&#x27;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>保存内容并退出，生效。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">source</span>  ~/.bash_profile</span><br><span class="line"><span class="comment"># 测试</span></span><br><span class="line">$ java -version</span><br><span class="line">$ jdk8</span><br><span class="line">$ java -version</span><br><span class="line">$ jdk11</span><br></pre></td></tr></table></figure>
+<h2 id="java-jdk11-的安装ubuntu">Java-jdk11 的安装（Ubuntu）</h2>
+<ul>
+<li>下载 deb 文件，https://www.oracle.com/java/technologies/downloads/#java11</li>
+<li>上传到服务器</li>
+<li><code>sudo dpkg -i jdk-11.0.9_linux-x64_bin.deb</code>
+<ul>
+<li>可能出错：https://www.devmanuals.net/install/ubuntu/ubuntu-12-04-lts-precise-pangolin/install-libasound2-dev.html
+<ul>
+<li>sudo apt-get update</li>
+<li>sudo apt-get install libasound2-dev</li>
+</ul></li>
+</ul></li>
+<li>配置环境变量</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vi ~/.bashrc</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/lib/jvm/jdk-11.0.9</span><br><span class="line"><span class="built_in">export</span> JRE_HOME=<span class="variable">$&#123;JAVA_HOME&#125;</span></span><br><span class="line"><span class="built_in">export</span> CLASSPATH=.:<span class="variable">$&#123;JAVA_HOME&#125;</span>/lib:<span class="variable">$&#123;JRE_HOME&#125;</span>/lib</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$&#123;JAVA_HOME&#125;</span>/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+<ul>
+<li>检查是否成功</li>
+</ul>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a href="https://www.bilibili.com/read/cv9188862">VSCode完美配置Java开发环境【附官方英文翻译】</a></li>
+<li><a href="https://www.jianshu.com/p/575acc583c0d">ubuntu18 安装jdk11 （jdk-11.0.9_linux-x64_bin.deb）</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Java</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【Git】Github 够用指南</title>
     <url>/2021/07/14/%E3%80%90Git%E3%80%91Github%E5%A4%9F%E7%94%A8%E6%8C%87%E5%8D%97/</url>
     <content><![CDATA[<blockquote>
@@ -189,193 +272,24 @@
       </tags>
   </entry>
   <entry>
-    <title>【Go】GoLang基础语法总结</title>
-    <url>/2021/08/04/%E3%80%90Go%E3%80%91GoLang%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/</url>
+    <title>【Git】vscode配置bash终端作为默认终端</title>
+    <url>/2021/09/26/%E3%80%90Git%E3%80%91vscode%E9%85%8D%E7%BD%AEbash%E7%BB%88%E7%AB%AF%E4%BD%9C%E4%B8%BA%E9%BB%98%E8%AE%A4%E7%BB%88%E7%AB%AF/</url>
     <content><![CDATA[<blockquote>
-<p>Go 是一个开源的编程语言，它能让构造简单、可靠且高效的软件变得容易。</p>
+<p>此博客主要介绍了 Windows 下配置 bash 为 terminal。</p>
 </blockquote>
 <span id="more"></span>
-<h1 id="环境配置windows篇章">环境配置（windows篇章）</h1>
-<h2 id="下载---安装到指定盘比如d">下载 - 安装到指定盘（比如：D:）</h2>
+<h2 id="主要流程">主要流程</h2>
 <ul>
-<li><a href="https://golang.org/dl/">下载地址</a></li>
+<li>打开 <code>settings</code></li>
+<li>配置如下：</li>
 </ul>
-<p><img src="https://user-images.githubusercontent.com/48743005/128171750-f6f28e9f-e220-43da-8879-86f1ef180e6b.png" /></p>
-<h2 id="依次配置gorootgopath工作路径path">依次配置GOROOT、GOPATH（工作路径）、Path</h2>
-<p><img src="https://user-images.githubusercontent.com/48743005/128171823-e67112a6-d378-4a0c-aa76-a91717339d14.png" /> <img src="https://user-images.githubusercontent.com/48743005/128171850-c2b78d3d-e57a-4ec0-8280-7031f6daf26a.png" /> <img src="https://user-images.githubusercontent.com/48743005/128171866-7ef37134-0d13-4815-88d2-1039e09afa1f.png" /></p>
-<h2 id="查看版本">查看版本</h2>
-<ul>
-<li><code>go version</code></li>
-</ul>
-<h2 id="配置-vscode---安装go插件">配置 Vscode - 安装Go插件</h2>
-<p><img src="https://user-images.githubusercontent.com/48743005/128172435-32c7f269-30dd-46eb-9de6-7b389f3e2193.png" /></p>
-<ul>
-<li>选择设置选项</li>
-</ul>
-<p><img src="https://user-images.githubusercontent.com/48743005/128172557-06b5ba63-b517-49c6-9438-b7d9842eab06.png" /></p>
-<ul>
-<li>选择扩展Go configuration选择配置，在settings.json中编辑。</li>
-</ul>
-<p><img src="https://user-images.githubusercontent.com/48743005/128172613-f0a2a46d-d3c0-4888-8213-4743c2e67da1.png" /></p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;go.buildOnSave&quot;</span>:<span class="string">&quot;off&quot;</span>,<span class="comment">// 保存代码时优化</span></span><br><span class="line"><span class="string">&quot;go.lintOnSave&quot;</span>:<span class="string">&quot;package&quot;</span>,<span class="comment">// 保存代码时检查潜在错误</span></span><br><span class="line"><span class="string">&quot;go.vetOnSave&quot;</span>:<span class="string">&quot;package&quot;</span>,<span class="comment">// 保存代码时执行测试</span></span><br><span class="line"><span class="string">&quot;go.coverOnSave&quot;</span>:<span class="literal">false</span>,</span><br><span class="line"><span class="string">&quot;go.useCodeSnippetsOnFunctionSuggest&quot;</span>:<span class="literal">true</span>,</span><br><span class="line"><span class="string">&quot;go.useCodeSnippetsOnFunctionSuggestWithoutType&quot;</span>:<span class="literal">true</span>,<span class="comment">// 代码格式化</span></span><br><span class="line"><span class="string">&quot;go.formatTool&quot;</span>:<span class="string">&quot;goreturns&quot;</span>,</span><br><span class="line"><span class="string">&quot;go.gocodePackageLookupMode&quot;</span>:<span class="string">&quot;go&quot;</span>,</span><br><span class="line"><span class="string">&quot;go.gotoSymbol.includeImports&quot;</span>:<span class="literal">true</span>,</span><br><span class="line"><span class="string">&quot;go.docsTool&quot;</span>:<span class="string">&quot;godoc&quot;</span>,</span><br><span class="line"><span class="string">&quot;go.inferGopath&quot;</span>:<span class="literal">true</span>,</span><br><span class="line"><span class="string">&quot;go.useLanguageServer&quot;</span>:<span class="literal">true</span>,</span><br><span class="line"><span class="string">&quot;go.autocompleteUnimportedPackages&quot;</span>:<span class="literal">true</span>,<span class="comment">// go语言安装环境目录</span></span><br><span class="line"><span class="string">&quot;go.goroot&quot;</span>:<span class="string">&quot;D:\\Golang&quot;</span>,<span class="comment">// go语言工作目录</span></span><br><span class="line"><span class="string">&quot;go.gopath&quot;</span>:<span class="string">&quot;C:\\Users\\panzhong171\\Desktop\\goProject&quot;</span>,</span><br><span class="line"><span class="string">&quot;go.gocodeAutoBuild&quot;</span>: <span class="literal">false</span>,</span><br><span class="line"><span class="string">&quot;go.enableCodeLens&quot;</span>: &#123;</span><br><span class="line"></span><br><span class="line">    <span class="attr">&quot;references&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;runtest&quot;</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="确保安装好-git-的前提下完成配置">确保安装好 git 的前提下，完成配置。</h2>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ go env -w GO111MODULE=on </span><br><span class="line">$ go env -w GOPROXY=https://goproxy.cn,direct</span><br></pre></td></tr></table></figure>
-<ul>
-<li>然后打开vscode，看他报错点安装，就可以了。不需要手动安装包。</li>
-</ul>
-<h2 id="测试一下">测试一下</h2>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">   fmt.Println(<span class="string">&quot;Hello, World!&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ go run test.go</span><br><span class="line">Hello, World!</span><br></pre></td></tr></table></figure>
-<h1 id="语言学习框架">语言学习框架</h1>
-<h2 id="语言简介">语言简介</h2>
-<h3 id="简介">简介</h3>
-<ul>
-<li>Go 是一个开源的编程语言，它能让构造简单、可靠且高效的软件变得容易。</li>
-<li>Go是从2007年末由Robert Griesemer, Rob Pike, Ken Thompson主持开发，后来还加入了Ian Lance Taylor, Russ Cox等人，并最终于2009年11月开源，在2012年早些时候发布了Go 1稳定版本。现在Go的开发已经是完全开放的，并且拥有一个活跃的社区。</li>
-</ul>
-<h3 id="最主要的特性">最主要的特性</h3>
-<ul>
-<li>自动垃圾回收</li>
-<li>更丰富的内置类型</li>
-<li>函数多返回值</li>
-<li>错误处理</li>
-<li>匿名函数和闭包</li>
-<li>类型和接口</li>
-<li>并发编程</li>
-<li>反射</li>
-<li>语言交互性</li>
-</ul>
-<h3 id="主要用途">主要用途</h3>
-<ul>
-<li>Go 语言被设计成一门应用于搭载 Web 服务器，存储集群或类似用途的巨型中央服务器的系统编程语言。</li>
-<li>对于高性能分布式系统领域而言，Go 语言无疑比大多数其它语言有着更高的开发效率。它提供了海量并行的支持，这对于游戏服务端的开发而言是再好不过了。</li>
-</ul>
-<h2 id="语言结构">语言结构</h2>
-<blockquote>
-<p>包声明-引入包-函数-变量-语句 &amp; 表达式-注释</p>
-</blockquote>
-<h3 id="一个例子">一个例子</h3>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main  <span class="comment">// 定义包名 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span>  <span class="comment">// 引入包</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123; </span><br><span class="line">   <span class="comment">/* 这是我的第一个简单的程序 */</span></span><br><span class="line">   fmt.Println(<span class="string">&quot;Hello, World!&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="关于包名的注解">关于包名的注解</h3>
-<ul>
-<li>文件名与包名没有直接关系，不一定要将文件名与包名定成同一个。</li>
-<li>文件夹名与包名没有直接关系，并非需要一致。</li>
-<li>同一个文件夹下的文件只能有一个包名，否则编译报错。</li>
-</ul>
-<h4 id="文件结构">文件结构</h4>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Test</span><br><span class="line">--helloworld.go</span><br><span class="line"></span><br><span class="line">myMath</span><br><span class="line">--myMath1.go</span><br><span class="line">--myMath2.go</span><br></pre></td></tr></table></figure>
-<h4 id="测试代码">测试代码</h4>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// helloworld.go</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line"><span class="string">&quot;fmt&quot;</span></span><br><span class="line"><span class="string">&quot;./myMath&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    fmt.Println(<span class="string">&quot;Hello World!&quot;</span>)</span><br><span class="line">    fmt.Println(mathClass.Add(<span class="number">1</span>,<span class="number">1</span>))</span><br><span class="line">    fmt.Println(mathClass.Sub(<span class="number">1</span>,<span class="number">1</span>))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// myMath1.go</span></span><br><span class="line"><span class="keyword">package</span> mathClass</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Add</span><span class="params">(x,y <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x + y</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// myMath2.go</span></span><br><span class="line"><span class="keyword">package</span> mathClass</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Sub</span><span class="params">(x,y <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x - y</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="go-程序的一般结构-basic_structure.go">Go 程序的一般结构: basic_structure.go</h3>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 当前程序的包名</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="comment">// 导入其他包</span></span><br><span class="line"><span class="keyword">import</span> . <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 常量定义：通过 const 关键字来进行常量的定义。</span></span><br><span class="line"><span class="keyword">const</span> PI = <span class="number">3.14</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 全局变量的声明和赋值：在函数体外部使用 var 关键字来进行全局变量的声明和赋值。</span></span><br><span class="line"><span class="keyword">var</span> name = <span class="string">&quot;gopher&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 一般类型声明</span></span><br><span class="line"><span class="keyword">type</span> newType <span class="keyword">int</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 结构的声明：通过 type 关键字来进行结构(struct)的声明。</span></span><br><span class="line"><span class="keyword">type</span> gopher <span class="keyword">struct</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 接口的声明：通过 type 关键字来进行接口(interface)的声明。</span></span><br><span class="line"><span class="keyword">type</span> golang <span class="keyword">interface</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 由main函数作为程序入口点启动</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    Println(<span class="string">&quot;Hello World!&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="通过-package-来组织">通过 package 来组织</h3>
-<ul>
-<li>只有 package 名称为 main 的包可以包含 main 函数。</li>
-<li>一个可执行程序有且仅有一个 main 包。</li>
-<li>通过 import 关键字来导入其他非 main 包。</li>
-</ul>
-<h4 id="可以通过-import-关键字单个导入">可以通过 import 关键字单个导入</h4>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;io&quot;</span></span><br></pre></td></tr></table></figure>
-<h4 id="可以同时导入多个">可以同时导入多个</h4>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;fmt&quot;</span></span><br><span class="line">    <span class="string">&quot;math&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(math.Exp2(<span class="number">10</span>))  <span class="comment">// 1024</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="使用-packagename.functionname-导入调用">使用 <code>&lt;PackageName&gt;.&lt;FunctionName&gt;</code> 导入调用</h4>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="comment">// 为fmt起别名为fmt2</span></span><br><span class="line"><span class="keyword">import</span> fmt2 <span class="string">&quot;fmt&quot;</span></span><br></pre></td></tr></table></figure>
-<h4 id="省略调用不建议使用">省略调用(不建议使用)</h4>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 调用的时候只需要Println()，而不需要fmt.Println()</span></span><br><span class="line"><span class="keyword">import</span> . <span class="string">&quot;fmt&quot;</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    Println(<span class="string">&quot;hello,world&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="可见性规则">可见性规则</h3>
-<ul>
-<li>Go语言中，使用大小写来决定该常量、变量、类型、接口、结构或函数是否可以被外部包所调用。</li>
-</ul>
-<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">//函数名首字母小写即为 private :</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getId</span><span class="params">()</span></span> &#123;&#125;</span><br><span class="line"><span class="comment">//函数名首字母大写即为 public :</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Printf</span><span class="params">()</span></span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;terminal.integrated.profiles.windows&quot;</span>: &#123;</span><br><span class="line"></span><br><span class="line">    <span class="string">&quot;PowerShell&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;source&quot;</span>: <span class="string">&quot;PowerShell&quot;</span>,</span><br><span class="line">        <span class="string">&quot;icon&quot;</span>: <span class="string">&quot;terminal-powershell&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;Command Prompt&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;path&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;<span class="variable">$&#123;env:windir&#125;</span>\\Sysnative\\cmd.exe&quot;</span>,</span><br><span class="line">            <span class="string">&quot;<span class="variable">$&#123;env:windir&#125;</span>\\System32\\cmd.exe&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="string">&quot;args&quot;</span>: [],</span><br><span class="line">        <span class="string">&quot;icon&quot;</span>: <span class="string">&quot;terminal-cmd&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;Git-Bash&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;path&quot;</span>: <span class="string">&quot;D:/Git/bin/bash.exe&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line">// <span class="string">&quot;terminal.integrated.automationShell.windows&quot;</span>: <span class="string">&quot;‪D:/Git/bin/bash.exe&quot;</span>,</span><br><span class="line"><span class="string">&quot;git.path&quot;</span>: <span class="string">&quot;D:/Git/cmd/git.exe&quot;</span>,</span><br><span class="line"><span class="string">&quot;terminal.integrated.defaultProfile.windows&quot;</span>: <span class="string">&quot;Git-Bash&quot;</span>,</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>Go</category>
+        <category>Git</category>
       </categories>
       <tags>
-        <tag>Go</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Java】jdk11 的安装（Mac &amp; Windows）</title>
-    <url>/2021/07/02/%E3%80%90Java%E3%80%91jdk11-%E7%9A%84%E5%AE%89%E8%A3%85%EF%BC%88Mac-Windows%EF%BC%89/</url>
-    <content><![CDATA[<blockquote>
-<p>此博客主要介绍了 Windows 和 Mac 系统下安装 jdk11 的简要步骤。</p>
-</blockquote>
-<span id="more"></span>
-<h2 id="java-jdk11-的安装windows">Java-jdk11 的安装（Windows）</h2>
-<ul>
-<li><a href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html">下载 jdk11</a>
-<ul>
-<li>可能需要 Oracle 账号密码。</li>
-</ul></li>
-<li>直接安装，可以换安装路径。</li>
-<li>设置环境变量。
-<ul>
-<li><a href="https://blog.csdn.net/qq_22136439/article/details/103295019">参考</a></li>
-</ul></li>
-<li>生成 jre 文件。</li>
-<li>关于下载。
-<ul>
-<li><a href="https://blog.csdn.net/jzycloud/article/details/114123530">下载链接</a></li>
-</ul></li>
-</ul>
-<h2 id="java-jdk11windows配置vscode">Java-jdk11（windows配置vscode）</h2>
-<ul>
-<li>step0 - 如上安装 <code>jdk11</code></li>
-<li>step1 - 安装 vscode 的 <code>Java Extension Pack</code></li>
-<li>step2 - 配置 <code>Environment Variable</code>
-<ul>
-<li>进入设置</li>
-<li>查找 settings.json</li>
-<li>更改路径 <code>&quot;java.home&quot;: &quot;D:\\java11&quot;</code></li>
-</ul></li>
-</ul>
-<h2 id="java-jdk11-的安装mac">Java-jdk11 的安装（Mac）</h2>
-<ul>
-<li><a href="https://www.oracle.com/java/technologies/javase-jdk11-downloads.html">下载</a></li>
-<li>安装，<a href="https://www.jianshu.com/p/6273e7ab0c56">参考</a></li>
-<li>Terminal 设置环境。</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span>  /Library/Java/JavaVirtualMachines</span><br><span class="line">$ ls -la</span><br></pre></td></tr></table></figure>
-<ul>
-<li>编辑环境变量。</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ vim  ~/.bash_profile</span><br><span class="line"><span class="comment">###</span></span><br><span class="line"><span class="comment"># 设置 jdk 8</span></span><br><span class="line"><span class="built_in">export</span> JAVA_8_HOME=`/usr/libexec/java_home -v 1.8`</span><br><span class="line"><span class="comment"># 设置 jdk 11</span></span><br><span class="line"><span class="built_in">export</span> JAVA_11_HOME=<span class="string">&quot;<span class="subst">$(/usr/libexec/java_home -v 11)</span>&quot;</span></span><br><span class="line"><span class="comment"># 默认JDK 8</span></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=<span class="variable">$JAVA_11_HOME</span></span><br><span class="line"><span class="comment">#alias命令动态切换JDK版本</span></span><br><span class="line"><span class="built_in">alias</span> jdk8=<span class="string">&quot;export JAVA_HOME=<span class="variable">$JAVA_8_HOME</span>&quot;</span></span><br><span class="line"><span class="built_in">alias</span> jdk11=<span class="string">&#x27;export JAVA_HOME=$JAVA_11_HOME&#x27;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>保存内容并退出，生效。</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">source</span>  ~/.bash_profile</span><br><span class="line"><span class="comment"># 测试</span></span><br><span class="line">$ java -version</span><br><span class="line">$ jdk8</span><br><span class="line">$ java -version</span><br><span class="line">$ jdk11</span><br></pre></td></tr></table></figure>
-<h2 id="java-jdk11-的安装ubuntu">Java-jdk11 的安装（Ubuntu）</h2>
-<ul>
-<li>下载 deb 文件，https://www.oracle.com/java/technologies/downloads/#java11</li>
-<li>上传到服务器</li>
-<li><code>sudo dpkg -i jdk-11.0.9_linux-x64_bin.deb</code>
-<ul>
-<li>可能出错：https://www.devmanuals.net/install/ubuntu/ubuntu-12-04-lts-precise-pangolin/install-libasound2-dev.html
-<ul>
-<li>sudo apt-get update</li>
-<li>sudo apt-get install libasound2-dev</li>
-</ul></li>
-</ul></li>
-<li>配置环境变量</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo vi ~/.bashrc</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/lib/jvm/jdk-11.0.9</span><br><span class="line"><span class="built_in">export</span> JRE_HOME=<span class="variable">$&#123;JAVA_HOME&#125;</span></span><br><span class="line"><span class="built_in">export</span> CLASSPATH=.:<span class="variable">$&#123;JAVA_HOME&#125;</span>/lib:<span class="variable">$&#123;JRE_HOME&#125;</span>/lib</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$&#123;JAVA_HOME&#125;</span>/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
-<ul>
-<li>检查是否成功</li>
-</ul>
-<h2 id="参考">参考</h2>
-<ul>
-<li><a href="https://www.bilibili.com/read/cv9188862">VSCode完美配置Java开发环境【附官方英文翻译】</a></li>
-<li><a href="https://www.jianshu.com/p/575acc583c0d">ubuntu18 安装jdk11 （jdk-11.0.9_linux-x64_bin.deb）</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Java</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -592,83 +506,194 @@
       </tags>
   </entry>
   <entry>
-    <title>【Python】修饰器总结</title>
-    <url>/2021/08/25/%E3%80%90Python%E3%80%91%E4%BF%AE%E9%A5%B0%E5%99%A8%E6%80%BB%E7%BB%93/</url>
+    <title>【Go】GoLang基础语法总结</title>
+    <url>/2021/08/04/%E3%80%90Go%E3%80%91GoLang%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<blockquote>
-<p>总结一些遇到过的有意思的修饰器。</p>
+<p>Go 是一个开源的编程语言，它能让构造简单、可靠且高效的软件变得容易。</p>
 </blockquote>
 <span id="more"></span>
-<h1 id="property"><span class="citation" data-cites="property">@property</span></h1>
+<h1 id="环境配置windows篇章">环境配置（windows篇章）</h1>
+<h2 id="下载---安装到指定盘比如d">下载 - 安装到指定盘（比如：D:）</h2>
+<ul>
+<li><a href="https://golang.org/dl/">下载地址</a></li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/48743005/128171750-f6f28e9f-e220-43da-8879-86f1ef180e6b.png" /></p>
+<h2 id="依次配置gorootgopath工作路径path">依次配置GOROOT、GOPATH（工作路径）、Path</h2>
+<p><img src="https://user-images.githubusercontent.com/48743005/128171823-e67112a6-d378-4a0c-aa76-a91717339d14.png" /> <img src="https://user-images.githubusercontent.com/48743005/128171850-c2b78d3d-e57a-4ec0-8280-7031f6daf26a.png" /> <img src="https://user-images.githubusercontent.com/48743005/128171866-7ef37134-0d13-4815-88d2-1039e09afa1f.png" /></p>
+<h2 id="查看版本">查看版本</h2>
+<ul>
+<li><code>go version</code></li>
+</ul>
+<h2 id="配置-vscode---安装go插件">配置 Vscode - 安装Go插件</h2>
+<p><img src="https://user-images.githubusercontent.com/48743005/128172435-32c7f269-30dd-46eb-9de6-7b389f3e2193.png" /></p>
+<ul>
+<li>选择设置选项</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/48743005/128172557-06b5ba63-b517-49c6-9438-b7d9842eab06.png" /></p>
+<ul>
+<li>选择扩展Go configuration选择配置，在settings.json中编辑。</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/48743005/128172613-f0a2a46d-d3c0-4888-8213-4743c2e67da1.png" /></p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;go.buildOnSave&quot;</span>:<span class="string">&quot;off&quot;</span>,<span class="comment">// 保存代码时优化</span></span><br><span class="line"><span class="string">&quot;go.lintOnSave&quot;</span>:<span class="string">&quot;package&quot;</span>,<span class="comment">// 保存代码时检查潜在错误</span></span><br><span class="line"><span class="string">&quot;go.vetOnSave&quot;</span>:<span class="string">&quot;package&quot;</span>,<span class="comment">// 保存代码时执行测试</span></span><br><span class="line"><span class="string">&quot;go.coverOnSave&quot;</span>:<span class="literal">false</span>,</span><br><span class="line"><span class="string">&quot;go.useCodeSnippetsOnFunctionSuggest&quot;</span>:<span class="literal">true</span>,</span><br><span class="line"><span class="string">&quot;go.useCodeSnippetsOnFunctionSuggestWithoutType&quot;</span>:<span class="literal">true</span>,<span class="comment">// 代码格式化</span></span><br><span class="line"><span class="string">&quot;go.formatTool&quot;</span>:<span class="string">&quot;goreturns&quot;</span>,</span><br><span class="line"><span class="string">&quot;go.gocodePackageLookupMode&quot;</span>:<span class="string">&quot;go&quot;</span>,</span><br><span class="line"><span class="string">&quot;go.gotoSymbol.includeImports&quot;</span>:<span class="literal">true</span>,</span><br><span class="line"><span class="string">&quot;go.docsTool&quot;</span>:<span class="string">&quot;godoc&quot;</span>,</span><br><span class="line"><span class="string">&quot;go.inferGopath&quot;</span>:<span class="literal">true</span>,</span><br><span class="line"><span class="string">&quot;go.useLanguageServer&quot;</span>:<span class="literal">true</span>,</span><br><span class="line"><span class="string">&quot;go.autocompleteUnimportedPackages&quot;</span>:<span class="literal">true</span>,<span class="comment">// go语言安装环境目录</span></span><br><span class="line"><span class="string">&quot;go.goroot&quot;</span>:<span class="string">&quot;D:\\Golang&quot;</span>,<span class="comment">// go语言工作目录</span></span><br><span class="line"><span class="string">&quot;go.gopath&quot;</span>:<span class="string">&quot;C:\\Users\\panzhong171\\Desktop\\goProject&quot;</span>,</span><br><span class="line"><span class="string">&quot;go.gocodeAutoBuild&quot;</span>: <span class="literal">false</span>,</span><br><span class="line"><span class="string">&quot;go.enableCodeLens&quot;</span>: &#123;</span><br><span class="line"></span><br><span class="line">    <span class="attr">&quot;references&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;runtest&quot;</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="确保安装好-git-的前提下完成配置">确保安装好 git 的前提下，完成配置。</h2>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ go env -w GO111MODULE=on </span><br><span class="line">$ go env -w GOPROXY=https://goproxy.cn,direct</span><br></pre></td></tr></table></figure>
+<ul>
+<li>然后打开vscode，看他报错点安装，就可以了。不需要手动安装包。</li>
+</ul>
+<h2 id="测试一下">测试一下</h2>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">   fmt.Println(<span class="string">&quot;Hello, World!&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ go run test.go</span><br><span class="line">Hello, World!</span><br></pre></td></tr></table></figure>
+<h1 id="语言学习框架">语言学习框架</h1>
+<h2 id="语言简介">语言简介</h2>
+<h3 id="简介">简介</h3>
+<ul>
+<li>Go 是一个开源的编程语言，它能让构造简单、可靠且高效的软件变得容易。</li>
+<li>Go是从2007年末由Robert Griesemer, Rob Pike, Ken Thompson主持开发，后来还加入了Ian Lance Taylor, Russ Cox等人，并最终于2009年11月开源，在2012年早些时候发布了Go 1稳定版本。现在Go的开发已经是完全开放的，并且拥有一个活跃的社区。</li>
+</ul>
+<h3 id="最主要的特性">最主要的特性</h3>
+<ul>
+<li>自动垃圾回收</li>
+<li>更丰富的内置类型</li>
+<li>函数多返回值</li>
+<li>错误处理</li>
+<li>匿名函数和闭包</li>
+<li>类型和接口</li>
+<li>并发编程</li>
+<li>反射</li>
+<li>语言交互性</li>
+</ul>
+<h3 id="主要用途">主要用途</h3>
+<ul>
+<li>Go 语言被设计成一门应用于搭载 Web 服务器，存储集群或类似用途的巨型中央服务器的系统编程语言。</li>
+<li>对于高性能分布式系统领域而言，Go 语言无疑比大多数其它语言有着更高的开发效率。它提供了海量并行的支持，这对于游戏服务端的开发而言是再好不过了。</li>
+</ul>
+<h2 id="语言结构">语言结构</h2>
 <blockquote>
-<p>将方法变成属性调用。</p>
+<p>包声明-引入包-函数-变量-语句 &amp; 表达式-注释</p>
 </blockquote>
-<h2 id="一般类及问题">一般类及问题</h2>
+<h3 id="一个例子">一个例子</h3>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main  <span class="comment">// 定义包名 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span>  <span class="comment">// 引入包</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123; </span><br><span class="line">   <span class="comment">/* 这是我的第一个简单的程序 */</span></span><br><span class="line">   fmt.Println(<span class="string">&quot;Hello, World!&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="关于包名的注解">关于包名的注解</h3>
 <ul>
-<li>有这样一个类，能够展现一个陌生人的基本信息。</li>
+<li>文件名与包名没有直接关系，不一定要将文件名与包名定成同一个。</li>
+<li>文件夹名与包名没有直接关系，并非需要一致。</li>
+<li>同一个文件夹下的文件只能有一个包名，否则编译报错。</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stranger</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, gender=<span class="literal">None</span>, age=<span class="literal">None</span>, job=<span class="literal">None</span></span>):</span></span><br><span class="line">        self.gender = gender</span><br><span class="line">        self.age = age</span><br><span class="line">        self.jobb = job</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># 创建一个“妹子”</span></span><br><span class="line">    meizi = Stranger()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 设置妹子的属性</span></span><br><span class="line">    meizi.gender = <span class="string">&quot;female&quot;</span></span><br><span class="line">    meizi.age = <span class="number">18</span></span><br><span class="line">    meizi.job = <span class="string">&quot;teacher&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 访问妹子的属性</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;妹子信息:&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;性别:&#123;gender&#125;&quot;</span>.<span class="built_in">format</span>(gender=meizi.gender))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;年龄:&#123;age&#125;&quot;</span>.<span class="built_in">format</span>(age=meizi.age))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;职业:&#123;job&#125;&quot;</span>.<span class="built_in">format</span>(job=meizi.job))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出：</span></span><br><span class="line"><span class="comment">#妹子信息:</span></span><br><span class="line"><span class="comment">#性别:female</span></span><br><span class="line"><span class="comment">#年龄:18</span></span><br><span class="line"><span class="comment">#职业:teacher</span></span><br></pre></td></tr></table></figure>
+<h4 id="文件结构">文件结构</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Test</span><br><span class="line">--helloworld.go</span><br><span class="line"></span><br><span class="line">myMath</span><br><span class="line">--myMath1.go</span><br><span class="line">--myMath2.go</span><br></pre></td></tr></table></figure>
+<h4 id="测试代码">测试代码</h4>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// helloworld.go</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line"><span class="string">&quot;fmt&quot;</span></span><br><span class="line"><span class="string">&quot;./myMath&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    fmt.Println(<span class="string">&quot;Hello World!&quot;</span>)</span><br><span class="line">    fmt.Println(mathClass.Add(<span class="number">1</span>,<span class="number">1</span>))</span><br><span class="line">    fmt.Println(mathClass.Sub(<span class="number">1</span>,<span class="number">1</span>))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// myMath1.go</span></span><br><span class="line"><span class="keyword">package</span> mathClass</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Add</span><span class="params">(x,y <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x + y</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// myMath2.go</span></span><br><span class="line"><span class="keyword">package</span> mathClass</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Sub</span><span class="params">(x,y <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> x - y</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="go-程序的一般结构-basic_structure.go">Go 程序的一般结构: basic_structure.go</h3>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 当前程序的包名</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="comment">// 导入其他包</span></span><br><span class="line"><span class="keyword">import</span> . <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 常量定义：通过 const 关键字来进行常量的定义。</span></span><br><span class="line"><span class="keyword">const</span> PI = <span class="number">3.14</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 全局变量的声明和赋值：在函数体外部使用 var 关键字来进行全局变量的声明和赋值。</span></span><br><span class="line"><span class="keyword">var</span> name = <span class="string">&quot;gopher&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 一般类型声明</span></span><br><span class="line"><span class="keyword">type</span> newType <span class="keyword">int</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 结构的声明：通过 type 关键字来进行结构(struct)的声明。</span></span><br><span class="line"><span class="keyword">type</span> gopher <span class="keyword">struct</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 接口的声明：通过 type 关键字来进行接口(interface)的声明。</span></span><br><span class="line"><span class="keyword">type</span> golang <span class="keyword">interface</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 由main函数作为程序入口点启动</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    Println(<span class="string">&quot;Hello World!&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="通过-package-来组织">通过 package 来组织</h3>
 <ul>
-<li>但可能会产生一个问题：输出的结果<code>异常</code>。
-<ul>
-<li>原因是属性的值得范围并未做明确的设定。</li>
-</ul></li>
+<li>只有 package 名称为 main 的包可以包含 main 函数。</li>
+<li>一个可执行程序有且仅有一个 main 包。</li>
+<li>通过 import 关键字来导入其他非 main 包。</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ...</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># 创建一个“妹子”</span></span><br><span class="line">    meizi = Stranger()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 设置妹子的属性</span></span><br><span class="line">    meizi.gender = <span class="string">&quot;beijing&quot;</span></span><br><span class="line">    meizi.age = <span class="string">&quot;teacher&quot;</span></span><br><span class="line">    meizi.job = <span class="number">20</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 访问妹子的属性</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;妹子信息:&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;性别:&#123;gender&#125;&quot;</span>.<span class="built_in">format</span>(gender=meizi.gender))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;年龄:&#123;age&#125;&quot;</span>.<span class="built_in">format</span>(age=meizi.age))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;职业:&#123;job&#125;&quot;</span>.<span class="built_in">format</span>(job=meizi.job))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出：</span></span><br><span class="line"><span class="comment">#妹子信息:</span></span><br><span class="line"><span class="comment">#性别:beijing</span></span><br><span class="line"><span class="comment">#年龄:teacher</span></span><br><span class="line"><span class="comment">#职业:20</span></span><br></pre></td></tr></table></figure>
-<h2 id="普通解决方案">普通解决方案</h2>
+<h4 id="可以通过-import-关键字单个导入">可以通过 import 关键字单个导入</h4>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;io&quot;</span></span><br></pre></td></tr></table></figure>
+<h4 id="可以同时导入多个">可以同时导入多个</h4>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;fmt&quot;</span></span><br><span class="line">    <span class="string">&quot;math&quot;</span></span><br><span class="line">)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    fmt.Println(math.Exp2(<span class="number">10</span>))  <span class="comment">// 1024</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="使用-packagename.functionname-导入调用">使用 <code>&lt;PackageName&gt;.&lt;FunctionName&gt;</code> 导入调用</h4>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="comment">// 为fmt起别名为fmt2</span></span><br><span class="line"><span class="keyword">import</span> fmt2 <span class="string">&quot;fmt&quot;</span></span><br></pre></td></tr></table></figure>
+<h4 id="省略调用不建议使用">省略调用(不建议使用)</h4>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 调用的时候只需要Println()，而不需要fmt.Println()</span></span><br><span class="line"><span class="keyword">import</span> . <span class="string">&quot;fmt&quot;</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    Println(<span class="string">&quot;hello,world&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="可见性规则">可见性规则</h3>
 <ul>
-<li>一个比较简单的解决方案就是对值的范围进行设定。</li>
+<li>Go语言中，使用大小写来决定该常量、变量、类型、接口、结构或函数是否可以被外部包所调用。</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">class Stranger(object):</span><br><span class="line">    def __init__(self, gender=None, age=None, job=None):</span><br><span class="line">        self.gender = gender</span><br><span class="line">        self.age = age</span><br><span class="line">        self.jobb = job</span><br><span class="line">        </span><br><span class="line">    # 设置age</span><br><span class="line">    def set_age(self, age):</span><br><span class="line">        if isinstance(age, int):</span><br><span class="line">            self.age = age</span><br><span class="line">        else:</span><br><span class="line">        	raise ValueError(&quot;&#x27;int&#x27; type need&quot;)</span><br><span class="line">            </span><br><span class="line">    # 读取age</span><br><span class="line">    def get_age(self):</span><br><span class="line">        return self.age</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    # 创建一个“妹子”</span><br><span class="line">    meizi = Stranger()</span><br><span class="line"></span><br><span class="line">    meizi.set_age(18)</span><br><span class="line">    print(&quot;年龄:&#123;age&#125;&quot;.format(age=meizi.get_age()))</span><br><span class="line"></span><br><span class="line"># 输出：</span><br><span class="line">#年龄:18</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">//函数名首字母小写即为 private :</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getId</span><span class="params">()</span></span> &#123;&#125;</span><br><span class="line"><span class="comment">//函数名首字母大写即为 public :</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Printf</span><span class="params">()</span></span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Go</category>
+      </categories>
+      <tags>
+        <tag>Go</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Ubuntu】虚拟机VMware中安装Ubuntu 18.04（win）</title>
+    <url>/2021/09/27/%E3%80%90Ubuntu%E3%80%91%E8%99%9A%E6%8B%9F%E6%9C%BAVMware%E4%B8%AD%E5%AE%89%E8%A3%85Ubuntu-18-04%EF%BC%88win%EF%BC%89/</url>
+    <content><![CDATA[<blockquote>
+<p>本文简要介绍了虚拟机VMware中安装Ubuntu 18.04的大致流程。</p>
+</blockquote>
+<span id="more"></span>
 <ul>
-<li>此时如果值的范围不对，会报错。</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">meizi.set_age(<span class="string">&quot;teacher&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;年龄:&#123;age&#125;&quot;</span>.<span class="built_in">format</span>(age=meizi.get_age()))</span><br><span class="line"><span class="comment"># ValueError: &#x27;int&#x27; type need</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>此时我们解决了这个问题，那么有没有更加简便的方法呢？</li>
-</ul>
-<h2 id="引入property">引入@property</h2>
-<ul>
-<li>为了避免麻烦，于是有了@property装饰器。它的作用是：将方法变成属性调用。</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stranger</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, gender=<span class="literal">None</span>, age=<span class="literal">None</span>, job=<span class="literal">None</span></span>):</span></span><br><span class="line">        self.gender = gender</span><br><span class="line">        self._age = age <span class="comment"># 这里的成员属性_age需要与成员方法age()区分开</span></span><br><span class="line">        self.jobb = job</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 读取age</span></span><br><span class="line"><span class="meta">    @property </span><span class="comment"># 实现一个age相关的getter方法</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">age</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self._age</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 设置age</span></span><br><span class="line"><span class="meta">    @age.setter </span><span class="comment"># 实现一个age相关的setter方法</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">age</span>(<span class="params">self, value</span>):</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">isinstance</span>(value, <span class="built_in">int</span>):</span><br><span class="line">            self._age = value</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">&quot;&#x27;int&#x27; type need&quot;</span>)</span><br><span class="line">            </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># 创建一个“妹子”</span></span><br><span class="line">    meizi = Stranger()</span><br><span class="line"></span><br><span class="line">    meizi.age = <span class="number">18</span>  <span class="comment"># 使用时注意是.age，不是._age</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;年龄:&#123;age&#125;&quot;</span>.<span class="built_in">format</span>(age=meizi.age))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出：</span></span><br><span class="line"><span class="comment">#年龄:18</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>注意！
-<ul>
-<li>属性名与方法名一定要区分开，不然会进入死循环
-<ul>
-<li>（self._age，def age()）</li>
-</ul></li>
-<li>实例化的对象使用属性时
-<ul>
-<li>不是调用属性（meizi._age），而是用的方法名（meizi.age）</li>
-</ul></li>
-<li><code>@property</code> 其实就是实现了 getter 功能；
-<ul>
-<li><code>@xxx.setter</code> 实现的是 setter 功能；</li>
-<li>还有一个 <code>@xxx.deleter</code> 实现删除功能</li>
-</ul></li>
-<li>定义方法的时候 <code>@property</code> 必须在 <code>@xxx.setter</code>之前，
-<ul>
-<li>且二者修饰的方法名相同（age()）</li>
-</ul></li>
-<li>如果只实现了 <code>@property</code>（而没有实现 <code>@xxx.setter</code>），那么该属性为<code>只读属性</code></li>
-</ul></li>
-</ul>
-<h2 id="property原理"><span class="citation" data-cites="property原理">@property原理</span></h2>
-<p>函数接口：<code>property(fget=None, fset=None, fdel=None, doc=None)</code></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stranger</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, gender=<span class="literal">None</span>, age=<span class="literal">None</span>, job=<span class="literal">None</span></span>):</span></span><br><span class="line">        self.gender = gender</span><br><span class="line">        self._age = age</span><br><span class="line">        self.jobb = job</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 设置_age</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">set_age</span>(<span class="params">self, age</span>):</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">isinstance</span>(age, <span class="built_in">int</span>):</span><br><span class="line">            self._age = age</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">&quot;&#x27;int&#x27; type need&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 读取_age</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_age</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self._age</span><br><span class="line">	</span><br><span class="line">    <span class="comment"># 使得实例化对象可以利用.age方式来访问</span></span><br><span class="line">    age = <span class="built_in">property</span>(get_age, set_age)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># 创建一个“妹子”</span></span><br><span class="line">    meizi = Stranger()</span><br><span class="line"></span><br><span class="line">    meizi.age = <span class="number">18</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;年龄:&#123;age&#125;&quot;</span>.<span class="built_in">format</span>(age=meizi.age))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出：</span></span><br><span class="line"><span class="comment">#年龄:18</span></span><br></pre></td></tr></table></figure>
-<h2 id="参考">参考</h2>
-<ul>
-<li><span class="citation" data-cites="property的使用">[@property的使用]</span>(https://blog.csdn.net/qq_41359051/article/details/82939655)</li>
-<li><a href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017502538658208">使用@property</a></li>
+<li><a href="http://www.zhanshaoyi.com/15258.html">下载虚拟机</a></li>
+<li><a href="https://old-releases.ubuntu.com/releases/18.04.4/?_ga=2.217740438.1611117330.1589030901-459737397.1589030901">下载 Ubuntu 镜像</a></li>
+<li><a href="https://blog.csdn.net/qq_44830040/article/details/106028964">安装步骤</a></li>
 </ul>
 ]]></content>
       <categories>
-        <category>Python</category>
+        <category>Ubuntu</category>
       </categories>
       <tags>
-        <tag>Python</tag>
-        <tag>修饰器</tag>
+        <tag>Ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Tex】Texlive的安装</title>
+    <url>/2021/08/04/%E3%80%90Tex%E3%80%91Texlive%E7%9A%84%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<blockquote>
+<p>Texlive（Windows）的安装。</p>
+</blockquote>
+<span id="more"></span>
+<blockquote>
+<p>【TexLive 2020 安装指南】https://zhuanlan.zhihu.com/p/136931926</p>
+<p>软件下载链接：https://mirrors.tuna.tsinghua.edu.cn/ctan/systems/texlive/Images/?C=M&amp;O=A 选择里面的 texlive2021.iso 进行下载~</p>
+</blockquote>
+<h1 id="双击-install-tl-windows.bat-进行安装">双击 install-tl-windows.bat 进行安装</h1>
+<p><img src="https://user-images.githubusercontent.com/48743005/128168436-0f16b2c0-9512-436d-ae40-d2f19c3edb94.png" /> <img src="https://user-images.githubusercontent.com/48743005/128168460-5f11ffbf-3bea-4994-96e7-bc4e631ce14e.png" /></p>
+<ul>
+<li><code>tex --version</code>检查版本</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/48743005/128168513-ede63eda-1085-4d20-ae18-d486375aadf0.png" /></p>
+<h1 id="安装-vscode-插件">安装 VSCode 插件</h1>
+<ul>
+<li>安装 <code>Latex workshop</code> 插件</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/48743005/128168532-4839e02e-d84e-4a18-8a9f-85367b28c3b4.png" /></p>
+<h1 id="配置-vscode-的-settings.json">配置 VSCode 的 settings.json</h1>
+<blockquote>
+<p>注意，一定要事先安装好 SumatraPDF 这个小应用程序，否则无法完美预览 PDF。如果你不要求特别完美的跳转搜索，或者认为没有必要，也可以不安装。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>Tex</category>
+      </categories>
+      <tags>
+        <tag>Latex</tag>
+        <tag>Tex</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【hexo】问题：port 443: Timed out</title>
+    <url>/2021/07/03/%E3%80%90hexo%E3%80%91%E9%97%AE%E9%A2%98%EF%BC%9Aport-443-Timed-out/</url>
+    <content><![CDATA[<blockquote>
+<p>hexo g -d 出现问题：port 443: Timed out</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="解决方案">解决方案</h2>
+<ul>
+<li>查看是否能连接 github</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br><span class="line"><span class="comment"># Hi ...! You&#x27;ve successfully authenticated, but ... 则表示能连接</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>改配置：配置的Github远程仓库的地址最好使用SSH的地址。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># site root directory</span></span><br><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: ssh://git@github.com/pzlu/pzlu.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a href="https://segmentfault.com/q/1010000004682965/a-1020000004895413">hexo搭建博客过程中出现的问题</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术问题</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>技术问题</tag>
       </tags>
   </entry>
   <entry>
@@ -749,110 +774,111 @@
       </tags>
   </entry>
   <entry>
-    <title>【hexo】迁移博客</title>
-    <url>/2021/09/05/%E3%80%90hexo%E3%80%91%E8%BF%81%E7%A7%BB%E5%8D%9A%E5%AE%A2/</url>
+    <title>【Python】修饰器总结</title>
+    <url>/2021/08/25/%E3%80%90Python%E3%80%91%E4%BF%AE%E9%A5%B0%E5%99%A8%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<blockquote>
-<p>本文主要讲述两种迁移 hexo 博客的方式，仅供参考。</p>
+<p>总结一些遇到过的有意思的修饰器。</p>
 </blockquote>
 <span id="more"></span>
-<h2 id="方式一主流方法">方式一（主流方法）</h2>
-<ul>
-<li>主流方法的好处在于只要在一个仓库开辟分支进行操作就行。
-<ul>
-<li><a href="https://www.cnblogs.com/itvdo/p/11323937.html">参考一</a></li>
-<li><a href="https://segmentfault.com/a/1190000017265154">参考二</a><br />
-</li>
-</ul></li>
-</ul>
-<h2 id="方式二我的方法不是特别推荐">方式二（我的方法，不是特别推荐）</h2>
-<ul>
-<li>首先我的主页是 pzlu.github.io 这个仓库A；</li>
-<li>然后我会把本地的有关这个仓库的文件上传到我的 github 的私人仓库B。
-<ul>
-<li>注意：这个上传的仓库，可能因为主题是外嵌包（会更新）的原因不能上传，
-<ul>
-<li>可通过一些操作将主题上传。</li>
-</ul></li>
-<li>简单地讲就是 theme 这个文件里的主题内容要另外备份。</li>
-</ul></li>
-<li>那么迁移的步骤就如下：
-<ul>
-<li>在新电脑上拉取 仓库B 的内容；</li>
-<li>在 theme 文件中导入我的主题文件；</li>
-<li>在新电脑上安装主要的对应模块的包并检查版本问题等；</li>
-<li><code>hexo clean &amp;&amp; hexo g -d</code></li>
-</ul></li>
-</ul>
-]]></content>
-      <categories>
-        <category>hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【Tex】Texlive的安装</title>
-    <url>/2021/08/04/%E3%80%90Tex%E3%80%91Texlive%E7%9A%84%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<blockquote>
-<p>Texlive（Windows）的安装。</p>
-</blockquote>
-<span id="more"></span>
+<h1 id="property"><span class="citation" data-cites="property">@property</span></h1>
 <blockquote>
-<p>【TexLive 2020 安装指南】https://zhuanlan.zhihu.com/p/136931926</p>
-<p>软件下载链接：https://mirrors.tuna.tsinghua.edu.cn/ctan/systems/texlive/Images/?C=M&amp;O=A 选择里面的 texlive2021.iso 进行下载~</p>
+<p>将方法变成属性调用。</p>
 </blockquote>
-<h1 id="双击-install-tl-windows.bat-进行安装">双击 install-tl-windows.bat 进行安装</h1>
-<p><img src="https://user-images.githubusercontent.com/48743005/128168436-0f16b2c0-9512-436d-ae40-d2f19c3edb94.png" /> <img src="https://user-images.githubusercontent.com/48743005/128168460-5f11ffbf-3bea-4994-96e7-bc4e631ce14e.png" /></p>
+<h2 id="一般类及问题">一般类及问题</h2>
 <ul>
-<li><code>tex --version</code>检查版本</li>
+<li>有这样一个类，能够展现一个陌生人的基本信息。</li>
 </ul>
-<p><img src="https://user-images.githubusercontent.com/48743005/128168513-ede63eda-1085-4d20-ae18-d486375aadf0.png" /></p>
-<h1 id="安装-vscode-插件">安装 VSCode 插件</h1>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stranger</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, gender=<span class="literal">None</span>, age=<span class="literal">None</span>, job=<span class="literal">None</span></span>):</span></span><br><span class="line">        self.gender = gender</span><br><span class="line">        self.age = age</span><br><span class="line">        self.jobb = job</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># 创建一个“妹子”</span></span><br><span class="line">    meizi = Stranger()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 设置妹子的属性</span></span><br><span class="line">    meizi.gender = <span class="string">&quot;female&quot;</span></span><br><span class="line">    meizi.age = <span class="number">18</span></span><br><span class="line">    meizi.job = <span class="string">&quot;teacher&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 访问妹子的属性</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;妹子信息:&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;性别:&#123;gender&#125;&quot;</span>.<span class="built_in">format</span>(gender=meizi.gender))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;年龄:&#123;age&#125;&quot;</span>.<span class="built_in">format</span>(age=meizi.age))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;职业:&#123;job&#125;&quot;</span>.<span class="built_in">format</span>(job=meizi.job))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出：</span></span><br><span class="line"><span class="comment">#妹子信息:</span></span><br><span class="line"><span class="comment">#性别:female</span></span><br><span class="line"><span class="comment">#年龄:18</span></span><br><span class="line"><span class="comment">#职业:teacher</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li>安装 <code>Latex workshop</code> 插件</li>
-</ul>
-<p><img src="https://user-images.githubusercontent.com/48743005/128168532-4839e02e-d84e-4a18-8a9f-85367b28c3b4.png" /></p>
-<h1 id="配置-vscode-的-settings.json">配置 VSCode 的 settings.json</h1>
-<blockquote>
-<p>注意，一定要事先安装好 SumatraPDF 这个小应用程序，否则无法完美预览 PDF。如果你不要求特别完美的跳转搜索，或者认为没有必要，也可以不安装。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>Tex</category>
-      </categories>
-      <tags>
-        <tag>Latex</tag>
-        <tag>Tex</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【hexo】问题：port 443: Timed out</title>
-    <url>/2021/07/03/%E3%80%90hexo%E3%80%91%E9%97%AE%E9%A2%98%EF%BC%9Aport-443-Timed-out/</url>
-    <content><![CDATA[<blockquote>
-<p>hexo g -d 出现问题：port 443: Timed out</p>
-</blockquote>
-<span id="more"></span>
-<h2 id="解决方案">解决方案</h2>
+<li>但可能会产生一个问题：输出的结果<code>异常</code>。
 <ul>
-<li>查看是否能连接 github</li>
+<li>原因是属性的值得范围并未做明确的设定。</li>
+</ul></li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssh -T git@github.com</span><br><span class="line"><span class="comment"># Hi ...! You&#x27;ve successfully authenticated, but ... 则表示能连接</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ...</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># 创建一个“妹子”</span></span><br><span class="line">    meizi = Stranger()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 设置妹子的属性</span></span><br><span class="line">    meizi.gender = <span class="string">&quot;beijing&quot;</span></span><br><span class="line">    meizi.age = <span class="string">&quot;teacher&quot;</span></span><br><span class="line">    meizi.job = <span class="number">20</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 访问妹子的属性</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;妹子信息:&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;性别:&#123;gender&#125;&quot;</span>.<span class="built_in">format</span>(gender=meizi.gender))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;年龄:&#123;age&#125;&quot;</span>.<span class="built_in">format</span>(age=meizi.age))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;职业:&#123;job&#125;&quot;</span>.<span class="built_in">format</span>(job=meizi.job))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出：</span></span><br><span class="line"><span class="comment">#妹子信息:</span></span><br><span class="line"><span class="comment">#性别:beijing</span></span><br><span class="line"><span class="comment">#年龄:teacher</span></span><br><span class="line"><span class="comment">#职业:20</span></span><br></pre></td></tr></table></figure>
+<h2 id="普通解决方案">普通解决方案</h2>
 <ul>
-<li>改配置：配置的Github远程仓库的地址最好使用SSH的地址。</li>
+<li>一个比较简单的解决方案就是对值的范围进行设定。</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># site root directory</span></span><br><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: ssh://git@github.com/pzlu/pzlu.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">class Stranger(object):</span><br><span class="line">    def __init__(self, gender=None, age=None, job=None):</span><br><span class="line">        self.gender = gender</span><br><span class="line">        self.age = age</span><br><span class="line">        self.jobb = job</span><br><span class="line">        </span><br><span class="line">    # 设置age</span><br><span class="line">    def set_age(self, age):</span><br><span class="line">        if isinstance(age, int):</span><br><span class="line">            self.age = age</span><br><span class="line">        else:</span><br><span class="line">        	raise ValueError(&quot;&#x27;int&#x27; type need&quot;)</span><br><span class="line">            </span><br><span class="line">    # 读取age</span><br><span class="line">    def get_age(self):</span><br><span class="line">        return self.age</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    # 创建一个“妹子”</span><br><span class="line">    meizi = Stranger()</span><br><span class="line"></span><br><span class="line">    meizi.set_age(18)</span><br><span class="line">    print(&quot;年龄:&#123;age&#125;&quot;.format(age=meizi.get_age()))</span><br><span class="line"></span><br><span class="line"># 输出：</span><br><span class="line">#年龄:18</span><br></pre></td></tr></table></figure>
+<ul>
+<li>此时如果值的范围不对，会报错。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">meizi.set_age(<span class="string">&quot;teacher&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;年龄:&#123;age&#125;&quot;</span>.<span class="built_in">format</span>(age=meizi.get_age()))</span><br><span class="line"><span class="comment"># ValueError: &#x27;int&#x27; type need</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>此时我们解决了这个问题，那么有没有更加简便的方法呢？</li>
+</ul>
+<h2 id="引入property">引入@property</h2>
+<ul>
+<li>为了避免麻烦，于是有了@property装饰器。它的作用是：将方法变成属性调用。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stranger</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, gender=<span class="literal">None</span>, age=<span class="literal">None</span>, job=<span class="literal">None</span></span>):</span></span><br><span class="line">        self.gender = gender</span><br><span class="line">        self._age = age <span class="comment"># 这里的成员属性_age需要与成员方法age()区分开</span></span><br><span class="line">        self.jobb = job</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 读取age</span></span><br><span class="line"><span class="meta">    @property </span><span class="comment"># 实现一个age相关的getter方法</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">age</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self._age</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 设置age</span></span><br><span class="line"><span class="meta">    @age.setter </span><span class="comment"># 实现一个age相关的setter方法</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">age</span>(<span class="params">self, value</span>):</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">isinstance</span>(value, <span class="built_in">int</span>):</span><br><span class="line">            self._age = value</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">&quot;&#x27;int&#x27; type need&quot;</span>)</span><br><span class="line">            </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># 创建一个“妹子”</span></span><br><span class="line">    meizi = Stranger()</span><br><span class="line"></span><br><span class="line">    meizi.age = <span class="number">18</span>  <span class="comment"># 使用时注意是.age，不是._age</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;年龄:&#123;age&#125;&quot;</span>.<span class="built_in">format</span>(age=meizi.age))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出：</span></span><br><span class="line"><span class="comment">#年龄:18</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>注意！
+<ul>
+<li>属性名与方法名一定要区分开，不然会进入死循环
+<ul>
+<li>（self._age，def age()）</li>
+</ul></li>
+<li>实例化的对象使用属性时
+<ul>
+<li>不是调用属性（meizi._age），而是用的方法名（meizi.age）</li>
+</ul></li>
+<li><code>@property</code> 其实就是实现了 getter 功能；
+<ul>
+<li><code>@xxx.setter</code> 实现的是 setter 功能；</li>
+<li>还有一个 <code>@xxx.deleter</code> 实现删除功能</li>
+</ul></li>
+<li>定义方法的时候 <code>@property</code> 必须在 <code>@xxx.setter</code>之前，
+<ul>
+<li>且二者修饰的方法名相同（age()）</li>
+</ul></li>
+<li>如果只实现了 <code>@property</code>（而没有实现 <code>@xxx.setter</code>），那么该属性为<code>只读属性</code></li>
+</ul></li>
+</ul>
+<h2 id="property原理"><span class="citation" data-cites="property原理">@property原理</span></h2>
+<p>函数接口：<code>property(fget=None, fset=None, fdel=None, doc=None)</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stranger</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, gender=<span class="literal">None</span>, age=<span class="literal">None</span>, job=<span class="literal">None</span></span>):</span></span><br><span class="line">        self.gender = gender</span><br><span class="line">        self._age = age</span><br><span class="line">        self.jobb = job</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 设置_age</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">set_age</span>(<span class="params">self, age</span>):</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">isinstance</span>(age, <span class="built_in">int</span>):</span><br><span class="line">            self._age = age</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">raise</span> ValueError(<span class="string">&quot;&#x27;int&#x27; type need&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 读取_age</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_age</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self._age</span><br><span class="line">	</span><br><span class="line">    <span class="comment"># 使得实例化对象可以利用.age方式来访问</span></span><br><span class="line">    age = <span class="built_in">property</span>(get_age, set_age)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="comment"># 创建一个“妹子”</span></span><br><span class="line">    meizi = Stranger()</span><br><span class="line"></span><br><span class="line">    meizi.age = <span class="number">18</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;年龄:&#123;age&#125;&quot;</span>.<span class="built_in">format</span>(age=meizi.age))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出：</span></span><br><span class="line"><span class="comment">#年龄:18</span></span><br></pre></td></tr></table></figure>
 <h2 id="参考">参考</h2>
 <ul>
-<li><a href="https://segmentfault.com/q/1010000004682965/a-1020000004895413">hexo搭建博客过程中出现的问题</a></li>
+<li><span class="citation" data-cites="property的使用">[@property的使用]</span>(https://blog.csdn.net/qq_41359051/article/details/82939655)</li>
+<li><a href="https://www.liaoxuefeng.com/wiki/1016959663602400/1017502538658208">使用@property</a></li>
 </ul>
 ]]></content>
       <categories>
-        <category>技术问题</category>
+        <category>Python</category>
       </categories>
       <tags>
-        <tag>hexo</tag>
-        <tag>技术问题</tag>
+        <tag>Python</tag>
+        <tag>修饰器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【专业成长】个人推荐目录</title>
+    <url>/2021/07/15/%E3%80%90%E4%B8%93%E4%B8%9A%E6%88%90%E9%95%BF%E3%80%91%E4%B8%AA%E4%BA%BA%E6%8E%A8%E8%8D%90%E7%9B%AE%E5%BD%95/</url>
+    <content><![CDATA[<blockquote>
+<p>个人专业学习过程中对好的作品的推荐。</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="书籍推荐">书籍推荐</h1>
+<h2 id="机器学习">机器学习</h2>
+<ul>
+<li><a href="https://item.jd.com/12522197.html">《统计学习方法（第2版）》李航</a></li>
+<li><a href="https://item.jd.com/12762673.html">《机器学习》周志华</a></li>
+</ul>
+<h2 id="深度学习">深度学习</h2>
+<h3 id="深度学习入门">深度学习入门</h3>
+<ul>
+<li><a href="https://item.jd.com/12403048.html">《深度学习入门 基于 Python 的理论与实现》斋藤康毅</a></li>
+<li><a href="https://item.jd.com/12851292.html">《神经网络与深度学习》邱锡鹏</a></li>
+<li><a href="https://item.jd.com/12615065.html">《深入浅出图神经网络 GNN 原理解析》刘忠雨</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>成长</category>
+      </categories>
+      <tags>
+        <tag>专业成长</tag>
       </tags>
   </entry>
   <entry>
@@ -973,31 +999,46 @@
       </tags>
   </entry>
   <entry>
-    <title>【专业成长】个人推荐目录</title>
-    <url>/2021/07/15/%E3%80%90%E4%B8%93%E4%B8%9A%E6%88%90%E9%95%BF%E3%80%91%E4%B8%AA%E4%BA%BA%E6%8E%A8%E8%8D%90%E7%9B%AE%E5%BD%95/</url>
+    <title>【hexo】迁移博客</title>
+    <url>/2021/09/05/%E3%80%90hexo%E3%80%91%E8%BF%81%E7%A7%BB%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<blockquote>
-<p>个人专业学习过程中对好的作品的推荐。</p>
+<p>本文主要讲述两种迁移 hexo 博客的方式，仅供参考。</p>
 </blockquote>
 <span id="more"></span>
-<h1 id="书籍推荐">书籍推荐</h1>
-<h2 id="机器学习">机器学习</h2>
+<h2 id="方式一主流方法">方式一（主流方法）</h2>
 <ul>
-<li><a href="https://item.jd.com/12522197.html">《统计学习方法（第2版）》李航</a></li>
-<li><a href="https://item.jd.com/12762673.html">《机器学习》周志华</a></li>
+<li>主流方法的好处在于只要在一个仓库开辟分支进行操作就行。
+<ul>
+<li><a href="https://www.cnblogs.com/itvdo/p/11323937.html">参考一</a></li>
+<li><a href="https://segmentfault.com/a/1190000017265154">参考二</a><br />
+</li>
+</ul></li>
 </ul>
-<h2 id="深度学习">深度学习</h2>
-<h3 id="深度学习入门">深度学习入门</h3>
+<h2 id="方式二我的方法不是特别推荐">方式二（我的方法，不是特别推荐）</h2>
 <ul>
-<li><a href="https://item.jd.com/12403048.html">《深度学习入门 基于 Python 的理论与实现》斋藤康毅</a></li>
-<li><a href="https://item.jd.com/12851292.html">《神经网络与深度学习》邱锡鹏</a></li>
-<li><a href="https://item.jd.com/12615065.html">《深入浅出图神经网络 GNN 原理解析》刘忠雨</a></li>
+<li>首先我的主页是 pzlu.github.io 这个仓库A；</li>
+<li>然后我会把本地的有关这个仓库的文件上传到我的 github 的私人仓库B。
+<ul>
+<li>注意：这个上传的仓库，可能因为主题是外嵌包（会更新）的原因不能上传，
+<ul>
+<li>可通过一些操作将主题上传。</li>
+</ul></li>
+<li>简单地讲就是 theme 这个文件里的主题内容要另外备份。</li>
+</ul></li>
+<li>那么迁移的步骤就如下：
+<ul>
+<li>在新电脑上拉取 仓库B 的内容；</li>
+<li>在 theme 文件中导入我的主题文件；</li>
+<li>在新电脑上安装主要的对应模块的包并检查版本问题等；</li>
+<li><code>hexo clean &amp;&amp; hexo g -d</code></li>
+</ul></li>
 </ul>
 ]]></content>
       <categories>
-        <category>成长</category>
+        <category>hexo</category>
       </categories>
       <tags>
-        <tag>专业成长</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -1224,6 +1265,159 @@
       </tags>
   </entry>
   <entry>
+    <title>【分词】日文分词工具-Mecab</title>
+    <url>/2021/07/04/%E3%80%90%E5%88%86%E8%AF%8D%E3%80%91%E6%97%A5%E6%96%87%E5%88%86%E8%AF%8D%E5%B7%A5%E5%85%B7-Mecab/</url>
+    <content><![CDATA[<blockquote>
+<p>主要介绍了日文分词工具 Mecab 的基本使用。</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="安装与配置">安装与配置</h2>
+<ul>
+<li>下载好 mecab-0.996.exe （<a href="https://taku910.github.io/mecab/#install-windows">for windows</a>）
+<ul>
+<li>注意安装时编码格式 UTF-8</li>
+<li>安装路径默认即可</li>
+</ul></li>
+<li>安装好 mecab-python：<code>pip install mecab-python3</code> <a href="https://pypi.org/project/mecab-python3/">参考 mecab-python3</a></li>
+</ul>
+<h2 id="测试">测试</h2>
+<h3 id="词性标注">词性标注</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> MeCab</span><br><span class="line">mecab = MeCab.Tagger (<span class="string">&quot;-Ochasen&quot;</span>)</span><br><span class="line">sentence = <span class="string">&#x27;太郎はこの本を二郎を見た女性に渡した。&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(mecab.parse(sentence))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">太郎	タロウ	太郎	名詞-固有名詞-人名-名		</span><br><span class="line">は	ハ	は	助詞-係助詞		</span><br><span class="line">この	コノ	この	連体詞		</span><br><span class="line">本	ホン	本	名詞-一般		</span><br><span class="line">を	ヲ	を	助詞-格助詞-一般		</span><br><span class="line">二	ニ	二	名詞-数		</span><br><span class="line">郎	ロウ	郎	名詞-一般		</span><br><span class="line">を	ヲ	を	助詞-格助詞-一般		</span><br><span class="line">見	ミ	見る	動詞-自立	一段	連用形</span><br><span class="line">た	タ	た	助動詞	特殊・タ	基本形</span><br><span class="line">女性	ジョセイ	女性	名詞-一般		</span><br><span class="line">に	ニ	に	助詞-格助詞-一般		</span><br><span class="line">渡し	ワタシ	渡す	動詞-自立	五段・サ行	連用形</span><br><span class="line">た	タ	た	助動詞	特殊・タ	基本形</span><br><span class="line">。	。	。	記号-句点		</span><br><span class="line">EOS</span><br></pre></td></tr></table></figure>
+<h3 id="分词">分词</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> MeCab</span><br><span class="line">mecab = MeCab.Tagger (<span class="string">&quot;-Owakati&quot;</span>)</span><br><span class="line">sentence = <span class="string">&#x27;太郎はこの本を二郎を見た女性に渡した。&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(mecab.parse(sentence))</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">太郎 は この 本 を 二 郎 を 見 た 女性 に 渡し た 。 </span><br></pre></td></tr></table></figure>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a href="https://www.52nlp.cn/%E6%97%A5%E6%96%87%E5%88%86%E8%AF%8D%E5%99%A8-mecab-%E6%96%87%E6%A1%A3">日文分词器 Mecab 文档</a></li>
+<li><a href="https://taku910.github.io/mecab/#install-windows">MeCab: Yet Another Part-of-Speech and Morphological Analyzer</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>NLP 工具</category>
+      </categories>
+      <tags>
+        <tag>Mecab</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【实用工具】Docker</title>
+    <url>/2021/08/03/%E3%80%90%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7%E3%80%91Docker/</url>
+    <content><![CDATA[<blockquote>
+<p>实用工具 Docker 的实操记录。</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="安装与使用">安装与使用</h1>
+<h2 id="docker-的作用">Docker 的作用</h2>
+<ul>
+<li>使得不同依赖包之间互不影响，具有 <strong>隔离性</strong> 的特点（类似于虚拟环境的作用用于隔离）；</li>
+<li>Docker 配置文件，一键部署，具有 <strong>快速部署</strong> 的特点。</li>
+</ul>
+<h2 id="docker-的安装">Docker 的安装</h2>
+<ul>
+<li><a href="https://www.docker.com/products/docker-desktop">下载地址</a>
+<ul>
+<li>可能需要注册账号</li>
+<li>一键安装即可（Windows）</li>
+</ul></li>
+</ul>
+<h2 id="三个基本概念">三个基本概念</h2>
+<ul>
+<li>Image 镜像，Container 容器，Repository 仓库。</li>
+<li><strong>仓库</strong>：下载软件的商店（free）；</li>
+<li><strong>镜像</strong>：下载好的可安装的文件；</li>
+<li><strong>容器</strong>：已经安装好的应用程序。</li>
+</ul>
+<h2 id="一般使用操作">一般使用操作</h2>
+<h3 id="登入操作">登入操作</h3>
+<ul>
+<li><code>docker login</code></li>
+</ul>
+<h3 id="进入容器不影响其它窗口">进入容器（不影响其它窗口）</h3>
+<ul>
+<li><code>docker ps -a</code> # 打印容器</li>
+<li><code>docker exec -it container_id /bin/bash</code> # 进入某个 id 容器</li>
+</ul>
+<h1 id="参考">参考</h1>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/49492290">由浅入深 docker 系列：（1）安装使用</a></li>
+<li><a href="https://www.cnblogs.com/xhyan/p/6593075.html">Docker容器进入的4种方式</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>实用工具-Docker</category>
+      </categories>
+      <tags>
+        <tag>Docker</tag>
+        <tag>实用工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【实用工具】Tmux</title>
+    <url>/2021/07/07/%E3%80%90%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7%E3%80%91Tmux/</url>
+    <content><![CDATA[<blockquote>
+<p>本文主要介绍了终端连接软件 Tmux 的基本操作。</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="主要构件">主要构件</h2>
+<ul>
+<li>session（会话）：一种服务，可以创建，可以查看</li>
+<li>window（窗口）：一个会话，可以包含多个窗口</li>
+<li>pane（窗格）：一个窗口，可以包含多个窗格</li>
+</ul>
+<h2 id="session会话">session（会话）</h2>
+<ul>
+<li>终端<strong>新建</strong>会话 - <code>tmux new -s session1</code></li>
+<li>终端<strong>进入</strong>会话 - <code>tmux a -t session1</code></li>
+<li><strong>查看</strong>会话
+<ul>
+<li>终端环境 - <code>tmux ls</code></li>
+<li>会话环境 - <code>ctrl+b - s</code> - (detached)</li>
+</ul></li>
+<li><strong>退出</strong>会话到终端 - <code>ctrl+b - d</code></li>
+<li><strong>销毁</strong>会话 - <code>tmux kill-session -t session1</code></li>
+<li><strong>重命名</strong>会话
+<ul>
+<li>终端环境 - <code>tmux rename -t old_name new_name</code></li>
+<li>会话环境 - <code>ctrl+b - $</code></li>
+</ul></li>
+</ul>
+<h2 id="window窗口">window（窗口）</h2>
+<ul>
+<li><strong>创建</strong>窗口 - <code>ctrl+b - c</code></li>
+<li><strong>切换</strong>窗口
+<ul>
+<li>列出所有窗口，上下键切换 - <code>ctrl+b - w</code></li>
+<li>上一个 - <code>ctrl+b - p</code></li>
+<li>下一个 - <code>ctrl+b - n</code></li>
+<li>第 <span class="math inline">\(i\)</span> 个 - <code>ctrl+b - number</code></li>
+<li>相邻窗口切换 - <code>ctrl+b - l</code></li>
+</ul></li>
+<li><strong>关闭</strong>窗口（当前）</li>
+<li><strong>重命名</strong>当前窗口 - <code>ctrl+b - ,</code></li>
+</ul>
+<h2 id="pane窗格">pane（窗格）</h2>
+<ul>
+<li><strong>垂直</strong>分屏 - <code>ctrl+b - %</code></li>
+<li><strong>水平</strong>分屏 - <code>ctrl+b - &quot;</code></li>
+<li><strong>切换</strong>窗格
+<ul>
+<li>依次切换 - <code>ctrl+b - o</code></li>
+<li>按方向键 - <code>ctrl+b - 键盘上下左右</code></li>
+<li>对当前窗格重新排列 - <code>ctrl+b - space</code></li>
+<li>最大化当前的窗格 - <code>ctrl+b - z</code></li>
+</ul></li>
+<li><strong>关闭</strong>当前窗格 - <code>ctrl+b - x</code></li>
+</ul>
+]]></content>
+      <categories>
+        <category>实用工具-Tmux</category>
+      </categories>
+      <tags>
+        <tag>实用工具</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【前端】GrokLearning-HTML&amp;CSS</title>
     <url>/2021/08/03/%E3%80%90%E5%89%8D%E7%AB%AF%E3%80%91GrokLearning-HTML-CSS/</url>
     <content><![CDATA[<blockquote>
@@ -1445,156 +1639,119 @@
       </tags>
   </entry>
   <entry>
-    <title>【分词】日文分词工具-Mecab</title>
-    <url>/2021/07/04/%E3%80%90%E5%88%86%E8%AF%8D%E3%80%91%E6%97%A5%E6%96%87%E5%88%86%E8%AF%8D%E5%B7%A5%E5%85%B7-Mecab/</url>
+    <title>【技术问题】JupyterNotebook 切换环境</title>
+    <url>/2021/07/05/%E3%80%90%E6%8A%80%E6%9C%AF%E9%97%AE%E9%A2%98%E3%80%91JupyterNotebook-%E5%88%87%E6%8D%A2%E7%8E%AF%E5%A2%83/</url>
     <content><![CDATA[<blockquote>
-<p>主要介绍了日文分词工具 Mecab 的基本使用。</p>
+<p>关于 Jupyter Notebook 设置支持切换虚拟运行环境的步骤。</p>
 </blockquote>
 <span id="more"></span>
-<h2 id="安装与配置">安装与配置</h2>
+<h2 id="创建可切换环境">创建可切换环境</h2>
+<blockquote>
+<p>为了让 Jupyter Notebook 支持切换虚拟运行环境。</p>
+</blockquote>
 <ul>
-<li>下载好 mecab-0.996.exe （<a href="https://taku910.github.io/mecab/#install-windows">for windows</a>）
-<ul>
-<li>注意安装时编码格式 UTF-8</li>
-<li>安装路径默认即可</li>
-</ul></li>
-<li>安装好 mecab-python：<code>pip install mecab-python3</code> <a href="https://pypi.org/project/mecab-python3/">参考 mecab-python3</a></li>
+<li>首先，在命令窗口中 activate 你创造的那个新环境。</li>
+<li>然后，安装 ipykernel。</li>
 </ul>
-<h2 id="测试">测试</h2>
-<h3 id="词性标注">词性标注</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> MeCab</span><br><span class="line">mecab = MeCab.Tagger (<span class="string">&quot;-Ochasen&quot;</span>)</span><br><span class="line">sentence = <span class="string">&#x27;太郎はこの本を二郎を見た女性に渡した。&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(mecab.parse(sentence))</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">太郎	タロウ	太郎	名詞-固有名詞-人名-名		</span><br><span class="line">は	ハ	は	助詞-係助詞		</span><br><span class="line">この	コノ	この	連体詞		</span><br><span class="line">本	ホン	本	名詞-一般		</span><br><span class="line">を	ヲ	を	助詞-格助詞-一般		</span><br><span class="line">二	ニ	二	名詞-数		</span><br><span class="line">郎	ロウ	郎	名詞-一般		</span><br><span class="line">を	ヲ	を	助詞-格助詞-一般		</span><br><span class="line">見	ミ	見る	動詞-自立	一段	連用形</span><br><span class="line">た	タ	た	助動詞	特殊・タ	基本形</span><br><span class="line">女性	ジョセイ	女性	名詞-一般		</span><br><span class="line">に	ニ	に	助詞-格助詞-一般		</span><br><span class="line">渡し	ワタシ	渡す	動詞-自立	五段・サ行	連用形</span><br><span class="line">た	タ	た	助動詞	特殊・タ	基本形</span><br><span class="line">。	。	。	記号-句点		</span><br><span class="line">EOS</span><br></pre></td></tr></table></figure>
-<h3 id="分词">分词</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> MeCab</span><br><span class="line">mecab = MeCab.Tagger (<span class="string">&quot;-Owakati&quot;</span>)</span><br><span class="line">sentence = <span class="string">&#x27;太郎はこの本を二郎を見た女性に渡した。&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(mecab.parse(sentence))</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">太郎 は この 本 を 二 郎 を 見 た 女性 に 渡し た 。 </span><br></pre></td></tr></table></figure>
-<h2 id="参考">参考</h2>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ conda install ipykernel</span><br></pre></td></tr></table></figure>
 <ul>
-<li><a href="https://www.52nlp.cn/%E6%97%A5%E6%96%87%E5%88%86%E8%AF%8D%E5%99%A8-mecab-%E6%96%87%E6%A1%A3">日文分词器 Mecab 文档</a></li>
-<li><a href="https://taku910.github.io/mecab/#install-windows">MeCab: Yet Another Part-of-Speech and Morphological Analyzer</a></li>
+<li>安装完后，重启jupyter notebook就可以看见kernel的选项了。</li>
 </ul>
+<h2 id="删除可切换环境">删除可切换环境</h2>
+<ul>
+<li><p>查看 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ jupyter kernelspec list</span><br></pre></td></tr></table></figure></p></li>
+<li><p>删除 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ jupyter kernelspec remove kernel_name</span><br></pre></td></tr></table></figure></p></li>
+</ul>
+<h2 id="如果没反应">如果没反应</h2>
+<ul>
+<li>进入环境修改（我的环境名是 IRpyterrier）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ python -m ipykernel install --user --name IRpyterrier --display-name <span class="string">&quot;Python (IRpyterrier)&quot;</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>NLP 工具</category>
+        <category>技术问题</category>
       </categories>
       <tags>
-        <tag>Mecab</tag>
+        <tag>技术问题</tag>
       </tags>
   </entry>
   <entry>
-    <title>【实用工具】Docker</title>
-    <url>/2021/08/03/%E3%80%90%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7%E3%80%91Docker/</url>
+    <title>【技术问题】VSCode 连不上某一个服务器</title>
+    <url>/2021/07/05/%E3%80%90%E6%8A%80%E6%9C%AF%E9%97%AE%E9%A2%98%E3%80%91VSCode-%E8%BF%9E%E4%B8%8D%E4%B8%8A%E6%9F%90%E4%B8%80%E4%B8%AA%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
     <content><![CDATA[<blockquote>
-<p>实用工具 Docker 的实操记录。</p>
+<p>关于 remote-SSH 连不上某一个服务器的解决方法。</p>
 </blockquote>
 <span id="more"></span>
-<h1 id="安装与使用">安装与使用</h1>
-<h2 id="docker-的作用">Docker 的作用</h2>
+<h2 id="问题描述">问题描述</h2>
+<blockquote>
+<p>打开 VSCode，remote-SSH 连不上某一个服务器。</p>
+</blockquote>
+<h2 id="解决方案">解决方案</h2>
 <ul>
-<li>使得不同依赖包之间互不影响，具有 <strong>隔离性</strong> 的特点（类似于虚拟环境的作用用于隔离）；</li>
-<li>Docker 配置文件，一键部署，具有 <strong>快速部署</strong> 的特点。</li>
+<li>打开该服务器终端，删除配置即可。</li>
 </ul>
-<h2 id="docker-的安装">Docker 的安装</h2>
-<ul>
-<li><a href="https://www.docker.com/products/docker-desktop">下载地址</a>
-<ul>
-<li>可能需要注册账号</li>
-<li>一键安装即可（Windows）</li>
-</ul></li>
-</ul>
-<h2 id="三个基本概念">三个基本概念</h2>
-<ul>
-<li>Image 镜像，Container 容器，Repository 仓库。</li>
-<li><strong>仓库</strong>：下载软件的商店（free）；</li>
-<li><strong>镜像</strong>：下载好的可安装的文件；</li>
-<li><strong>容器</strong>：已经安装好的应用程序。</li>
-</ul>
-<h2 id="一般使用操作">一般使用操作</h2>
-<h3 id="登入操作">登入操作</h3>
-<ul>
-<li><code>docker login</code></li>
-</ul>
-<h3 id="进入容器不影响其它窗口">进入容器（不影响其它窗口）</h3>
-<ul>
-<li><code>docker ps -a</code> # 打印容器</li>
-<li><code>docker exec -it container_id /bin/bash</code> # 进入某个 id 容器</li>
-</ul>
-<h1 id="参考">参考</h1>
-<ul>
-<li><a href="https://zhuanlan.zhihu.com/p/49492290">由浅入深 docker 系列：（1）安装使用</a></li>
-<li><a href="https://www.cnblogs.com/xhyan/p/6593075.html">Docker容器进入的4种方式</a></li>
-</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ rm -rf .vscode-server/</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>实用工具-Docker</category>
+        <category>技术问题</category>
       </categories>
       <tags>
-        <tag>Docker</tag>
-        <tag>实用工具</tag>
+        <tag>技术问题</tag>
       </tags>
   </entry>
   <entry>
-    <title>【实用工具】Tmux</title>
-    <url>/2021/07/07/%E3%80%90%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7%E3%80%91Tmux/</url>
+    <title>【数据分析】SPSS 工具</title>
+    <url>/2021/07/05/%E3%80%90%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E3%80%91SPSS-%E5%B7%A5%E5%85%B7/</url>
     <content><![CDATA[<blockquote>
-<p>本文主要介绍了终端连接软件 Tmux 的基本操作。</p>
+<p>记录 SPSS 工具的一些使用链接。</p>
 </blockquote>
 <span id="more"></span>
-<h2 id="主要构件">主要构件</h2>
 <ul>
-<li>session（会话）：一种服务，可以创建，可以查看</li>
-<li>window（窗口）：一个会话，可以包含多个窗口</li>
-<li>pane（窗格）：一个窗口，可以包含多个窗格</li>
-</ul>
-<h2 id="session会话">session（会话）</h2>
+<li><p><a href="https://www.zhihu.com/question/20949854">【数据标准化预处理】</a></p></li>
+<li>[【二项 Logistic 回归分析】]
 <ul>
-<li>终端<strong>新建</strong>会话 - <code>tmux new -s session1</code></li>
-<li>终端<strong>进入</strong>会话 - <code>tmux a -t session1</code></li>
-<li><strong>查看</strong>会话
-<ul>
-<li>终端环境 - <code>tmux ls</code></li>
-<li>会话环境 - <code>ctrl+b - s</code> - (detached)</li>
+<li><a href="https://www.zhihu.com/question/34502688" class="uri">https://www.zhihu.com/question/34502688</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/34263213">【二分类logistic回归，更新几个常见问题的解决方法】</a></li>
 </ul></li>
-<li><strong>退出</strong>会话到终端 - <code>ctrl+b - d</code></li>
-<li><strong>销毁</strong>会话 - <code>tmux kill-session -t session1</code></li>
-<li><strong>重命名</strong>会话
+<li><a href="https://panzhong171.blog.csdn.net/article/details/80980790">【因子分析】</a>
 <ul>
-<li>终端环境 - <code>tmux rename -t old_name new_name</code></li>
-<li>会话环境 - <code>ctrl+b - $</code></li>
+<li><a href="https://zhuanlan.zhihu.com/p/145564952">【SPSS因子分析模型实操】</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/31291210">【SPSS 因子分析参数说明】</a></li>
 </ul></li>
-</ul>
-<h2 id="window窗口">window（窗口）</h2>
-<ul>
-<li><strong>创建</strong>窗口 - <code>ctrl+b - c</code></li>
-<li><strong>切换</strong>窗口
-<ul>
-<li>列出所有窗口，上下键切换 - <code>ctrl+b - w</code></li>
-<li>上一个 - <code>ctrl+b - p</code></li>
-<li>下一个 - <code>ctrl+b - n</code></li>
-<li>第 <span class="math inline">\(i\)</span> 个 - <code>ctrl+b - number</code></li>
-<li>相邻窗口切换 - <code>ctrl+b - l</code></li>
-</ul></li>
-<li><strong>关闭</strong>窗口（当前）</li>
-<li><strong>重命名</strong>当前窗口 - <code>ctrl+b - ,</code></li>
-</ul>
-<h2 id="pane窗格">pane（窗格）</h2>
-<ul>
-<li><strong>垂直</strong>分屏 - <code>ctrl+b - %</code></li>
-<li><strong>水平</strong>分屏 - <code>ctrl+b - &quot;</code></li>
-<li><strong>切换</strong>窗格
-<ul>
-<li>依次切换 - <code>ctrl+b - o</code></li>
-<li>按方向键 - <code>ctrl+b - 键盘上下左右</code></li>
-<li>对当前窗格重新排列 - <code>ctrl+b - space</code></li>
-<li>最大化当前的窗格 - <code>ctrl+b - z</code></li>
-</ul></li>
-<li><strong>关闭</strong>当前窗格 - <code>ctrl+b - x</code></li>
 </ul>
 ]]></content>
       <categories>
-        <category>实用工具-Tmux</category>
+        <category>数据分析</category>
       </categories>
       <tags>
-        <tag>实用工具</tag>
+        <tag>数据分析</tag>
+        <tag>SPSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【技术问题】登入不了谷歌学术？</title>
+    <url>/2021/08/04/%E3%80%90%E6%8A%80%E6%9C%AF%E9%97%AE%E9%A2%98%E3%80%91%E7%99%BB%E5%85%A5%E4%B8%8D%E4%BA%86%E8%B0%B7%E6%AD%8C%E5%AD%A6%E6%9C%AF%EF%BC%9F/</url>
+    <content><![CDATA[<blockquote>
+<p>如何解决登入不了谷歌学术的问题？</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="step-1极简插件">Step 1:【极简插件】</h1>
+<ul>
+<li><a href="https://chrome.zzzmh.cn/index#index" class="uri">https://chrome.zzzmh.cn/index#index</a></li>
+<li>下载【谷歌上网助手 Ghelper Beta】</li>
+</ul>
+<h1 id="step-1极简插件-1">Step 1:【极简插件】</h1>
+<ul>
+<li>在地址栏输入chrome://extensions/打开【开发者模式】的开关；</li>
+<li>拖动下载好的插件安装包文件【xxx.crx】到chrome扩展中心即可；</li>
+<li>弹出安装确认的提示框，说明操作成功，点击确定即可。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术问题</category>
+      </categories>
+      <tags>
+        <tag>技术问题</tag>
       </tags>
   </entry>
   <entry>
@@ -1620,6 +1777,54 @@
       <tags>
         <tag>yarn</tag>
         <tag>npm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【文学】《如何阅读一本书》读后感</title>
+    <url>/2021/07/16/%E3%80%90%E6%96%87%E5%AD%A6%E3%80%91%E3%80%8A%E5%A6%82%E4%BD%95%E9%98%85%E8%AF%BB%E4%B8%80%E6%9C%AC%E4%B9%A6%E3%80%8B%E4%B9%A6%E8%AF%84/</url>
+    <content><![CDATA[<blockquote>
+<p>《如何阅读一本书》读后感。</p>
+<blockquote>
+<p>作者：莫提默 · J. 艾德勒 - 查尔斯 · 范多伦</p>
+</blockquote>
+</blockquote>
+<span id="more"></span>
+<h1 id="第一篇-阅读的层次">第一篇 阅读的层次</h1>
+<h2 id="第一章-阅读的活力与艺术">第一章 阅读的活力与艺术</h2>
+<p>思考这样一个问题，我们是否在阅读完一本书后，会有这样的感想：</p>
+<ul>
+<li>读这本书花了我太久的时间，或是花了很短的时间。</li>
+<li>然后，我似乎学会了什么，但后来好像又忘记不少。</li>
+<li>很有可能，我阅读理解的能力不够。</li>
+</ul>
+<p>其实这是很正常的一件事，在这个信息化的时代，很多算法，很多媒体都为我们高效地提供了所需的信息，我们站在一个非常“懵懂”的理解角度去理解这些信息，这些咨询给我们带来的知识上的补充。</p>
+<p>然而这些补充，如果不经大脑思考，只是以记忆存储的方式保留在我们的大脑里，很容易就会被遗忘。读小说时，我们会遗忘书中的主人公，会遗忘故事的主线，会遗忘这个故事在讲什么；读科普类书时，我们会遗忘一些概念，一些知识点。</p>
+<ul>
+<li>其实就我而言，这些知识是重要的，但也不是那么重要的。</li>
+<li>思维的变迁，理解能力的提升，似乎是一个更需要我们当代人理解的维度。
+<ul>
+<li>为什么？怎么做？似乎比 是什么？更重要。</li>
+</ul></li>
+</ul>
+<p>想一下，“听” 和 “读” 似乎是一个被动式的学习方式，而 “说” 和 “写” 更能反映这个人的才华输出，似乎更能为人所敬佩，我想我们很多人都想成为一个懂得才华输出的人。</p>
+<p><strong>我们需要主动的阅读，这样的效果会更好。</strong></p>
+<p>主动的阅读一定是带有目的性的，是我们想要获取知识，技巧，或者纯粹为了消遣而去读书的，但总比不想读书，只是简单地浏览互联网获取知识要好很多。它多就多在，主动权在你手里，你有这个想法去做很多人懒得做的事，它能让你以一个比较积极向上的方式去获取你想得到的东西。</p>
+<p><strong>我们需要为了资讯而读书，更要为求得理解而读书。</strong></p>
+<p>知识当然重要，它会成为你在他人面前炫耀的一种资本，但是理解力更重要，它能使得你在人际关系的处理过程中，更加清楚对方的需求与目的，也能让你在生活中面对一切苦难都能做到游刃有余。</p>
+<p><strong>阅读就是学习，一种自我发现型的学习。</strong></p>
+<p>没有了老师的点拨，就需要我们自我学习，这种学习方式是自我沉浸在思维的海洋中，利用自身的能力去不断拔高自己的理解力，衡量理解力的标准就是当前你手中阅读的那本书，它会告诉你，标准就在那，你能不能触及，得看你自己。</p>
+<p>当然，值得一提的是，我们也可以在阅读过程中请教他人，因为任何思维的碰撞都是有必要的，不仅在自我追寻中，更有在与他人的交流中。</p>
+<p><strong>阅读获取知识不是最终目的，它也能成为完善自我人格的一种方式。</strong></p>
+<blockquote>
+<p>于 20210516 有感</p>
+</blockquote>
+<h2 id="第二章-阅读的层次">第二章 阅读的层次</h2>
+]]></content>
+      <categories>
+        <category>文学</category>
+      </categories>
+      <tags>
+        <tag>文学</tag>
       </tags>
   </entry>
   <entry>
@@ -1713,64 +1918,22 @@
       </tags>
   </entry>
   <entry>
-    <title>【技术问题】JupyterNotebook 切换环境</title>
-    <url>/2021/07/05/%E3%80%90%E6%8A%80%E6%9C%AF%E9%97%AE%E9%A2%98%E3%80%91JupyterNotebook-%E5%88%87%E6%8D%A2%E7%8E%AF%E5%A2%83/</url>
+    <title>【文学】《被讨厌的勇气》书评</title>
+    <url>/2021/08/03/%E3%80%90%E6%96%87%E5%AD%A6%E3%80%91%E3%80%8A%E8%A2%AB%E8%AE%A8%E5%8E%8C%E7%9A%84%E5%8B%87%E6%B0%94%E3%80%8B%E4%B9%A6%E8%AF%84/</url>
     <content><![CDATA[<blockquote>
-<p>关于 Jupyter Notebook 设置支持切换虚拟运行环境的步骤。</p>
+<p>原书作者: 岸见一郎 / 古贺史健。</p>
+<p>这本书以青年人和智者对话的方式，向读者揭示了种种智慧。</p>
 </blockquote>
 <span id="more"></span>
-<h2 id="创建可切换环境">创建可切换环境</h2>
-<blockquote>
-<p>为了让 Jupyter Notebook 支持切换虚拟运行环境。</p>
-</blockquote>
-<ul>
-<li>首先，在命令窗口中 activate 你创造的那个新环境。</li>
-<li>然后，安装 ipykernel。</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ conda install ipykernel</span><br></pre></td></tr></table></figure>
-<ul>
-<li>安装完后，重启jupyter notebook就可以看见kernel的选项了。</li>
-</ul>
-<h2 id="删除可切换环境">删除可切换环境</h2>
-<ul>
-<li><p>查看 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ jupyter kernelspec list</span><br></pre></td></tr></table></figure></p></li>
-<li><p>删除 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ jupyter kernelspec remove kernel_name</span><br></pre></td></tr></table></figure></p></li>
-</ul>
-<h2 id="如果没反应">如果没反应</h2>
-<ul>
-<li>进入环境修改（我的环境名是 IRpyterrier）</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ python -m ipykernel install --user --name IRpyterrier --display-name <span class="string">&quot;Python (IRpyterrier)&quot;</span></span><br></pre></td></tr></table></figure>
+<h1 id="生活的枷锁来源于我们对生活的诠释">生活的枷锁来源于我们对生活的诠释</h1>
+<p>阿德勒的心理学是要理解人性的真理和目标，这是我们一直都应该探究的问题。我们每个人生活中的不幸究竟是“因果论”，还是“目的论”，这取决于我们的认知。在本文的对话中，我窥见的是另一层面的认知——人能改变，获得幸福很容易。很喜欢这句话：<strong>“决定我们自身的不是过去的经历，而是我们自己赋予经历的意义。”</strong> 生活，充满着很多美好，同时也有很多艰辛与磨难，很多时候我们为了图简单方便，安于现状，不懂得改变，认为生活本应如此，这种观念随着时间的流逝很容易植入内心。很多研究都表明人的不改变（性格）很大程度来源于儿童时期的遭遇，这是能够<strong>理解</strong>的，但能否能改变，却取决于当下，取决于我们的内心。<strong>“无论之前的人生发生过什么，都对今后的人生如何度过没有影响。”决定自己人生的是活在“此时此刻”的你自己。</strong></p>
 ]]></content>
       <categories>
-        <category>技术问题</category>
+        <category>文学</category>
       </categories>
       <tags>
-        <tag>技术问题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【技术问题】VSCode 连不上某一个服务器</title>
-    <url>/2021/07/05/%E3%80%90%E6%8A%80%E6%9C%AF%E9%97%AE%E9%A2%98%E3%80%91VSCode-%E8%BF%9E%E4%B8%8D%E4%B8%8A%E6%9F%90%E4%B8%80%E4%B8%AA%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
-    <content><![CDATA[<blockquote>
-<p>关于 remote-SSH 连不上某一个服务器的解决方法。</p>
-</blockquote>
-<span id="more"></span>
-<h2 id="问题描述">问题描述</h2>
-<blockquote>
-<p>打开 VSCode，remote-SSH 连不上某一个服务器。</p>
-</blockquote>
-<h2 id="解决方案">解决方案</h2>
-<ul>
-<li>打开该服务器终端，删除配置即可。</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ rm -rf .vscode-server/</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>技术问题</category>
-      </categories>
-      <tags>
-        <tag>技术问题</tag>
+        <tag>文学</tag>
+        <tag>哲学</tag>
       </tags>
   </entry>
   <entry>
@@ -1803,93 +1966,6 @@
       <tags>
         <tag>技术问题</tag>
         <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【技术问题】登入不了谷歌学术？</title>
-    <url>/2021/08/04/%E3%80%90%E6%8A%80%E6%9C%AF%E9%97%AE%E9%A2%98%E3%80%91%E7%99%BB%E5%85%A5%E4%B8%8D%E4%BA%86%E8%B0%B7%E6%AD%8C%E5%AD%A6%E6%9C%AF%EF%BC%9F/</url>
-    <content><![CDATA[<blockquote>
-<p>如何解决登入不了谷歌学术的问题？</p>
-</blockquote>
-<span id="more"></span>
-<h1 id="step-1极简插件">Step 1:【极简插件】</h1>
-<ul>
-<li><a href="https://chrome.zzzmh.cn/index#index" class="uri">https://chrome.zzzmh.cn/index#index</a></li>
-<li>下载【谷歌上网助手 Ghelper Beta】</li>
-</ul>
-<h1 id="step-1极简插件-1">Step 1:【极简插件】</h1>
-<ul>
-<li>在地址栏输入chrome://extensions/打开【开发者模式】的开关；</li>
-<li>拖动下载好的插件安装包文件【xxx.crx】到chrome扩展中心即可；</li>
-<li>弹出安装确认的提示框，说明操作成功，点击确定即可。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术问题</category>
-      </categories>
-      <tags>
-        <tag>技术问题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【数据分析】SPSS 工具</title>
-    <url>/2021/07/05/%E3%80%90%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E3%80%91SPSS-%E5%B7%A5%E5%85%B7/</url>
-    <content><![CDATA[<blockquote>
-<p>记录 SPSS 工具的一些使用链接。</p>
-</blockquote>
-<span id="more"></span>
-<ul>
-<li><p><a href="https://www.zhihu.com/question/20949854">【数据标准化预处理】</a></p></li>
-<li>[【二项 Logistic 回归分析】]
-<ul>
-<li><a href="https://www.zhihu.com/question/34502688" class="uri">https://www.zhihu.com/question/34502688</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/34263213">【二分类logistic回归，更新几个常见问题的解决方法】</a></li>
-</ul></li>
-<li><a href="https://panzhong171.blog.csdn.net/article/details/80980790">【因子分析】</a>
-<ul>
-<li><a href="https://zhuanlan.zhihu.com/p/145564952">【SPSS因子分析模型实操】</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/31291210">【SPSS 因子分析参数说明】</a></li>
-</ul></li>
-</ul>
-]]></content>
-      <categories>
-        <category>数据分析</category>
-      </categories>
-      <tags>
-        <tag>数据分析</tag>
-        <tag>SPSS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【数据结构与算法】二进制字符串的划分</title>
-    <url>/2021/07/05/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E3%80%91%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%88%92%E5%88%86/</url>
-    <content><![CDATA[<h1 id="问题说明">问题说明</h1>
-<blockquote>
-<p>给定一个长度为 <span class="math inline">\(n\)</span> 的二进制字符串。</p>
-<p>判断是否可以将字符串分割为 <span class="math inline">\(i\)</span> 个部分，其中 <span class="math inline">\(i \in \left\{0,2,\cdots,n \right\}\)</span>，使得每个部分的十进制为 <span class="math inline">\(7\)</span> 的整数次幂。返回最小的分割的部分的数目。</p>
-</blockquote>
-<span id="more"></span>
-<ul>
-<li>If <span class="math inline">\(x= 111110001\)</span>, then the following partition gives powers of <span class="math inline">\(7\)</span>: <span class="math inline">\(111 \mid 110001\)</span>. (<span class="math inline">\(111_2 = 7, 110001_2 = 49\)</span>). In this case, the answer is <span class="math inline">\(2\)</span> and this is the best way to divide <span class="math inline">\(x\)</span> into powers of <span class="math inline">\(7\)</span>.</li>
-<li>If <span class="math inline">\(x=11111\)</span>, then it is possible to divide <span class="math inline">\(x\)</span> such that every part is a power of <span class="math inline">\(7\)</span> as follows <span class="math inline">\(1\mid 1 \mid 1 1 1\)</span>. Hence, in this case, the answer is <span class="math inline">\(3\)</span>.</li>
-<li>If <span class="math inline">\(x=011111\)</span>, then it is not possible to divide <span class="math inline">\(x\)</span> such that every part is a power of <span class="math inline">\(7\)</span>. Hence, in this case, the answer is <span class="math inline">\(-1\)</span>. (Recall, leading zeros are not allowed.)</li>
-<li>If <span class="math inline">\(x=111111\)</span>, then it is possible to divide <span class="math inline">\(x\)</span> such that every part is a power of <span class="math inline">\(7\)</span> in two ways. <span class="math inline">\(1\mid 1 \mid 1\mid 1\mid 1\mid 1\)</span> has <span class="math inline">\(6\)</span> parts and <span class="math inline">\(111\mid 111\)</span> has <span class="math inline">\(2\)</span> parts. Hence, in this case, the answer is <span class="math inline">\(2\)</span>.</li>
-</ul>
-<blockquote>
-<p>For simplicity, leading zeros are <strong>not</strong> allowed in our definition of the powers of <span class="math inline">\(7\)</span>. <span class="math inline">\(111\)</span> is a power of <span class="math inline">\(7\)</span> but <span class="math inline">\(0111\)</span> is not a power of <span class="math inline">\(7\)</span>.</p>
-</blockquote>
-<h2 id="代码部分">代码部分</h2>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="comment"># global</span></span><br><span class="line">bestSplitNum = sys.maxsize <span class="comment"># Assumed minimum number of divisions</span></span><br><span class="line">powers = <span class="built_in">list</span>() <span class="comment"># store all the powers</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">split</span>(<span class="params">strTemp, start, depth</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    use bfs method to find the shortest path</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">global</span> bestSplitNum</span><br><span class="line">    <span class="keyword">global</span> powers</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> depth &gt;= bestSplitNum:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> start == <span class="built_in">len</span>(strTemp):</span><br><span class="line">        bestSplitNum = depth</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> power <span class="keyword">in</span> powers:</span><br><span class="line">        <span class="comment"># print(power)</span></span><br><span class="line">        <span class="keyword">if</span> strTemp.startswith(power, start):</span><br><span class="line">            split(strTemp, start + <span class="built_in">len</span>(power), depth + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calNumSplit</span>(<span class="params">strTemp</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    the smallest positive integer</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">global</span> bestSplitNum</span><br><span class="line">    <span class="keyword">global</span> powers</span><br><span class="line"></span><br><span class="line">    <span class="comment"># calc all powers of 7 that fits in given string</span></span><br><span class="line">    <span class="built_in">pow</span> = <span class="number">1</span></span><br><span class="line">    powers.append(<span class="string">&#x27;1&#x27;</span>)</span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">pow</span>:</span><br><span class="line">        binaryPowStr = <span class="built_in">str</span>(<span class="built_in">bin</span>(<span class="built_in">int</span>(math.<span class="built_in">pow</span>(<span class="number">7</span>,<span class="built_in">pow</span>))))[<span class="number">2</span>:] <span class="comment"># get the binary string</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">len</span>(binaryPowStr) &lt;= <span class="built_in">len</span>(strTemp)):</span><br><span class="line">            powers.append(binaryPowStr)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="built_in">pow</span> += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    powers.sort(reverse=<span class="literal">False</span>) <span class="comment"># Sort binary strings in descending order</span></span><br><span class="line">    <span class="comment"># print(powers)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># do recursive split</span></span><br><span class="line">    split(strTemp, <span class="number">0</span>, -<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> bestSplitNum == sys.maxsize:</span><br><span class="line">        <span class="built_in">print</span>(-<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(bestSplitNum + <span class="number">1</span>)</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reset</span>():</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    reset the global variable</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">global</span> bestSplitNum</span><br><span class="line">    <span class="keyword">global</span> powers</span><br><span class="line">    bestSplitNum = sys.maxsize <span class="comment"># Assumed minimum number of divisions</span></span><br><span class="line">    powers = <span class="built_in">list</span>() <span class="comment"># store all the powers</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line"></span><br><span class="line">    strTest1 = <span class="string">&quot;111110001&quot;</span></span><br><span class="line">    strTest2 = <span class="string">&quot;11111&quot;</span></span><br><span class="line">    strTest3 = <span class="string">&quot;011111&quot;</span></span><br><span class="line">    strTest4 = <span class="string">&quot;111111&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;If the string is &#x27;111110001&#x27;, the answer is: &quot;</span>, sep=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">    calNumSplit(strTest1) <span class="comment"># 2</span></span><br><span class="line">    reset()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;If the string is &#x27;11111&#x27;, the answer is: &quot;</span>, sep=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">    calNumSplit(strTest2) <span class="comment"># 3</span></span><br><span class="line">    reset()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;If the string is &#x27;011111&#x27;, the answer is: &quot;</span>, sep=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">    calNumSplit(strTest3) <span class="comment"># -1</span></span><br><span class="line">    reset()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;If the string is &#x27;111111&#x27;, the answer is: &quot;</span>, sep=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">    calNumSplit(strTest4) <span class="comment"># 2</span></span><br><span class="line">    reset()</span><br></pre></td></tr></table></figure>
-<h2 id="参考">参考</h2>
-<ul>
-<li><a href="https://www.coder.work/article/1919524">algorithm - 检查二进制字符串是否可以分区，使得每个分区的乘方为5</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>数据结构与算法</category>
-      </categories>
-      <tags>
-        <tag>数据结构与算法</tag>
       </tags>
   </entry>
   <entry>
@@ -2043,70 +2119,35 @@
       </tags>
   </entry>
   <entry>
-    <title>【文学】《被讨厌的勇气》书评</title>
-    <url>/2021/08/03/%E3%80%90%E6%96%87%E5%AD%A6%E3%80%91%E3%80%8A%E8%A2%AB%E8%AE%A8%E5%8E%8C%E7%9A%84%E5%8B%87%E6%B0%94%E3%80%8B%E4%B9%A6%E8%AF%84/</url>
-    <content><![CDATA[<blockquote>
-<p>原书作者: 岸见一郎 / 古贺史健。</p>
-<p>这本书以青年人和智者对话的方式，向读者揭示了种种智慧。</p>
+    <title>【数据结构与算法】二进制字符串的划分</title>
+    <url>/2021/07/05/%E3%80%90%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E3%80%91%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%88%92%E5%88%86/</url>
+    <content><![CDATA[<h1 id="问题说明">问题说明</h1>
+<blockquote>
+<p>给定一个长度为 <span class="math inline">\(n\)</span> 的二进制字符串。</p>
+<p>判断是否可以将字符串分割为 <span class="math inline">\(i\)</span> 个部分，其中 <span class="math inline">\(i \in \left\{0,2,\cdots,n \right\}\)</span>，使得每个部分的十进制为 <span class="math inline">\(7\)</span> 的整数次幂。返回最小的分割的部分的数目。</p>
 </blockquote>
 <span id="more"></span>
-<h1 id="生活的枷锁来源于我们对生活的诠释">生活的枷锁来源于我们对生活的诠释</h1>
-<p>阿德勒的心理学是要理解人性的真理和目标，这是我们一直都应该探究的问题。我们每个人生活中的不幸究竟是“因果论”，还是“目的论”，这取决于我们的认知。在本文的对话中，我窥见的是另一层面的认知——人能改变，获得幸福很容易。很喜欢这句话：<strong>“决定我们自身的不是过去的经历，而是我们自己赋予经历的意义。”</strong> 生活，充满着很多美好，同时也有很多艰辛与磨难，很多时候我们为了图简单方便，安于现状，不懂得改变，认为生活本应如此，这种观念随着时间的流逝很容易植入内心。很多研究都表明人的不改变（性格）很大程度来源于儿童时期的遭遇，这是能够<strong>理解</strong>的，但能否能改变，却取决于当下，取决于我们的内心。<strong>“无论之前的人生发生过什么，都对今后的人生如何度过没有影响。”决定自己人生的是活在“此时此刻”的你自己。</strong></p>
+<ul>
+<li>If <span class="math inline">\(x= 111110001\)</span>, then the following partition gives powers of <span class="math inline">\(7\)</span>: <span class="math inline">\(111 \mid 110001\)</span>. (<span class="math inline">\(111_2 = 7, 110001_2 = 49\)</span>). In this case, the answer is <span class="math inline">\(2\)</span> and this is the best way to divide <span class="math inline">\(x\)</span> into powers of <span class="math inline">\(7\)</span>.</li>
+<li>If <span class="math inline">\(x=11111\)</span>, then it is possible to divide <span class="math inline">\(x\)</span> such that every part is a power of <span class="math inline">\(7\)</span> as follows <span class="math inline">\(1\mid 1 \mid 1 1 1\)</span>. Hence, in this case, the answer is <span class="math inline">\(3\)</span>.</li>
+<li>If <span class="math inline">\(x=011111\)</span>, then it is not possible to divide <span class="math inline">\(x\)</span> such that every part is a power of <span class="math inline">\(7\)</span>. Hence, in this case, the answer is <span class="math inline">\(-1\)</span>. (Recall, leading zeros are not allowed.)</li>
+<li>If <span class="math inline">\(x=111111\)</span>, then it is possible to divide <span class="math inline">\(x\)</span> such that every part is a power of <span class="math inline">\(7\)</span> in two ways. <span class="math inline">\(1\mid 1 \mid 1\mid 1\mid 1\mid 1\)</span> has <span class="math inline">\(6\)</span> parts and <span class="math inline">\(111\mid 111\)</span> has <span class="math inline">\(2\)</span> parts. Hence, in this case, the answer is <span class="math inline">\(2\)</span>.</li>
+</ul>
+<blockquote>
+<p>For simplicity, leading zeros are <strong>not</strong> allowed in our definition of the powers of <span class="math inline">\(7\)</span>. <span class="math inline">\(111\)</span> is a power of <span class="math inline">\(7\)</span> but <span class="math inline">\(0111\)</span> is not a power of <span class="math inline">\(7\)</span>.</p>
+</blockquote>
+<h2 id="代码部分">代码部分</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line"><span class="comment"># global</span></span><br><span class="line">bestSplitNum = sys.maxsize <span class="comment"># Assumed minimum number of divisions</span></span><br><span class="line">powers = <span class="built_in">list</span>() <span class="comment"># store all the powers</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">split</span>(<span class="params">strTemp, start, depth</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    use bfs method to find the shortest path</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">global</span> bestSplitNum</span><br><span class="line">    <span class="keyword">global</span> powers</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> depth &gt;= bestSplitNum:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> start == <span class="built_in">len</span>(strTemp):</span><br><span class="line">        bestSplitNum = depth</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> power <span class="keyword">in</span> powers:</span><br><span class="line">        <span class="comment"># print(power)</span></span><br><span class="line">        <span class="keyword">if</span> strTemp.startswith(power, start):</span><br><span class="line">            split(strTemp, start + <span class="built_in">len</span>(power), depth + <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calNumSplit</span>(<span class="params">strTemp</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    the smallest positive integer</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">global</span> bestSplitNum</span><br><span class="line">    <span class="keyword">global</span> powers</span><br><span class="line"></span><br><span class="line">    <span class="comment"># calc all powers of 7 that fits in given string</span></span><br><span class="line">    <span class="built_in">pow</span> = <span class="number">1</span></span><br><span class="line">    powers.append(<span class="string">&#x27;1&#x27;</span>)</span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">pow</span>:</span><br><span class="line">        binaryPowStr = <span class="built_in">str</span>(<span class="built_in">bin</span>(<span class="built_in">int</span>(math.<span class="built_in">pow</span>(<span class="number">7</span>,<span class="built_in">pow</span>))))[<span class="number">2</span>:] <span class="comment"># get the binary string</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">len</span>(binaryPowStr) &lt;= <span class="built_in">len</span>(strTemp)):</span><br><span class="line">            powers.append(binaryPowStr)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="built_in">pow</span> += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    powers.sort(reverse=<span class="literal">False</span>) <span class="comment"># Sort binary strings in descending order</span></span><br><span class="line">    <span class="comment"># print(powers)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># do recursive split</span></span><br><span class="line">    split(strTemp, <span class="number">0</span>, -<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> bestSplitNum == sys.maxsize:</span><br><span class="line">        <span class="built_in">print</span>(-<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(bestSplitNum + <span class="number">1</span>)</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reset</span>():</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    reset the global variable</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">global</span> bestSplitNum</span><br><span class="line">    <span class="keyword">global</span> powers</span><br><span class="line">    bestSplitNum = sys.maxsize <span class="comment"># Assumed minimum number of divisions</span></span><br><span class="line">    powers = <span class="built_in">list</span>() <span class="comment"># store all the powers</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line"></span><br><span class="line">    strTest1 = <span class="string">&quot;111110001&quot;</span></span><br><span class="line">    strTest2 = <span class="string">&quot;11111&quot;</span></span><br><span class="line">    strTest3 = <span class="string">&quot;011111&quot;</span></span><br><span class="line">    strTest4 = <span class="string">&quot;111111&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;If the string is &#x27;111110001&#x27;, the answer is: &quot;</span>, sep=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">    calNumSplit(strTest1) <span class="comment"># 2</span></span><br><span class="line">    reset()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;If the string is &#x27;11111&#x27;, the answer is: &quot;</span>, sep=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">    calNumSplit(strTest2) <span class="comment"># 3</span></span><br><span class="line">    reset()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;If the string is &#x27;011111&#x27;, the answer is: &quot;</span>, sep=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">    calNumSplit(strTest3) <span class="comment"># -1</span></span><br><span class="line">    reset()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;If the string is &#x27;111111&#x27;, the answer is: &quot;</span>, sep=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">    calNumSplit(strTest4) <span class="comment"># 2</span></span><br><span class="line">    reset()</span><br></pre></td></tr></table></figure>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a href="https://www.coder.work/article/1919524">algorithm - 检查二进制字符串是否可以分区，使得每个分区的乘方为5</a></li>
+</ul>
 ]]></content>
       <categories>
-        <category>文学</category>
+        <category>数据结构与算法</category>
       </categories>
       <tags>
-        <tag>文学</tag>
-        <tag>哲学</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【文学】《如何阅读一本书》读后感</title>
-    <url>/2021/07/16/%E3%80%90%E6%96%87%E5%AD%A6%E3%80%91%E3%80%8A%E5%A6%82%E4%BD%95%E9%98%85%E8%AF%BB%E4%B8%80%E6%9C%AC%E4%B9%A6%E3%80%8B%E4%B9%A6%E8%AF%84/</url>
-    <content><![CDATA[<blockquote>
-<p>《如何阅读一本书》读后感。</p>
-<blockquote>
-<p>作者：莫提默 · J. 艾德勒 - 查尔斯 · 范多伦</p>
-</blockquote>
-</blockquote>
-<span id="more"></span>
-<h1 id="第一篇-阅读的层次">第一篇 阅读的层次</h1>
-<h2 id="第一章-阅读的活力与艺术">第一章 阅读的活力与艺术</h2>
-<p>思考这样一个问题，我们是否在阅读完一本书后，会有这样的感想：</p>
-<ul>
-<li>读这本书花了我太久的时间，或是花了很短的时间。</li>
-<li>然后，我似乎学会了什么，但后来好像又忘记不少。</li>
-<li>很有可能，我阅读理解的能力不够。</li>
-</ul>
-<p>其实这是很正常的一件事，在这个信息化的时代，很多算法，很多媒体都为我们高效地提供了所需的信息，我们站在一个非常“懵懂”的理解角度去理解这些信息，这些咨询给我们带来的知识上的补充。</p>
-<p>然而这些补充，如果不经大脑思考，只是以记忆存储的方式保留在我们的大脑里，很容易就会被遗忘。读小说时，我们会遗忘书中的主人公，会遗忘故事的主线，会遗忘这个故事在讲什么；读科普类书时，我们会遗忘一些概念，一些知识点。</p>
-<ul>
-<li>其实就我而言，这些知识是重要的，但也不是那么重要的。</li>
-<li>思维的变迁，理解能力的提升，似乎是一个更需要我们当代人理解的维度。
-<ul>
-<li>为什么？怎么做？似乎比 是什么？更重要。</li>
-</ul></li>
-</ul>
-<p>想一下，“听” 和 “读” 似乎是一个被动式的学习方式，而 “说” 和 “写” 更能反映这个人的才华输出，似乎更能为人所敬佩，我想我们很多人都想成为一个懂得才华输出的人。</p>
-<p><strong>我们需要主动的阅读，这样的效果会更好。</strong></p>
-<p>主动的阅读一定是带有目的性的，是我们想要获取知识，技巧，或者纯粹为了消遣而去读书的，但总比不想读书，只是简单地浏览互联网获取知识要好很多。它多就多在，主动权在你手里，你有这个想法去做很多人懒得做的事，它能让你以一个比较积极向上的方式去获取你想得到的东西。</p>
-<p><strong>我们需要为了资讯而读书，更要为求得理解而读书。</strong></p>
-<p>知识当然重要，它会成为你在他人面前炫耀的一种资本，但是理解力更重要，它能使得你在人际关系的处理过程中，更加清楚对方的需求与目的，也能让你在生活中面对一切苦难都能做到游刃有余。</p>
-<p><strong>阅读就是学习，一种自我发现型的学习。</strong></p>
-<p>没有了老师的点拨，就需要我们自我学习，这种学习方式是自我沉浸在思维的海洋中，利用自身的能力去不断拔高自己的理解力，衡量理解力的标准就是当前你手中阅读的那本书，它会告诉你，标准就在那，你能不能触及，得看你自己。</p>
-<p>当然，值得一提的是，我们也可以在阅读过程中请教他人，因为任何思维的碰撞都是有必要的，不仅在自我追寻中，更有在与他人的交流中。</p>
-<p><strong>阅读获取知识不是最终目的，它也能成为完善自我人格的一种方式。</strong></p>
-<blockquote>
-<p>于 20210516 有感</p>
-</blockquote>
-<h2 id="第二章-阅读的层次">第二章 阅读的层次</h2>
-]]></content>
-      <categories>
-        <category>文学</category>
-      </categories>
-      <tags>
-        <tag>文学</tag>
+        <tag>数据结构与算法</tag>
       </tags>
   </entry>
   <entry>
@@ -2172,50 +2213,6 @@
       <tags>
         <tag>文学</tag>
         <tag>心理学</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【文本处理】常用的文本处理过程</title>
-    <url>/2021/07/18/%E3%80%90%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E3%80%91%E5%B8%B8%E7%94%A8%E7%9A%84%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E8%BF%87%E7%A8%8B/</url>
-    <content><![CDATA[<blockquote>
-<p>一些常用的文本处理过程总结（不断更新与补充）。</p>
-</blockquote>
-<span id="more"></span>
-<h2 id="分词">分词</h2>
-<h2 id="剔除一些无用的符号词">剔除一些无用的符号，词</h2>
-<h2 id="三种统计词频的方式">三种统计词频的方式</h2>
-<ul>
-<li><a href="https://zhuanlan.zhihu.com/p/26716150">参考</a></li>
-</ul>
-<h3 id="直接使用-dict">直接使用 dict</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">text = <span class="string">&quot;I&#x27;m a handsome boy!&quot;</span></span><br><span class="line"></span><br><span class="line">frequency = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> text.split():</span><br><span class="line">    <span class="keyword">if</span> word <span class="keyword">not</span> <span class="keyword">in</span> frequency:</span><br><span class="line">        frequency[word] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        frequency[word] += <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<h3 id="使用-defaultdict">使用 defaultdict</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"></span><br><span class="line">frequency = collections.defaultdict(<span class="built_in">int</span>)</span><br><span class="line"></span><br><span class="line">text = <span class="string">&quot;I&#x27;m a handsome boy!&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> text.split():</span><br><span class="line">    frequency[word] += <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<h3 id="使用-counter">使用 Counter</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"></span><br><span class="line">text = <span class="string">&quot;I&#x27;m a handsome boy!&quot;</span></span><br><span class="line">frequency = collections.Counter(text.split())</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>文本处理</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>文本处理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【机器学习】潜在狄利克雷分配（LDA）</title>
-    <url>/2021/07/09/%E3%80%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%91%E6%BD%9C%E5%9C%A8%E7%8B%84%E5%88%A9%E5%85%8B%E9%9B%B7%E5%88%86%E9%85%8D%EF%BC%88LDA%EF%BC%89/</url>
-    <content><![CDATA[<blockquote>
-<p>主要介绍了如何使用潜在狄利克雷分配（LDA）—— 主题聚类。</p>
-</blockquote>
-<span id="more"></span>
-<h2 id="参考">参考</h2>
-<ul>
-<li><a href="https://www.machinelearningplus.com/nlp/topic-modeling-visualization-how-to-present-results-lda-models/#1.-Introduction">Topic modeling visualization – How to present the results of LDA models?</a></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>机器学习</tag>
       </tags>
   </entry>
   <entry>
@@ -2366,6 +2363,179 @@
       </categories>
       <tags>
         <tag>机器学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【文本处理】常用的文本处理过程</title>
+    <url>/2021/07/18/%E3%80%90%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E3%80%91%E5%B8%B8%E7%94%A8%E7%9A%84%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E8%BF%87%E7%A8%8B/</url>
+    <content><![CDATA[<blockquote>
+<p>一些常用的文本处理过程总结（不断更新与补充）。</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="分词">分词</h2>
+<h2 id="剔除一些无用的符号词">剔除一些无用的符号，词</h2>
+<h2 id="三种统计词频的方式">三种统计词频的方式</h2>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/26716150">参考</a></li>
+</ul>
+<h3 id="直接使用-dict">直接使用 dict</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">text = <span class="string">&quot;I&#x27;m a handsome boy!&quot;</span></span><br><span class="line"></span><br><span class="line">frequency = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> text.split():</span><br><span class="line">    <span class="keyword">if</span> word <span class="keyword">not</span> <span class="keyword">in</span> frequency:</span><br><span class="line">        frequency[word] = <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        frequency[word] += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h3 id="使用-defaultdict">使用 defaultdict</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"></span><br><span class="line">frequency = collections.defaultdict(<span class="built_in">int</span>)</span><br><span class="line"></span><br><span class="line">text = <span class="string">&quot;I&#x27;m a handsome boy!&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> text.split():</span><br><span class="line">    frequency[word] += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h3 id="使用-counter">使用 Counter</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"></span><br><span class="line">text = <span class="string">&quot;I&#x27;m a handsome boy!&quot;</span></span><br><span class="line">frequency = collections.Counter(text.split())</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>文本处理</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>文本处理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【机器学习】潜在狄利克雷分配（LDA）</title>
+    <url>/2021/07/09/%E3%80%90%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%91%E6%BD%9C%E5%9C%A8%E7%8B%84%E5%88%A9%E5%85%8B%E9%9B%B7%E5%88%86%E9%85%8D%EF%BC%88LDA%EF%BC%89/</url>
+    <content><![CDATA[<blockquote>
+<p>主要介绍了如何使用潜在狄利克雷分配（LDA）—— 主题聚类。</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a href="https://www.machinelearningplus.com/nlp/topic-modeling-visualization-how-to-present-results-lda-models/#1.-Introduction">Topic modeling visualization – How to present the results of LDA models?</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>机器学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【科研】一些术语建议-总结</title>
+    <url>/2021/08/16/%E3%80%90%E7%A7%91%E7%A0%94%E3%80%91%E4%B8%80%E4%BA%9B%E6%9C%AF%E8%AF%AD%E5%BB%BA%E8%AE%AE-%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<blockquote>
+<p>总结了一些术语中文（或缩写）翻译建议。</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="术语中文或缩写翻译建议">术语中文（或缩写）翻译建议</h1>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">英</th>
+<th style="text-align: center;">中</th>
+<th style="text-align: center;">备注</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">pooling</td>
+<td style="text-align: center;">汇聚</td>
+<td style="text-align: center;">不建议“池化”</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">dropout</td>
+<td style="text-align: center;">暂退</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">universal approximation theorem</td>
+<td style="text-align: center;">通用近似定理</td>
+<td style="text-align: center;">不建议“万能近似定理”</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">mask</td>
+<td style="text-align: center;">掩码</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">robustness</td>
+<td style="text-align: center;">稳健性</td>
+<td style="text-align: center;">不建议“鲁棒性”</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">dense vector</td>
+<td style="text-align: center;">稠密向量</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">CRF</td>
+<td style="text-align: center;">条件随机场</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">HMMs</td>
+<td style="text-align: center;">隐马尔可夫模型</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">beam search</td>
+<td style="text-align: center;">柱搜索</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">naive bayes</td>
+<td style="text-align: center;">朴素贝叶斯</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">PLSA</td>
+<td style="text-align: center;">概率潜在语义分析模型</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">MLE</td>
+<td style="text-align: center;">最大似然估计</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">EM</td>
+<td style="text-align: center;">期望最大化</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">MAP</td>
+<td style="text-align: center;">最大后验概率</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">LDA</td>
+<td style="text-align: center;">潜在狄利克雷分配</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">binomial</td>
+<td style="text-align: center;">二项</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">NPMI</td>
+<td style="text-align: center;">标准化点互信息</td>
+<td style="text-align: center;">normalised pointwise mutual information</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>不建议翻译的专有名词
+<ul>
+<li>transformer</li>
+<li>BERT</li>
+<li>GPT</li>
+<li>Adam</li>
+<li>Boosting</li>
+<li>Bagging</li>
+</ul></li>
+</ul>
+<h1 id="参考">参考</h1>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/257900201">机器学习常用术语词汇表——上篇</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/257987132">机器学习常用术语词汇表——下篇</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>科研</category>
+      </categories>
+      <tags>
+        <tag>科研</tag>
+        <tag>术语</tag>
       </tags>
   </entry>
   <entry>
@@ -2583,135 +2753,6 @@ LR(p_i) = LR(p_i) + \frac{\hat{LR}(p_g)}{N}
       </tags>
   </entry>
   <entry>
-    <title>【科研】一些术语建议-总结</title>
-    <url>/2021/08/16/%E3%80%90%E7%A7%91%E7%A0%94%E3%80%91%E4%B8%80%E4%BA%9B%E6%9C%AF%E8%AF%AD%E5%BB%BA%E8%AE%AE-%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<blockquote>
-<p>总结了一些术语中文（或缩写）翻译建议。</p>
-</blockquote>
-<span id="more"></span>
-<h1 id="术语中文或缩写翻译建议">术语中文（或缩写）翻译建议</h1>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: center;">英</th>
-<th style="text-align: center;">中</th>
-<th style="text-align: center;">备注</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">pooling</td>
-<td style="text-align: center;">汇聚</td>
-<td style="text-align: center;">不建议“池化”</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">dropout</td>
-<td style="text-align: center;">暂退</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">universal approximation theorem</td>
-<td style="text-align: center;">通用近似定理</td>
-<td style="text-align: center;">不建议“万能近似定理”</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">mask</td>
-<td style="text-align: center;">掩码</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">robustness</td>
-<td style="text-align: center;">稳健性</td>
-<td style="text-align: center;">不建议“鲁棒性”</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">dense vector</td>
-<td style="text-align: center;">稠密向量</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">CRF</td>
-<td style="text-align: center;">条件随机场</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">HMMs</td>
-<td style="text-align: center;">隐马尔可夫模型</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">beam search</td>
-<td style="text-align: center;">柱搜索</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">naive bayes</td>
-<td style="text-align: center;">朴素贝叶斯</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">PLSA</td>
-<td style="text-align: center;">概率潜在语义分析模型</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">MLE</td>
-<td style="text-align: center;">最大似然估计</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">EM</td>
-<td style="text-align: center;">期望最大化</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">MAP</td>
-<td style="text-align: center;">最大后验概率</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">LDA</td>
-<td style="text-align: center;">潜在狄利克雷分配</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">binomial</td>
-<td style="text-align: center;">二项</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">NPMI</td>
-<td style="text-align: center;">标准化点互信息</td>
-<td style="text-align: center;">normalised pointwise mutual information</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>不建议翻译的专有名词
-<ul>
-<li>transformer</li>
-<li>BERT</li>
-<li>GPT</li>
-<li>Adam</li>
-<li>Boosting</li>
-<li>Bagging</li>
-</ul></li>
-</ul>
-<h1 id="参考">参考</h1>
-<ul>
-<li><a href="https://zhuanlan.zhihu.com/p/257900201">机器学习常用术语词汇表——上篇</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/257987132">机器学习常用术语词汇表——下篇</a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>科研</category>
-      </categories>
-      <tags>
-        <tag>科研</tag>
-        <tag>术语</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【科研】如何撰写高质量科技论文-清华大学刘洋</title>
     <url>/2021/07/27/%E3%80%90%E7%A7%91%E7%A0%94%E3%80%91%E5%A6%82%E4%BD%95%E6%92%B0%E5%86%99%E9%AB%98%E8%B4%A8%E9%87%8F%E7%A7%91%E6%8A%80%E8%AE%BA%E6%96%87-%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6%E5%88%98%E6%B4%8B/</url>
     <content><![CDATA[<blockquote>
@@ -2794,217 +2835,6 @@ LR(p_i) = LR(p_i) + \frac{\hat{LR}(p_g)}{N}
         <tag>科研</tag>
         <tag>写作</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>【科研】科技论文写作总结</title>
-    <url>/2021/07/27/%E3%80%90%E7%A7%91%E7%A0%94%E3%80%91%E7%A7%91%E6%8A%80%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<blockquote>
-<p>科技论文写作总结，不断更新。</p>
-</blockquote>
-<span id="more"></span>
-<h1 id="科技论文总览">科技论文总览</h1>
-<blockquote>
-<p>撰写论文是科研工作中十分重要的一个环节，它是对所做工作的一个总结，一定要表达清晰。 摘要（Abstract）、介绍（Introduction）、相关工作（Related Work）、方法（Methods）、实验（Experiments）</p>
-</blockquote>
-<ul>
-<li>信息为<strong>表</strong> - 看到的文章</li>
-<li>逻辑为<strong>骨</strong> - 文章的脉络</li>
-<li><p>思想为<strong>心</strong> - 新颖的思想</p></li>
-<li><p><strong>重要观念的转变</strong>：以作者为核心整理工作 -&gt; <code>以读者为核心阐述工作</code></p></li>
-</ul>
-<p><img src="https://user-images.githubusercontent.com/48743005/127091861-444714ce-bdf9-4df9-b9f3-9b396d7ef752.png" /></p>
-<h1 id="摘要abstruct">摘要（Abstruct）</h1>
-<blockquote>
-<p>摘要是用几句话来简述文章的整体工作，这一部分的作用相当于文章的“广告”，读者通过摘要大致了解文章内容，并进一步决定是否阅读文章。因此，摘要的写作要求用语简单，浅显易懂。</p>
-<p>几句话概括一下你的工作（用于简单，外行要看得懂）。</p>
-</blockquote>
-<ul>
-<li>文章关注的问题</li>
-<li>文章的核心工作内容</li>
-<li>文章的实现方法</li>
-<li>文章达到的效果</li>
-</ul>
-<blockquote>
-<p>一个例子。</p>
-</blockquote>
-<p><img src="https://user-images.githubusercontent.com/48743005/127591791-5d8bfc98-2e51-4b53-a63c-908a41a5e05a.png" /></p>
-<h1 id="介绍introduction">介绍（Introduction）</h1>
-<blockquote>
-<p>引言是文章的关键部分，是在题目和摘要之后对工作的<strong>进一步介绍</strong>。良好的引言能够清晰描述所做的工作，并充分论证<strong>工作的必要性和重要性</strong>，吸引读者深入阅读后续文章。<strong>严密的逻辑链</strong>有助于形成更好的行文框架，讲座中推荐的逻辑链分为三个层次，包括：</p>
-</blockquote>
-<ul>
-<li>说明问题是什么</li>
-<li>当前最好的工作面临什么挑战</li>
-<li>我们的方法能够缓解上述挑战</li>
-</ul>
-<p>在形成整体框架后，引言中各段落的写作也可以应用一些技巧。每个段落的<strong>起始</strong>可以是一个论断性的<strong>中心句</strong>；下文中采用<strong>多个前人工作和具体实验数据作为支撑句</strong>，围绕中心句展开论证；<strong>段尾</strong>可以加上<strong>衔接句</strong>，与下一部分进行连接。</p>
-<blockquote>
-<p>一个例子。</p>
-</blockquote>
-<p><img src="https://user-images.githubusercontent.com/48743005/127592175-630dcdb2-4e7f-4b50-95de-62e52014fb60.png" /></p>
-<h2 id="中心句与衔接句例子">中心句与衔接句例子</h2>
-<ul>
-<li><code>We believe that it is important ... On one hand, ... On the other hand, ...</code></li>
-</ul>
-<h2 id="衔接句例子">衔接句例子</h2>
-<ul>
-<li><code>Therefore, it is necessary to ...</code></li>
-</ul>
-<h2 id="新技巧">新技巧</h2>
-<ul>
-<li>在<strong>论文首页</strong>放置一个<strong>图表</strong>有助于提高文章可读性</li>
-<li>直接列出自己的贡献</li>
-</ul>
-<h1 id="相关工作related-work">相关工作（Related Work）</h1>
-<blockquote>
-<p>在相关工作部分中，应当向读者（审稿人）展示作者对本领域有<strong>全面深刻的认知</strong>，并通过与前人工作的对比凸显本工作的创新性。</p>
-<p><strong>避免遗漏关键文献、对前人工作简单堆砌</strong>，甚至通过批评攻击前人工作来说明本工作的优势。</p>
-<p>在相关工作<strong>每一部分的最后</strong>，应当<strong>指出本工作与前人工作的差异和创新之处</strong>。</p>
-</blockquote>
-<h1 id="方法methods">方法（Methods）</h1>
-<blockquote>
-<p>方法是论文的核心部分。讲座中不建议直接在方法部分罗列公式和证明，而推荐利用<strong>Running Example</strong>等媒介，<strong>首先</strong>用<strong>通俗的语言</strong>描述研究问题和解决方案，<strong>而后</strong>再给出<strong>形式化</strong>表述。</p>
-</blockquote>
-<blockquote>
-<p>一个例子。</p>
-</blockquote>
-<p><img src="https://user-images.githubusercontent.com/48743005/127592701-b2d9b7bd-766b-49b5-a1e2-41b549243c68.png" /></p>
-<h1 id="实验experiments">实验（Experiments）</h1>
-<blockquote>
-<p>实验的充分性也在很大程度上决定了文章能否被录用。</p>
-<p>实验应当<strong>选取公认的标准数据集</strong>和<strong>当前最优的基线系统</strong>，提高实验的说服力。</p>
-<p>在结构上，通常<strong>首先</strong>在<strong>开发集</strong>上进行<strong>辅助实验</strong>，<strong>调节超参数</strong>的影响；而后在<strong>测试集</strong>上给出<strong>主实验结果</strong>，论证方法的<strong>有效性和泛用性</strong>。同时，需要给出<strong>显著性检验结果</strong>来证明提出方法显著超过基线方法。</p>
-<p>要做到审稿人想不到的地步。</p>
-<p>此外，实验图表的使用也应注意到下面的问题，来提高文章易读性：</p>
-</blockquote>
-<ul>
-<li>通常情况下，我们的方法应放在表格下方，总体性的评估指标应放在表格右侧</li>
-<li>曲线图中图例的顺序尽量与曲线顺序相一致</li>
-<li>图表说明文字应包含充分的信息，具有自解释性</li>
-</ul>
-<h1 id="写作技巧总结">写作技巧总结</h1>
-<ul>
-<li>本质上分享思想，呈现信息。</li>
-<li>信息的呈现符合读者的认知惯性。</li>
-<li>全心全意为读者服务，降低阅读难度，提高愉悦感。</li>
-<li>细节决定成败。</li>
-<li>不要本末倒置：创新至上，技法为辅。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>科研</category>
-      </categories>
-      <tags>
-        <tag>科研</tag>
-        <tag>写作</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【自然语言处理】DeepLearning.AI-1-w1-Logistic Regression</title>
-    <url>/2021/07/08/%E3%80%90%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E3%80%91DeepLearning-AI-1-w1-Logistic-Regression/</url>
-    <content><![CDATA[<blockquote>
-<p>Learn to <strong>extract features</strong> from text into <strong>numerical vectors</strong>, then <strong>build a binary classifier</strong> for tweets using <strong>logistic regression</strong>!</p>
-</blockquote>
-<span id="more"></span>
-<h2 id="数据预处理的一般方式">数据预处理的一般方式</h2>
-<ul>
-<li>预处理（Preprocessing）
-<ul>
-<li>消除句柄和URL</li>
-<li>分词</li>
-<li>去除一些停用词，英文中如（and, is, a, on, etc.）</li>
-<li>将单词转变为词干（Stemming），如 dancer, dancing, danced, 变为 'danc'</li>
-<li>将英文大写转变为小写</li>
-</ul></li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># example</span></span><br><span class="line"><span class="keyword">import</span> nltk                                <span class="comment"># Python library for NLP</span></span><br><span class="line"><span class="keyword">import</span> re                                  <span class="comment"># library for regular expression operations</span></span><br><span class="line"><span class="keyword">import</span> string                              <span class="comment"># for string operations</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> nltk.corpus <span class="keyword">import</span> stopwords          <span class="comment"># module for stop words that come with NLTK</span></span><br><span class="line"><span class="keyword">from</span> nltk.stem <span class="keyword">import</span> PorterStemmer        <span class="comment"># module for stemming</span></span><br><span class="line"><span class="keyword">from</span> nltk.tokenize <span class="keyword">import</span> word_tokenize   <span class="comment"># module for tokenizing strings</span></span><br><span class="line"></span><br><span class="line">tweet_text = <span class="string">&#x27;My beautiful sunflowers on a sunny Friday morning off :) #sunflowers #favourites #happy #Friday off… https://t.co/3tfYom0N1i&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">preprocess</span>(<span class="params">text, remove_tag=<span class="literal">True</span>, tokenize=<span class="literal">True</span>, remove_stop_p=<span class="literal">True</span>, steam=<span class="literal">True</span>, lower=<span class="literal">True</span></span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    preprocess of text</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(text)</span><br><span class="line">    <span class="keyword">if</span> remove_tag:</span><br><span class="line">        <span class="comment"># remove old style retweet text &quot;RT&quot;</span></span><br><span class="line">        text = re.sub(<span class="string">r&#x27;^RT[\s]+&#x27;</span>, <span class="string">&#x27;&#x27;</span>, text)</span><br><span class="line">        <span class="comment"># remove hyperlinks</span></span><br><span class="line">        text = re.sub(<span class="string">r&#x27;https?:\/\/.*[\r\n]*&#x27;</span>, <span class="string">&#x27;&#x27;</span>, text)</span><br><span class="line">        <span class="comment"># remove hashtags</span></span><br><span class="line">        <span class="comment"># only removing the hash # sign from the word</span></span><br><span class="line">        text = re.sub(<span class="string">r&#x27;#&#x27;</span>, <span class="string">&#x27;&#x27;</span>, text)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;\033[92m&#x27;</span> + text)</span><br><span class="line">        </span><br><span class="line">    text_list = []</span><br><span class="line">    <span class="keyword">if</span> tokenize:</span><br><span class="line">        nltk.download(<span class="string">&#x27;punkt&#x27;</span>)</span><br><span class="line">        text_list = word_tokenize(text)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;\033[94m&#x27;</span> + <span class="built_in">str</span>(text_list))</span><br><span class="line">        </span><br><span class="line">    text_clean = []</span><br><span class="line">    <span class="keyword">if</span> remove_stop_p:</span><br><span class="line">        stopwords_english = stopwords.words(<span class="string">&#x27;english&#x27;</span>)</span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> text_list: <span class="comment"># Go through every word in your tokens list</span></span><br><span class="line">            <span class="keyword">if</span> (word <span class="keyword">not</span> <span class="keyword">in</span> stopwords_english <span class="keyword">and</span>  <span class="comment"># remove stopwords</span></span><br><span class="line">                word <span class="keyword">not</span> <span class="keyword">in</span> string.punctuation):  <span class="comment"># remove punctuation</span></span><br><span class="line">                text_clean.append(word)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;\033[92m&#x27;</span> + <span class="built_in">str</span>(text_clean))</span><br><span class="line">        </span><br><span class="line">    text_stem = [] </span><br><span class="line">    <span class="keyword">if</span> steam:</span><br><span class="line">        <span class="comment"># Instantiate stemming class</span></span><br><span class="line">        stemmer = PorterStemmer() </span><br><span class="line">        <span class="comment"># Create an empty list to store the stems</span></span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> text_clean:</span><br><span class="line">            stem_word = stemmer.stem(word)  <span class="comment"># stemming word</span></span><br><span class="line">            text_stem.append(stem_word)  <span class="comment"># append to the list</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;\033[94m&#x27;</span> + <span class="built_in">str</span>(text_stem))</span><br><span class="line">    </span><br><span class="line">    text_lower = []</span><br><span class="line">    <span class="keyword">if</span> lower:</span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> text_stem:</span><br><span class="line">            text_lower.append(word.lower())</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;\033[92m&#x27;</span> + <span class="built_in">str</span>(text_lower))</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">preprocess(tweet_text)</span><br></pre></td></tr></table></figure>
-<p><img src="https://user-images.githubusercontent.com/48743005/124874740-a9e35c80-dffa-11eb-9d18-502ba6d8e0a6.png" /></p>
-<h2 id="两种将句子特征提取变为向量的方式">两种将句子特征提取变为向量的方式</h2>
-<h3 id="方式一---是否出现">方式一 - 是否出现</h3>
-<ul>
-<li>将要处理的所有文本的 <strong>词汇量</strong> 记作 <span class="math inline">\(V\)</span>
-<ul>
-<li>对于每句话，出现的词标记为 1，剩余为 0</li>
-<li>那么每句话的维度就为 <span class="math inline">\(|V|\)</span></li>
-</ul></li>
-<li>问题
-<ul>
-<li>导致训练，预测的计算时间长</li>
-</ul></li>
-</ul>
-<p><img src="https://user-images.githubusercontent.com/48743005/124869856-64bc2c00-dff4-11eb-8c1f-6d2c1581024f.png" /></p>
-<h3 id="方式二---频数">方式二 - 频数</h3>
-<ul>
-<li>假设一个语料库有四句话，两句正面，两句负面</li>
-</ul>
-<p><img src="https://user-images.githubusercontent.com/48743005/124870314-13606c80-dff5-11eb-8ba5-a7410e0013d4.png" /></p>
-<ul>
-<li>计算每个 unique 词在 <strong>正面或负面</strong> 中各自出现的 <strong>频数</strong>，构成一个 <strong>词汇表</strong></li>
-</ul>
-<p><img src="https://user-images.githubusercontent.com/48743005/124870325-18bdb700-dff5-11eb-80eb-f2814986ed2e.png" /></p>
-<ul>
-<li>用一个 <strong>3维向量</strong> 表示一句话
-<ul>
-<li>第一维度是 bias</li>
-<li>第二维度是 这句话中出现在 <strong>词汇表</strong> 中的词为 <strong>正</strong> 的 <strong>词频和</strong></li>
-<li>第二维度是 这句话中出现在 <strong>词汇表</strong> 中的词为 <strong>负</strong> 的 <strong>词频和</strong></li>
-<li>于是下面这句话的向量表示是 <span class="math inline">\((1,8,11)\)</span></li>
-</ul></li>
-</ul>
-<p><img src="https://user-images.githubusercontent.com/48743005/124870340-1f4c2e80-dff5-11eb-87e1-3f639dd7e59e.png" /></p>
-<p><img src="https://user-images.githubusercontent.com/48743005/124870357-27a46980-dff5-11eb-9223-35dda628ac6e.png" /></p>
-]]></content>
-      <categories>
-        <category>DeepLearning.AI - Coursera - Lesson 1</category>
-      </categories>
-      <tags>
-        <tag>自然语言处理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【自然语言处理】研究入门-实验目录</title>
-    <url>/2021/07/16/%E3%80%90%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E3%80%91%E7%A0%94%E7%A9%B6%E5%85%A5%E9%97%A8-%E5%AE%9E%E9%AA%8C%E7%9B%AE%E5%BD%95/</url>
-    <content><![CDATA[<blockquote>
-<p>从零开始如何快速进入 NLP 的研究工作。</p>
-<p>任何问题，争取通过搜索、交流、和查阅文献得到解决。</p>
-<p>不要以书本为解决方案，基于书本的学习方式在研究生阶段不再适合。</p>
-</blockquote>
-<span id="more"></span>
-<hr />
-<ol start="0" type="1">
-<li>首先具有较强的编码能力 - 这个需要练的，以 Leetcode 为主。</li>
-<li>了解各种文本分类任务，去下载 SST2 或者 SST5 句子分类数据。</li>
-<li>手写实现一个基于 n-gram 的最大熵分类器 (c++ &amp; numpy)。 抽取 n-gram 特征，转化成为特征向量，实现模型参数矩阵，分类打分，计算概率，最大熵损失，计算模型参数反向梯度，最大熵优化，测试准确率，调参环节，一条龙体会机器学习。</li>
-<li>利用深度学习库（例如pytorch）实现 n-gram 最大熵分类。</li>
-<li>1-gram分类，使用预训练词向量进行句子分类，了解pooling，理解深度学习。</li>
-<li>实现 CNN，理解 CNN 和 n-gram 的关系。</li>
-<li>实现 LSTM，理解 LSTM 和 CNN 的关系。</li>
-<li>实现 Self-Attention，理解 pooling 和 SelfAttention 关系。</li>
-<li>实现 Transformer，了解 Transformer 的各个组件。</li>
-<li>理解 word2vec 以及语言模型，动手实现 word2vec。</li>
-<li>学会使用 ELMo。</li>
-<li>学会使用 BERT，了解 BERT 分词机制。</li>
-<li>查找相关论文，了解自己的分类模型和 SOTA 的区别，撰写文档。</li>
-<li>了解 NER 与序列标注，下载 conll03 和 GermEval2014 数据。</li>
-<li>实现 BiLSTM-CRF 模型。</li>
-<li>实现 BERT-(BiLSTM)-CRF 模型，学会处理异常情况。</li>
-<li>了解中文分词，查找相关数据，实现分词模型。</li>
-<li>查找相关论文，了解对应数据 SOTA 结果，撰写文档。</li>
-<li>了解各种序列标注任务。</li>
-<li>附加题：多选一，代码 + 报告。</li>
-</ol>
-<ul>
-<li>多模态蕴含分类任务</li>
-<li>多语言序列标注任务</li>
-<li>句法结构分析</li>
-<li>结构化语义分析</li>
-<li>逻辑语义分析</li>
-<li>词表示方法，从单语言到多语言</li>
-<li>Seq2Seq 模型及其应用</li>
-<li>变分模型及其应用</li>
-<li>自然语言处理中的生成对抗方法</li>
-</ul>
-]]></content>
   </entry>
   <entry>
     <title>【数据结构与算法】Cpp基础数据结构STL</title>
@@ -3311,44 +3141,214 @@ LR(p_i) = LR(p_i) + \frac{\hat{LR}(p_g)}{N}
       </tags>
   </entry>
   <entry>
-    <title>【Git】vscode配置bash终端作为默认终端</title>
-    <url>/2021/09/26/%E3%80%90Git%E3%80%91vscode%E9%85%8D%E7%BD%AEbash%E7%BB%88%E7%AB%AF%E4%BD%9C%E4%B8%BA%E9%BB%98%E8%AE%A4%E7%BB%88%E7%AB%AF/</url>
+    <title>【科研】科技论文写作总结</title>
+    <url>/2021/07/27/%E3%80%90%E7%A7%91%E7%A0%94%E3%80%91%E7%A7%91%E6%8A%80%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<blockquote>
-<p>此博客主要介绍了 Windows 下配置 bash 为 terminal。</p>
+<p>科技论文写作总结，不断更新。</p>
 </blockquote>
 <span id="more"></span>
-<h2 id="主要流程">主要流程</h2>
+<h1 id="科技论文总览">科技论文总览</h1>
+<blockquote>
+<p>撰写论文是科研工作中十分重要的一个环节，它是对所做工作的一个总结，一定要表达清晰。 摘要（Abstract）、介绍（Introduction）、相关工作（Related Work）、方法（Methods）、实验（Experiments）</p>
+</blockquote>
 <ul>
-<li>打开 <code>settings</code></li>
-<li>配置如下：</li>
+<li>信息为<strong>表</strong> - 看到的文章</li>
+<li>逻辑为<strong>骨</strong> - 文章的脉络</li>
+<li><p>思想为<strong>心</strong> - 新颖的思想</p></li>
+<li><p><strong>重要观念的转变</strong>：以作者为核心整理工作 -&gt; <code>以读者为核心阐述工作</code></p></li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;terminal.integrated.profiles.windows&quot;</span>: &#123;</span><br><span class="line"></span><br><span class="line">    <span class="string">&quot;PowerShell&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;source&quot;</span>: <span class="string">&quot;PowerShell&quot;</span>,</span><br><span class="line">        <span class="string">&quot;icon&quot;</span>: <span class="string">&quot;terminal-powershell&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;Command Prompt&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;path&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;<span class="variable">$&#123;env:windir&#125;</span>\\Sysnative\\cmd.exe&quot;</span>,</span><br><span class="line">            <span class="string">&quot;<span class="variable">$&#123;env:windir&#125;</span>\\System32\\cmd.exe&quot;</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="string">&quot;args&quot;</span>: [],</span><br><span class="line">        <span class="string">&quot;icon&quot;</span>: <span class="string">&quot;terminal-cmd&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;Git-Bash&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;path&quot;</span>: <span class="string">&quot;D:/Git/bin/bash.exe&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line">// <span class="string">&quot;terminal.integrated.automationShell.windows&quot;</span>: <span class="string">&quot;‪D:/Git/bin/bash.exe&quot;</span>,</span><br><span class="line"><span class="string">&quot;git.path&quot;</span>: <span class="string">&quot;D:/Git/cmd/git.exe&quot;</span>,</span><br><span class="line"><span class="string">&quot;terminal.integrated.defaultProfile.windows&quot;</span>: <span class="string">&quot;Git-Bash&quot;</span>,</span><br></pre></td></tr></table></figure>
+<p><img src="https://user-images.githubusercontent.com/48743005/127091861-444714ce-bdf9-4df9-b9f3-9b396d7ef752.png" /></p>
+<h1 id="摘要abstruct">摘要（Abstruct）</h1>
+<blockquote>
+<p>摘要是用几句话来简述文章的整体工作，这一部分的作用相当于文章的“广告”，读者通过摘要大致了解文章内容，并进一步决定是否阅读文章。因此，摘要的写作要求用语简单，浅显易懂。</p>
+<p>几句话概括一下你的工作（用于简单，外行要看得懂）。</p>
+</blockquote>
+<ul>
+<li>文章关注的问题</li>
+<li>文章的核心工作内容</li>
+<li>文章的实现方法</li>
+<li>文章达到的效果</li>
+</ul>
+<blockquote>
+<p>一个例子。</p>
+</blockquote>
+<p><img src="https://user-images.githubusercontent.com/48743005/127591791-5d8bfc98-2e51-4b53-a63c-908a41a5e05a.png" /></p>
+<h1 id="介绍introduction">介绍（Introduction）</h1>
+<blockquote>
+<p>引言是文章的关键部分，是在题目和摘要之后对工作的<strong>进一步介绍</strong>。良好的引言能够清晰描述所做的工作，并充分论证<strong>工作的必要性和重要性</strong>，吸引读者深入阅读后续文章。<strong>严密的逻辑链</strong>有助于形成更好的行文框架，讲座中推荐的逻辑链分为三个层次，包括：</p>
+</blockquote>
+<ul>
+<li>说明问题是什么</li>
+<li>当前最好的工作面临什么挑战</li>
+<li>我们的方法能够缓解上述挑战</li>
+</ul>
+<p>在形成整体框架后，引言中各段落的写作也可以应用一些技巧。每个段落的<strong>起始</strong>可以是一个论断性的<strong>中心句</strong>；下文中采用<strong>多个前人工作和具体实验数据作为支撑句</strong>，围绕中心句展开论证；<strong>段尾</strong>可以加上<strong>衔接句</strong>，与下一部分进行连接。</p>
+<blockquote>
+<p>一个例子。</p>
+</blockquote>
+<p><img src="https://user-images.githubusercontent.com/48743005/127592175-630dcdb2-4e7f-4b50-95de-62e52014fb60.png" /></p>
+<h2 id="中心句与衔接句例子">中心句与衔接句例子</h2>
+<ul>
+<li><code>We believe that it is important ... On one hand, ... On the other hand, ...</code></li>
+</ul>
+<h2 id="衔接句例子">衔接句例子</h2>
+<ul>
+<li><code>Therefore, it is necessary to ...</code></li>
+</ul>
+<h2 id="新技巧">新技巧</h2>
+<ul>
+<li>在<strong>论文首页</strong>放置一个<strong>图表</strong>有助于提高文章可读性</li>
+<li>直接列出自己的贡献</li>
+</ul>
+<h1 id="相关工作related-work">相关工作（Related Work）</h1>
+<blockquote>
+<p>在相关工作部分中，应当向读者（审稿人）展示作者对本领域有<strong>全面深刻的认知</strong>，并通过与前人工作的对比凸显本工作的创新性。</p>
+<p><strong>避免遗漏关键文献、对前人工作简单堆砌</strong>，甚至通过批评攻击前人工作来说明本工作的优势。</p>
+<p>在相关工作<strong>每一部分的最后</strong>，应当<strong>指出本工作与前人工作的差异和创新之处</strong>。</p>
+</blockquote>
+<h1 id="方法methods">方法（Methods）</h1>
+<blockquote>
+<p>方法是论文的核心部分。讲座中不建议直接在方法部分罗列公式和证明，而推荐利用<strong>Running Example</strong>等媒介，<strong>首先</strong>用<strong>通俗的语言</strong>描述研究问题和解决方案，<strong>而后</strong>再给出<strong>形式化</strong>表述。</p>
+</blockquote>
+<blockquote>
+<p>一个例子。</p>
+</blockquote>
+<p><img src="https://user-images.githubusercontent.com/48743005/127592701-b2d9b7bd-766b-49b5-a1e2-41b549243c68.png" /></p>
+<h1 id="实验experiments">实验（Experiments）</h1>
+<blockquote>
+<p>实验的充分性也在很大程度上决定了文章能否被录用。</p>
+<p>实验应当<strong>选取公认的标准数据集</strong>和<strong>当前最优的基线系统</strong>，提高实验的说服力。</p>
+<p>在结构上，通常<strong>首先</strong>在<strong>开发集</strong>上进行<strong>辅助实验</strong>，<strong>调节超参数</strong>的影响；而后在<strong>测试集</strong>上给出<strong>主实验结果</strong>，论证方法的<strong>有效性和泛用性</strong>。同时，需要给出<strong>显著性检验结果</strong>来证明提出方法显著超过基线方法。</p>
+<p>要做到审稿人想不到的地步。</p>
+<p>此外，实验图表的使用也应注意到下面的问题，来提高文章易读性：</p>
+</blockquote>
+<ul>
+<li>通常情况下，我们的方法应放在表格下方，总体性的评估指标应放在表格右侧</li>
+<li>曲线图中图例的顺序尽量与曲线顺序相一致</li>
+<li>图表说明文字应包含充分的信息，具有自解释性</li>
+</ul>
+<h1 id="写作技巧总结">写作技巧总结</h1>
+<ul>
+<li>本质上分享思想，呈现信息。</li>
+<li>信息的呈现符合读者的认知惯性。</li>
+<li>全心全意为读者服务，降低阅读难度，提高愉悦感。</li>
+<li>细节决定成败。</li>
+<li>不要本末倒置：创新至上，技法为辅。</li>
+</ul>
 ]]></content>
       <categories>
-        <category>Git</category>
+        <category>科研</category>
       </categories>
       <tags>
-        <tag>Git</tag>
+        <tag>科研</tag>
+        <tag>写作</tag>
       </tags>
   </entry>
   <entry>
-    <title>【Ubuntu】虚拟机VMware中安装Ubuntu 18.04（win）</title>
-    <url>/2021/09/27/%E3%80%90Ubuntu%E3%80%91%E8%99%9A%E6%8B%9F%E6%9C%BAVMware%E4%B8%AD%E5%AE%89%E8%A3%85Ubuntu-18-04%EF%BC%88win%EF%BC%89/</url>
+    <title>【自然语言处理】研究入门-实验目录</title>
+    <url>/2021/07/16/%E3%80%90%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E3%80%91%E7%A0%94%E7%A9%B6%E5%85%A5%E9%97%A8-%E5%AE%9E%E9%AA%8C%E7%9B%AE%E5%BD%95/</url>
     <content><![CDATA[<blockquote>
-<p>本文简要介绍了虚拟机VMware中安装Ubuntu 18.04的大致流程。</p>
+<p>从零开始如何快速进入 NLP 的研究工作。</p>
+<p>任何问题，争取通过搜索、交流、和查阅文献得到解决。</p>
+<p>不要以书本为解决方案，基于书本的学习方式在研究生阶段不再适合。</p>
 </blockquote>
 <span id="more"></span>
+<hr />
+<ol start="0" type="1">
+<li>首先具有较强的编码能力 - 这个需要练的，以 Leetcode 为主。</li>
+<li>了解各种文本分类任务，去下载 SST2 或者 SST5 句子分类数据。</li>
+<li>手写实现一个基于 n-gram 的最大熵分类器 (c++ &amp; numpy)。 抽取 n-gram 特征，转化成为特征向量，实现模型参数矩阵，分类打分，计算概率，最大熵损失，计算模型参数反向梯度，最大熵优化，测试准确率，调参环节，一条龙体会机器学习。</li>
+<li>利用深度学习库（例如pytorch）实现 n-gram 最大熵分类。</li>
+<li>1-gram分类，使用预训练词向量进行句子分类，了解pooling，理解深度学习。</li>
+<li>实现 CNN，理解 CNN 和 n-gram 的关系。</li>
+<li>实现 LSTM，理解 LSTM 和 CNN 的关系。</li>
+<li>实现 Self-Attention，理解 pooling 和 SelfAttention 关系。</li>
+<li>实现 Transformer，了解 Transformer 的各个组件。</li>
+<li>理解 word2vec 以及语言模型，动手实现 word2vec。</li>
+<li>学会使用 ELMo。</li>
+<li>学会使用 BERT，了解 BERT 分词机制。</li>
+<li>查找相关论文，了解自己的分类模型和 SOTA 的区别，撰写文档。</li>
+<li>了解 NER 与序列标注，下载 conll03 和 GermEval2014 数据。</li>
+<li>实现 BiLSTM-CRF 模型。</li>
+<li>实现 BERT-(BiLSTM)-CRF 模型，学会处理异常情况。</li>
+<li>了解中文分词，查找相关数据，实现分词模型。</li>
+<li>查找相关论文，了解对应数据 SOTA 结果，撰写文档。</li>
+<li>了解各种序列标注任务。</li>
+<li>附加题：多选一，代码 + 报告。</li>
+</ol>
 <ul>
-<li><a href="http://www.zhanshaoyi.com/15258.html">下载虚拟机</a></li>
-<li><a href="https://old-releases.ubuntu.com/releases/18.04.4/?_ga=2.217740438.1611117330.1589030901-459737397.1589030901">下载 Ubuntu 镜像</a></li>
-<li><a href="https://blog.csdn.net/qq_44830040/article/details/106028964">安装步骤</a></li>
+<li>多模态蕴含分类任务</li>
+<li>多语言序列标注任务</li>
+<li>句法结构分析</li>
+<li>结构化语义分析</li>
+<li>逻辑语义分析</li>
+<li>词表示方法，从单语言到多语言</li>
+<li>Seq2Seq 模型及其应用</li>
+<li>变分模型及其应用</li>
+<li>自然语言处理中的生成对抗方法</li>
 </ul>
 ]]></content>
+  </entry>
+  <entry>
+    <title>【自然语言处理】DeepLearning.AI-1-w1-Logistic Regression</title>
+    <url>/2021/07/08/%E3%80%90%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E3%80%91DeepLearning-AI-1-w1-Logistic-Regression/</url>
+    <content><![CDATA[<blockquote>
+<p>Learn to <strong>extract features</strong> from text into <strong>numerical vectors</strong>, then <strong>build a binary classifier</strong> for tweets using <strong>logistic regression</strong>!</p>
+</blockquote>
+<span id="more"></span>
+<h2 id="数据预处理的一般方式">数据预处理的一般方式</h2>
+<ul>
+<li>预处理（Preprocessing）
+<ul>
+<li>消除句柄和URL</li>
+<li>分词</li>
+<li>去除一些停用词，英文中如（and, is, a, on, etc.）</li>
+<li>将单词转变为词干（Stemming），如 dancer, dancing, danced, 变为 'danc'</li>
+<li>将英文大写转变为小写</li>
+</ul></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># example</span></span><br><span class="line"><span class="keyword">import</span> nltk                                <span class="comment"># Python library for NLP</span></span><br><span class="line"><span class="keyword">import</span> re                                  <span class="comment"># library for regular expression operations</span></span><br><span class="line"><span class="keyword">import</span> string                              <span class="comment"># for string operations</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> nltk.corpus <span class="keyword">import</span> stopwords          <span class="comment"># module for stop words that come with NLTK</span></span><br><span class="line"><span class="keyword">from</span> nltk.stem <span class="keyword">import</span> PorterStemmer        <span class="comment"># module for stemming</span></span><br><span class="line"><span class="keyword">from</span> nltk.tokenize <span class="keyword">import</span> word_tokenize   <span class="comment"># module for tokenizing strings</span></span><br><span class="line"></span><br><span class="line">tweet_text = <span class="string">&#x27;My beautiful sunflowers on a sunny Friday morning off :) #sunflowers #favourites #happy #Friday off… https://t.co/3tfYom0N1i&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">preprocess</span>(<span class="params">text, remove_tag=<span class="literal">True</span>, tokenize=<span class="literal">True</span>, remove_stop_p=<span class="literal">True</span>, steam=<span class="literal">True</span>, lower=<span class="literal">True</span></span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    preprocess of text</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(text)</span><br><span class="line">    <span class="keyword">if</span> remove_tag:</span><br><span class="line">        <span class="comment"># remove old style retweet text &quot;RT&quot;</span></span><br><span class="line">        text = re.sub(<span class="string">r&#x27;^RT[\s]+&#x27;</span>, <span class="string">&#x27;&#x27;</span>, text)</span><br><span class="line">        <span class="comment"># remove hyperlinks</span></span><br><span class="line">        text = re.sub(<span class="string">r&#x27;https?:\/\/.*[\r\n]*&#x27;</span>, <span class="string">&#x27;&#x27;</span>, text)</span><br><span class="line">        <span class="comment"># remove hashtags</span></span><br><span class="line">        <span class="comment"># only removing the hash # sign from the word</span></span><br><span class="line">        text = re.sub(<span class="string">r&#x27;#&#x27;</span>, <span class="string">&#x27;&#x27;</span>, text)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;\033[92m&#x27;</span> + text)</span><br><span class="line">        </span><br><span class="line">    text_list = []</span><br><span class="line">    <span class="keyword">if</span> tokenize:</span><br><span class="line">        nltk.download(<span class="string">&#x27;punkt&#x27;</span>)</span><br><span class="line">        text_list = word_tokenize(text)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;\033[94m&#x27;</span> + <span class="built_in">str</span>(text_list))</span><br><span class="line">        </span><br><span class="line">    text_clean = []</span><br><span class="line">    <span class="keyword">if</span> remove_stop_p:</span><br><span class="line">        stopwords_english = stopwords.words(<span class="string">&#x27;english&#x27;</span>)</span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> text_list: <span class="comment"># Go through every word in your tokens list</span></span><br><span class="line">            <span class="keyword">if</span> (word <span class="keyword">not</span> <span class="keyword">in</span> stopwords_english <span class="keyword">and</span>  <span class="comment"># remove stopwords</span></span><br><span class="line">                word <span class="keyword">not</span> <span class="keyword">in</span> string.punctuation):  <span class="comment"># remove punctuation</span></span><br><span class="line">                text_clean.append(word)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;\033[92m&#x27;</span> + <span class="built_in">str</span>(text_clean))</span><br><span class="line">        </span><br><span class="line">    text_stem = [] </span><br><span class="line">    <span class="keyword">if</span> steam:</span><br><span class="line">        <span class="comment"># Instantiate stemming class</span></span><br><span class="line">        stemmer = PorterStemmer() </span><br><span class="line">        <span class="comment"># Create an empty list to store the stems</span></span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> text_clean:</span><br><span class="line">            stem_word = stemmer.stem(word)  <span class="comment"># stemming word</span></span><br><span class="line">            text_stem.append(stem_word)  <span class="comment"># append to the list</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;\033[94m&#x27;</span> + <span class="built_in">str</span>(text_stem))</span><br><span class="line">    </span><br><span class="line">    text_lower = []</span><br><span class="line">    <span class="keyword">if</span> lower:</span><br><span class="line">        <span class="keyword">for</span> word <span class="keyword">in</span> text_stem:</span><br><span class="line">            text_lower.append(word.lower())</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;\033[92m&#x27;</span> + <span class="built_in">str</span>(text_lower))</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">preprocess(tweet_text)</span><br></pre></td></tr></table></figure>
+<p><img src="https://user-images.githubusercontent.com/48743005/124874740-a9e35c80-dffa-11eb-9d18-502ba6d8e0a6.png" /></p>
+<h2 id="两种将句子特征提取变为向量的方式">两种将句子特征提取变为向量的方式</h2>
+<h3 id="方式一---是否出现">方式一 - 是否出现</h3>
+<ul>
+<li>将要处理的所有文本的 <strong>词汇量</strong> 记作 <span class="math inline">\(V\)</span>
+<ul>
+<li>对于每句话，出现的词标记为 1，剩余为 0</li>
+<li>那么每句话的维度就为 <span class="math inline">\(|V|\)</span></li>
+</ul></li>
+<li>问题
+<ul>
+<li>导致训练，预测的计算时间长</li>
+</ul></li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/48743005/124869856-64bc2c00-dff4-11eb-8c1f-6d2c1581024f.png" /></p>
+<h3 id="方式二---频数">方式二 - 频数</h3>
+<ul>
+<li>假设一个语料库有四句话，两句正面，两句负面</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/48743005/124870314-13606c80-dff5-11eb-8ba5-a7410e0013d4.png" /></p>
+<ul>
+<li>计算每个 unique 词在 <strong>正面或负面</strong> 中各自出现的 <strong>频数</strong>，构成一个 <strong>词汇表</strong></li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/48743005/124870325-18bdb700-dff5-11eb-80eb-f2814986ed2e.png" /></p>
+<ul>
+<li>用一个 <strong>3维向量</strong> 表示一句话
+<ul>
+<li>第一维度是 bias</li>
+<li>第二维度是 这句话中出现在 <strong>词汇表</strong> 中的词为 <strong>正</strong> 的 <strong>词频和</strong></li>
+<li>第二维度是 这句话中出现在 <strong>词汇表</strong> 中的词为 <strong>负</strong> 的 <strong>词频和</strong></li>
+<li>于是下面这句话的向量表示是 <span class="math inline">\((1,8,11)\)</span></li>
+</ul></li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/48743005/124870340-1f4c2e80-dff5-11eb-87e1-3f639dd7e59e.png" /></p>
+<p><img src="https://user-images.githubusercontent.com/48743005/124870357-27a46980-dff5-11eb-9223-35dda628ac6e.png" /></p>
+]]></content>
       <categories>
-        <category>Ubuntu</category>
+        <category>DeepLearning.AI - Coursera - Lesson 1</category>
       </categories>
       <tags>
-        <tag>Ubuntu</tag>
+        <tag>自然语言处理</tag>
       </tags>
   </entry>
 </search>
