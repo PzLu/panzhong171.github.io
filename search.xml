@@ -3331,4 +3331,24 @@ LR(p_i) = LR(p_i) + \frac{\hat{LR}(p_g)}{N}
         <tag>Git</tag>
       </tags>
   </entry>
+  <entry>
+    <title>【Ubuntu】虚拟机VMware中安装Ubuntu 18.04（win）</title>
+    <url>/2021/09/27/%E3%80%90Ubuntu%E3%80%91%E8%99%9A%E6%8B%9F%E6%9C%BAVMware%E4%B8%AD%E5%AE%89%E8%A3%85Ubuntu-18-04%EF%BC%88win%EF%BC%89/</url>
+    <content><![CDATA[<blockquote>
+<p>本文简要介绍了虚拟机VMware中安装Ubuntu 18.04的大致流程。</p>
+</blockquote>
+<span id="more"></span>
+<ul>
+<li><a href="http://www.zhanshaoyi.com/15258.html">下载虚拟机</a></li>
+<li><a href="https://old-releases.ubuntu.com/releases/18.04.4/?_ga=2.217740438.1611117330.1589030901-459737397.1589030901">下载 Ubuntu 镜像</a></li>
+<li><a href="https://blog.csdn.net/qq_44830040/article/details/106028964">安装步骤</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Ubuntu</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+      </tags>
+  </entry>
 </search>
