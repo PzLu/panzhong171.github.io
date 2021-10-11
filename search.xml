@@ -163,6 +163,15 @@
 <li>最后点击绿色的 Create pull request 即可。</li>
 <li>然后原作者就会收到pull request了。你也完成了对项目的贡献。</li>
 </ul>
+<h2 id="如何编写.gitignore上传时忽略部分文件">如何编写.gitignore上传时忽略部分文件</h2>
+<ul>
+<li>首先在你的项目路径下，新建txt并命名为.gitignore（文件全名包括后缀）</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/48743005/136752570-5970448b-a04b-4257-88b5-26fa8ca58e02.png" /></p>
+<ul>
+<li>但是通常配置完后不会生效，因为.gitignore只能忽略那些原来没有被track的文件，如果某些文件已经被纳入了版本管理中，则修改.gitignore是无效的。那么解决方法就是先把本地缓存删除（改变成未track状态），然后再提交：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">git rm -r --cached .</span><br><span class="line">git add . # 可以用 vscode 直接操作</span><br><span class="line">git commit -m &#x27;×××××&#x27; # 可以用 vscode 直接操作</span><br></pre></td></tr></table></figure>
 <h2 id="一些可能出现的问题">一些可能出现的问题</h2>
 <h3 id="git-push-时本地仓库不能推送到远程仓库">git push 时本地仓库不能推送到远程仓库</h3>
 <ul>
